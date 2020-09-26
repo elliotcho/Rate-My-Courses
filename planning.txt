@@ -1,0 +1,32 @@
+Post {
+    id: String
+    content: String,
+    likes: [String],
+    dislikes: [String],
+    datePosted: Date,
+    userId: String
+}
+
+User{
+    id: String
+    email : String,
+    password: String (hashed),
+    username: String
+}
+
+Course{
+    id: String
+    name: String
+    number: Integer
+}
+
+Department{
+    id: String,
+    name: String
+}
+
+Roles:
+//Backend for signing up (Armaan)
+//Frontend for logging in (Charan)
+//Frontend for signing up (Gugsa)
+//Backend for logging in (Elliot)
