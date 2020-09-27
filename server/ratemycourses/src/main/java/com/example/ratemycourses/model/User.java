@@ -1,17 +1,32 @@
 package com.example.ratemycourses.model;
 
+import java.util.random;
+
 public class User{
-    private String name;
+    private String id;
+    private String email;
+    private String password;
+    private String username;
 
-    public User(String name){
-        this.name = name;
+    public User(String username){
+        this.username = username;
+        
     }
 
-    public String getName(){
-        return name;
+    public void setEmail(String address){
+        email = address;
     }
 
-    public void setName(String name){
-        this.name = name;
+    public String getEmail(){
+        return email;
+    }
+
+
+    public String getusername(){
+        return username;
+    }
+
+    public void setusername(String username){
+        this.username = username;
     }
 }
