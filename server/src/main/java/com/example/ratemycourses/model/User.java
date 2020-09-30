@@ -1,32 +1,31 @@
 package com.example.ratemycourses.model;
 
-import java.util.random;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Data
+@NoArgsConstructor
+@Document
 public class User{
+    @Id
     private String id;
+
+    @NotEmpty
+    @Email
+    @Indexed(unique = true)
     private String email;
-    private String password;
+
+    @NotEmpty
+    @Indexed(unique = true)
     private String username;
 
-    public User(String username){
-        this.username = username;
-        
-    }
-
-    public void setEmail(String address){
-        email = address;
-    }
-
-    public String getEmail(){
-        return email;
-    }
-
-
-    public String getusername(){
-        return username;
-    }
-
-    public void setusername(String username){
-        this.username = username;
-    }
+    @NotEmpty
+    private String password;
+    
+    private boolean admin = false;
 }
