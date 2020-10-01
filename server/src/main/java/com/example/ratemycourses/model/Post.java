@@ -1,17 +1,31 @@
 package com.example.ratemycourses.model;
 
+import lombok.Data;
+import lombok.AllArgsConstructor;
+import javax.validation.constraints.NotEmpty;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import java.util.Date;
+
+@Data
+@AllArgsConstructor
+@Document(collection = "posts")
 public class Post{
-    private String id;  //unique id for each post
-    private String content; //user's post
-    private String [] like;
-    private String [] dislike;
-    private User theUser;  //user that submits the post
+    @Id
+    private String id;  
 
-    public Post(String con, User myUser){
-        content = con;
-        theUser = myUser;
-    }
+    private String[] likes;
+    private String[] dislikes;
 
+    @NotEmpty
+    private String content; 
+
+    @NotEmpty
+    private Date datePosted;
+
+    @NotEmpty
+    private String userId;
     
-
+    @NotEmpty
+    private String courseId;
 }

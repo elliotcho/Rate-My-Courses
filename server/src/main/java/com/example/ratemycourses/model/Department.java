@@ -1,14 +1,18 @@
 package com.example.ratemycourses.model;
 
+import lombok.Data;
+import lombok.AllArgsConstructor;
+import javax.validation.constraints.NotEmpty;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Data
+@AllArgsConstructor
+@Document(collection = "departments")
 public class Department{
+    @Id
     private String id;
-    private String name;    //department name
-
-    public void setDepartmentName(String d){
-        name = d;
-    }
-
-    public String getDepartmentName(int number){
-        return name;
-    }
+    
+    @NotEmpty
+    private String name;    
 }
