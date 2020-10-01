@@ -1,7 +1,7 @@
 package com.example.ratemycourses.model;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import org.springframework.data.annotation.Id;
@@ -9,8 +9,8 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
-@NoArgsConstructor
-@Document
+@AllArgsConstructor
+@Document(collection = "users")
 public class User{
     @Id
     private String id;
