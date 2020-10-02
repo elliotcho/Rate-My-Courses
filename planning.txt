@@ -28,8 +28,10 @@ Department{
     name: String
 }
 
-Roles:
-//Backend for signing up (Armaan)
-//Frontend for logging in (Charan)
-//Frontend for signing up (Gugsa)
-//Backend for logging in (Elliot)
+
+
+--admin
+- add departments, courses to existing department
+- logout button
+- deleting user accounts
+- delete/update departments and delete/update/ courses
