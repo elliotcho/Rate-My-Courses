@@ -24,5 +24,14 @@ public class DepartmentService{
         repo.save(D);
 
         //  }
+        }
+
+        public void deleteDepartment(String ID){
+            try {
+                repo.deleteById(ID);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

@@ -29,6 +29,12 @@ Department{
     code: String
 }
 
+--admin
+- add departments, courses to existing department
+- logout button
+- deleting user accounts
+- delete/update departments and delete/update/ courses
+
 model - repository (data access object) - service - controller(route)
 
 Department Page
