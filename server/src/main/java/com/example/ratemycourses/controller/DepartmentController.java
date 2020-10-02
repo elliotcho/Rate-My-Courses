@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/api/department")
@@ -13,4 +17,15 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 public class DepartmentController{
     @Autowired
     DepartmentService departmentService;
+
+    @PostMapping
+    public void createNewDepartment(@RequestBody Department newDepartment){
+        departmentService.createDepartment(newDepartment);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteDepartment(@PathVariable String id){
+        departmentService.deleteDepartment(id);
+    }
+
 }
