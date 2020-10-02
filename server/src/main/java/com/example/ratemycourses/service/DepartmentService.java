@@ -21,8 +21,8 @@ public class DepartmentService{
         // boolean admin = result.get(0).getAdmin();
         // }
         // if(admin){
-             repo.save(D);
+        repo.save(D);
 
         //  }
-        }
+    }
 }

@@ -26,10 +26,15 @@ Course{
 Department{
     id: String,
     name: String
+    code: String
 }
 
-Roles:
-//Backend for signing up (Armaan)
-//Frontend for logging in (Charan)
-//Frontend for signing up (Gugsa)
-//Backend for logging in (Elliot)
+model - repository (data access object) - service - controller(route)
+
+Department Page
+________________________________________________________
+Department Id |   Department Name | Department Code
+
+<table>
+    <tr></tr>
+</table>
