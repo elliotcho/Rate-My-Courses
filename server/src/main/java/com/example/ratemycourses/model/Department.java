@@ -14,5 +14,8 @@ public class Department{
     private String id;
     
     @NotEmpty
-    private String name;    
+    private String name;
+    
+    @NotEmpty
+    private String dCode;
 }
