@@ -1,10 +1,10 @@
-package com.example.ratemycourses.service;
+package org.coders.ratemycourses.service;
 
 import java.util.List;
 
-import com.example.ratemycourses.model.Course;
-import com.example.ratemycourses.model.Department;
-import com.example.ratemycourses.repository.CourseRepo;
+import org.coders.ratemycourses.model.Course;
+import org.coders.ratemycourses.model.Department;
+import org.coders.ratemycourses.repository.CourseRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

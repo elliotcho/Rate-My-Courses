@@ -1,4 +1,4 @@
-package com.example.ratemycourses.model;
+package org.coders.ratemycourses.model;
 
 import lombok.Data;
 import lombok.AllArgsConstructor;

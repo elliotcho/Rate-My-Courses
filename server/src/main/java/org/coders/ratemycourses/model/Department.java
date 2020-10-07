@@ -1,4 +1,4 @@
-package com.example.ratemycourses.model;
+package org.coders.ratemycourses.model;
 
 import lombok.Data;
 import lombok.AllArgsConstructor;
@@ -8,17 +8,14 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @AllArgsConstructor
-@Document(collection = "courses")
-public class Course{
+@Document(collection = "departments")
+public class Department{
     @Id
     private String id;
-
-    @NotEmpty
-    private String name; 
     
     @NotEmpty
-    private int number; 
-
+    private String name;
+    
     @NotEmpty
-    private String departmentId;
+    private String dCode;
 }

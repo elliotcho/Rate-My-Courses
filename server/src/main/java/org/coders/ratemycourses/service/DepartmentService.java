@@ -1,10 +1,10 @@
-package com.example.ratemycourses.service;
+package org.coders.ratemycourses.service;
 
 import java.util.List;
 
-import com.example.ratemycourses.model.Department;
-import com.example.ratemycourses.model.User;
-import com.example.ratemycourses.repository.DepartmentRepo;
+import org.coders.ratemycourses.model.Department;
+import org.coders.ratemycourses.model.User;
+import org.coders.ratemycourses.repository.DepartmentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 public class DepartmentService{
     @Autowired
     DepartmentRepo repo; //call this to get Mongo's functions
-
 
     public void createDepartment(Department D){
         
@@ -24,14 +23,13 @@ public class DepartmentService{
         repo.save(D);
 
         //  }
-        }
+    }
 
-        public void deleteDepartment(String ID){
-            try {
-                repo.deleteById(ID);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+    public void deleteDepartment(String ID){
+        try {
+            repo.deleteById(ID);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
