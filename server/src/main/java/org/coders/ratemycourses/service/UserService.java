@@ -1,7 +1,7 @@
-package com.example.ratemycourses.service;
+package org.coders.ratemycourses.service;
 
-import com.example.ratemycourses.model.User;
-import com.example.ratemycourses.repository.UserRepo;
+import org.coders.ratemycourses.model.User;
+import org.coders.ratemycourses.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;

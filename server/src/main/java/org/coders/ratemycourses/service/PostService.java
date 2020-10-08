@@ -1,7 +1,7 @@
-package com.example.ratemycourses.service;
+package org.coders.ratemycourses.service;
 
-import com.example.ratemycourses.model.Post;
-import com.example.ratemycourses.repository.PostRepo;
+import org.coders.ratemycourses.model.Post;
+import org.coders.ratemycourses.repository.PostRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

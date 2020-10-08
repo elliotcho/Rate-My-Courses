@@ -1,19 +1,21 @@
 import React from 'react';
+import SignUp from './components/auth/SignUp.jsx';
+import AdminHome from './components/admin/AdminHome.jsx';
+import LogIn from './components/auth/LogIn.jsx';
+import {Switch,Route,BrowserRouter} from 'react-router-dom';
 
 function App() {
-  const getUsers = async () => {
-      const response = await fetch('http://localhost:8080/api/user', {
-        method: 'GET'
-      });
-
-      const data = await response.json();
-
-      console.log(data);
-  }
-
+  
   return (
     <div className="App">
-      <button onClick={getUsers}>Test</button>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path='/' component={SignUp}/>
+          <Route path='/admin' component={AdminHome}/>
+          <Route exact path='/login' component={LogIn}/>
+        </Switch>
+      </BrowserRouter>
+
     </div>
   );
 }

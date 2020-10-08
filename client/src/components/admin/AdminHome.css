@@ -1,0 +1,22 @@
+body{
+    background-color: #2F2FA2;
+}
+hr{
+    background-color: white;
+}
+
+h1{
+    text-align: center;
+    color: whitesmoke;
+}
+
+.btn-group-wrap {
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+div.btn-group{
+    text-align: center;
+    margin: 0 auto;
+}

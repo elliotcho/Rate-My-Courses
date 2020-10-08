@@ -1,7 +1,7 @@
-package com.example.ratemycourses.controller;
+package org.coders.ratemycourses.controller;
 
-import com.example.ratemycourses.model.User;
-import com.example.ratemycourses.service.UserService;
+import org.coders.ratemycourses.model.User;
+import org.coders.ratemycourses.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
