@@ -1,0 +1,13 @@
+body{
+    background-color: blue;
+}
+
+ th, td{
+    border: 1px solid black;
+}
+
+.post-table{
+    margin: 0 auto;
+}
+
+
