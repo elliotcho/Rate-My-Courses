@@ -10,7 +10,7 @@ class SignUp extends Component{
 
     render(){
         return(
-            <div className="container-fluid">
+            <div className="sign-up container-fluid">
                 <form action="" className="sign-up-form">
                     <div className="intro">
                         <h1>Sign Up</h1>
