@@ -24,7 +24,7 @@
     outline: none;
 }
 
-.btn {
+.container-fluid .btn {
     text-align: left;
     margin: 11px 10%;
 }
