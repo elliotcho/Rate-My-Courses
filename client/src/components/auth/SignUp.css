@@ -1,3 +1,30 @@
-body{
-    background-color: aqua;
+
+.container-fluid {
+    text-align: center;
+    background-color: #d9ecf2;
+    max-width: 60%;
+    border-radius: 20px;
+
+}
+.intro h1 {
+    color: #132743;
+}
+
+.input-field {
+    margin: 20px;
+    color: #132743;
+}
+ .sign-up-info {
+     text-align: left;
+     padding: 0 30%;
+ }
+
+.input-ans {
+    border-radius: 17px;
+    outline: none;
+}
+
+.btn {
+    text-align: left;
+    margin: 11px 10%;
 }
