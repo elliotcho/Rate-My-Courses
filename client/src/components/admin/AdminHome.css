@@ -14,9 +14,12 @@ h1{
     text-align: center;
     display: flex;
     align-items: center;
+
 }
 
 div.btn-group{
     text-align: center;
     margin: 0 auto;
+  
 }
+
