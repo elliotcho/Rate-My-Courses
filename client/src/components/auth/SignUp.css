@@ -1,30 +1,43 @@
+.sign-up {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-family: 'Tahoma';
+}
 
-.sign-up .container-fluid {
-    text-align: center;
+
+.sign-up form{
+    margin: 0 auto;
     background-color: #d9ecf2;
-    max-width: 60%;
-    border-radius: 20px;
-
+    padding: 35px;
+    border-radius: 10%;
 }
-.sign-up .intro h1 {
+
+.sign-up h1{
     color: #132743;
 }
 
-.sign-up .input-field {
-    margin: 20px;
-    color: #132743;
+.sign-up span{
+    color: red;
 }
-.sign-up .sign-up-info {
-     text-align: left;
-     padding: 0 30%;
- }
 
- .sign-up .input-ans {
-    border-radius: 17px;
+.sign-up input{
+    display: block;
+    width: 100%;
+    padding: 5px;
+    border: 1px blue solid;
+    margin-bottom: 15px;
+}
+
+.sign-up input:focus{
     outline: none;
+    border-width: 2px;
 }
 
-.sign-up .btn {
-    text-align: left;
-    margin: 11px 10%;
+
+.sign-up button{
+    width: 100%;
+    border-radius: 17px;
 }
