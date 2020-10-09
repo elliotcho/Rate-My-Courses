@@ -3,6 +3,7 @@ Post {
     content: String,
     likes: [String],
     dislikes: [String],
+    stars: Number
     datePosted: Date,
     userId: String,
     courseId: String
@@ -19,7 +20,8 @@ User{
 Course{
     id: String
     name: String
-    number: Integer
+    number: Integer,
+    rating: Number
     departmentId: String
 }
 

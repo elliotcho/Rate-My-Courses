@@ -2,7 +2,7 @@ import React from 'react';
 import SignUp from './components/auth/SignUp.jsx';
 import AdminHome from './components/admin/AdminHome.jsx';
 import LogIn from './components/auth/LogIn.jsx';
-import {Switch,Route,BrowserRouter} from 'react-router-dom';
+import {Switch, Route, BrowserRouter} from 'react-router-dom';
 
 function App() {
   
