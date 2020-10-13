@@ -10,7 +10,34 @@ body{
     height: 100%;
 }
 
-.sign-in .sign-in-form {
+.sign-in form {
     background-color: #0c2233;
     margin: 0 auto;
+    padding: 34px;
+    border-radius: 10%;
+}
+
+.sign-in h1 {
+    color: #f4f9f4;
+}
+.sign-in span {
+    color: #e84a5f;
+}
+.sign-in p, label {
+    color: #ffc0d0;
+}
+
+.sign-in input {
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+    border: 2px solid #010101;
+}
+
+.sign-in button {
+    margin: 10px 0 7px;
+    border-radius: 17px;
+}
+
+.sign-in .sign-up-btn {
 }
