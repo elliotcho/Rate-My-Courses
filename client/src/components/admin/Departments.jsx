@@ -42,8 +42,7 @@ class Departments extends Component{
                         <td></td>
                     </tr>
 
-                </table>
-                
+                </table> 
             </div>
         )
     }
