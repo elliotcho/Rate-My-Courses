@@ -1,12 +1,38 @@
 .auth-modal .modal-content{
+    font-family: 'Tahoma';
     position: relative;
     left: 2px;
+    top: 2px;
+}
+
+.auth-modal .modal-header{
+    padding: 0;
 }
 
 .auth-modal .modal-body{
     padding: 0;
 }
 
-.auth-modal li{
+.auth-modal a{  
+    display:inline-block;
+    border-radius: 0;
+    padding: 1.4rem;
     font-size: 1.5rem;
+}
+
+.auth-modal a.active{
+    color: black;
+    text-decoration: underline;
+}
+
+.auth-modal .close{
+    position: relative;
+    right: 20px;
+    top: 25px;
+    font-size: 1.5rem;
+}
+
+.auth-modal .close:focus{
+    box-shadow: none;
+    outline: none;
 }
