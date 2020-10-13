@@ -9,6 +9,8 @@ class Departments extends Component{
         this.state = {
             deparments: []
         }
+
+        this.createDepartment = this.createDepartment.bind(this);
     }
 
     async componentDidMount(){
@@ -20,13 +22,17 @@ class Departments extends Component{
         this.setState({deparments});
     }
 
+    createDepartment(){
+
+    }
+
     render(){
         const {deparments} = this.state;
 
         return(
             <div className="departments page"> 
 
-                <form action="" className="add-department">
+                <form onSubmit={this.createDepartment} className="add-department">
                     <h2>Create New Department</h2>
                     <label for='name'>Enter Department Name</label>
                     <input id='name' type='text' name='dName'/>
