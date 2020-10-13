@@ -26,6 +26,7 @@ class Courses extends Component{
                     </section>
                     <button className="btn btn-outline-warning btn-block">Search</button>
                 </form>
+               
             </div>
         )
     }
