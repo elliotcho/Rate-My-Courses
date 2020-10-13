@@ -14,15 +14,7 @@ public class DepartmentService{
     DepartmentRepo repo; //call this to get Mongo's functions
 
     public void createDepartment(Department D){
-        
-        // List<User> result = repo.findByid();
-        // if(result != null){
-        // boolean admin = result.get(0).getAdmin();
-        // }
-        // if(admin){
         repo.save(D);
-
-        //  }
     }
 
     public void deleteDepartment(String ID){
