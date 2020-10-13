@@ -3,10 +3,6 @@ import './Post.css';
 
 
 class Post extends Component{
-    constructor(){
-        super();
-    }
-
     render(){
         const JS = 0;
         return(

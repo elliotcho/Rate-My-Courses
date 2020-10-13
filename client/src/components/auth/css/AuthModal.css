@@ -1,12 +1,12 @@
 .auth-modal .modal-content{
     font-family: 'Tahoma';
-    position: relative;
-    left: 2px;
-    top: 2px;
+    border: 0;
+    border-radius: 0;
 }
 
 .auth-modal .modal-header{
     padding: 0;
+    border: 0;
 }
 
 .auth-modal .modal-body{

@@ -2,11 +2,6 @@ import React, {Component} from 'react';
 import './CreatePost.css';
 
 class CreatePost extends Component{
-    constructor(){
-        super();
-        
-    }
-
     render(){
         return(
             <div className="create-new-post">

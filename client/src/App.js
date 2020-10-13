@@ -6,7 +6,7 @@ import PostList from './components/posts/PostList.jsx';
 import Departments from './components/admin/Departments.jsx'
 import {Switch, Route, BrowserRouter} from 'react-router-dom';
 import AuthModal from './components/auth/AuthModal';
-import Navigate from './components/Layout/Navigate.jsx';
+import Navigate from './components/layout/Navigate.jsx';
 function App() {
   
   // <Navigate></Navigate>
@@ -19,6 +19,8 @@ function App() {
           <Route exact path='/createpost' component={CreatePost}/>
           <Route exact path='/postlist' component={PostList}/>
           <Route exact path='/departments' component={Departments}/>
+
+          
           <Route exact path='/auth' render = {() =>
             <div>
 
