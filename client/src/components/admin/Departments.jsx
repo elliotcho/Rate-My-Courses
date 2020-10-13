@@ -8,6 +8,7 @@ class Departments extends Component{
 
         this.state = {
             deparments: []
+            
         }
 
         this.createDepartment = this.createDepartment.bind(this);
@@ -22,8 +23,23 @@ class Departments extends Component{
         this.setState({deparments});
     }
 
-    createDepartment(){
+    async createDepartment(e){
+        e.preventDefault();
+        const data = { 
+            name: e.target.dName.value,
+            code: Number(e.target.dID.value)
+        }
+        console.log(data);
+        const config = {headers: {'Content-Type': 'application/json'}};
+        const response = await axios.post('http://localhost:8080/api/department', data, config);
 
+
+    }
+
+    async deleteDepartment(d){
+        d.preventDefault();
+        const ID = d.target.deleteDepartID.value;
+        const response = await axios.delete(`http://localhost:8080/api/department/${ID}`);
     }
 
     render(){
@@ -41,15 +57,15 @@ class Departments extends Component{
                     <button>Create Department</button>
                 </form>
 
-                <form action = "" className="delete-department">
+                <form onSubmit={this.deleteDepartment} className="delete-department">
                     <h2>Delete Department</h2>
                     <label for='deleteID'>Enter Department ID</label>
-                    <input id='deleteID'/>
+                    <input id='deleteID' name='deleteDepartID'/>
                     <button>Delete Department</button>
                 </form>
 
                 <h1>Current Active Departments</h1>
-                <table className='department-list' width=''>
+                <table className='department-list'>
                     <tr>
                         <th>Department ID</th>
                         <th>Department Name</th>
@@ -62,7 +78,8 @@ class Departments extends Component{
                             <th>{department.name}</th>
                             <th>{department.code}</th>
                         </tr>
-                    )}
+                    )
+                    }
                 </table> 
             </div>
         )

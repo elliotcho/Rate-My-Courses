@@ -1,5 +1,8 @@
-body{
+.admin{
     background-color: #2F2FA2;
+    position: fixed;
+    height: 100%;
+    width: 100%;
 }
 hr{
     background-color: white;

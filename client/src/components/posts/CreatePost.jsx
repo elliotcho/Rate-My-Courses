@@ -11,6 +11,7 @@ class CreatePost extends Component{
         return(
             <div className="create-new-post">
                 <form className="creating-post">
+                    <h2>Create New Post</h2>
                     <label for="course-id">Enter Course Number:</label>
                     <input type="double" id="course-id" name="id"/>
                     <label for="coursetaken">When did you take this course</label>
@@ -23,7 +24,7 @@ class CreatePost extends Component{
                 </form>
             </div>
         )
-    }
+    } 
 }
 
 export default CreatePost;
