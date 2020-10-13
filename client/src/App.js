@@ -7,11 +7,12 @@ import CreatePost from './components/posts/CreatePost.jsx';
 import PostList from './components/posts/PostList.jsx';
 import Departments from './components/admin/Departments.jsx'
 import {Switch, Route, BrowserRouter} from 'react-router-dom';
-
+import Navigate from './components/Layout/Navigate.jsx';
 function App() {
   
   return (
     <div className="App">
+      <Navigate></Navigate>
       <BrowserRouter>
         <Switch>
           <Route exact path='/auth' component={SignUp}/>
