@@ -1,16 +1,17 @@
 import React, {Component} from 'react';
 import Login from './Login';
-import SignUp from './Signup';
+import Signup from './Signup';
+import './css/AuthModal.css';
 
 class AuthModal extends Component{
     render(){
         return(
             <div>
-                <button data-toggle='modal' data-target='#auth-modal'>
+                <button data-toggle='modal' data-target='#auth'>
                     Sign In
                 </button>
 
-                <div className='modal fade' id='auth-modal' data-backdrop='static'>
+                <div className='auth-modal modal fade' id='auth' data-backdrop='static'>
                     <div className ='modal-dialog modal-dialog-centered'>
                         <div className ='modal-content'>
                             <div className ='modal-header'>
@@ -22,7 +23,7 @@ class AuthModal extends Component{
                                     </li>
 
                                     <li>
-                                        <a className='nav-link active' data-toggle='tab' href='#signup'>
+                                        <a className='nav-link' data-toggle='tab' href='#signup'>
                                             Sign Up
                                         </a>
                                     </li>
@@ -35,13 +36,12 @@ class AuthModal extends Component{
 
                             <div className ='modal-body'>
                                 <div className='tab-content'>
-                                    <section id='login' className ='tab-pane'>
-                                        <h1>HELLO</h1>
+                                    <section id='login' className ='tab-pane active'>
                                         <Login/>
                                     </section>
 
                                     <section id='signup' className ='tab-pane'>
-                                        <SignUp/>
+                                        <Signup/>
                                     </section>
                                 </div>
                             </div>

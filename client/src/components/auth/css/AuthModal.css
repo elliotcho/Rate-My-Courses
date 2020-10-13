@@ -1,0 +1,12 @@
+.auth-modal .modal-content{
+    position: relative;
+    left: 2px;
+}
+
+.auth-modal .modal-body{
+    padding: 0;
+}
+
+.auth-modal li{
+    font-size: 1.5rem;
+}

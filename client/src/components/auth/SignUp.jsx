@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import './SignUp.css';
+import './css/Signup.css';
 
-class SignUp extends Component{
+class Signup extends Component{
     constructor(){
         super();
 
@@ -14,9 +14,9 @@ class SignUp extends Component{
         return(
             <div className="sign-up">
                 <form>
-                    <h1 className='text-center'>Sign Up</h1>
+                    <h1 className='title'>Sign Up</h1>
 
-                    <p className='text-muted mb-4'>
+                    <p className='mb-4'>
                         Enter your information to create an account
                     </p>
 
@@ -32,7 +32,7 @@ class SignUp extends Component{
                     <label htmlFor="confirmPassword">Confirm Password <span>*</span></label>
                     <input className="text-muted" type="confirmPassword"></input>
                         
-                    <button className="btn btn-success mt-4">
+                    <button className="btn btn-outline-success btn-block">
                         Sign Up
                     </button>
                 </form>
@@ -41,4 +41,4 @@ class SignUp extends Component{
     }
 }
 
-export default SignUp;
+export default Signup;

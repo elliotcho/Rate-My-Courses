@@ -1,0 +1,28 @@
+.login form {
+    font-family: 'Nunito Sans';
+    background-color: #0c2233;
+    padding: 50px;
+}
+
+.login h1 {
+    color: #f4f9f4;
+}
+.login span {
+    color: #e84a5f;
+}
+
+.login p, .login label {
+    color: #ffc0d0;
+}
+
+.login input {
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+    border: 2px solid #010101;
+}
+
+.login button {
+    margin: 10px 0 7px;
+    border-radius: 17px;
+}
