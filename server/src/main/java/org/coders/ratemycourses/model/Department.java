@@ -17,5 +17,5 @@ public class Department{
     private String name;
     
     @NotEmpty
-    private String dCode;
+    private String code;
 }

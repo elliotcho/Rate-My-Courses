@@ -11,6 +11,7 @@ class Post extends Component{
         const JS = 0;
         return(
             <div className="post-body">
+                <h1>Active Posts </h1>
                 <table className="post-table">
                     <tr><th>Course Number </th>
                         <th>Experience</th>
