@@ -5,6 +5,7 @@ import LogIn from './components/auth/LogIn.jsx';
 import Post from './components/posts/Post.jsx';
 import CreatePost from './components/posts/CreatePost.jsx';
 import PostList from './components/posts/PostList.jsx';
+import Departments from './components/admin/Departments.jsx'
 import {Switch, Route, BrowserRouter} from 'react-router-dom';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route exact path='/posts' component={Post}/>
           <Route exact path='/createpost' component={CreatePost}/>
           <Route exact path='/postlist' component={PostList}/>
+          <Route exact path='/Departments' component={Departments}/>
         </Switch>
       </BrowserRouter>
 
