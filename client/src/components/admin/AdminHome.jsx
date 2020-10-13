@@ -15,7 +15,7 @@ class AdminHome extends Component{
 
     render(){
         return(
-            <div>
+            <div className="admin-home">
                 <h1>Administrator</h1>
                 <hr></hr>
                 <div className="btn-group-wrap"> 

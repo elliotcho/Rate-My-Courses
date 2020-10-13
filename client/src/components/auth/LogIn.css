@@ -1,8 +1,6 @@
-body{
-    background-color: blueviolet;
-}
 
 .sign-in {
+    background-color: #ececec;
     position: fixed;
     display: flex;
     align-items: center;
@@ -23,7 +21,7 @@ body{
 .sign-in span {
     color: #e84a5f;
 }
-.sign-in p, label {
+.sign-in p, .sign-in label {
     color: #ffc0d0;
 }
 
@@ -37,7 +35,4 @@ body{
 .sign-in button {
     margin: 10px 0 7px;
     border-radius: 17px;
-}
-
-.sign-in .sign-up-btn {
 }
