@@ -10,25 +10,55 @@ class AdminHome extends Component{
         super();
         
         this.state={
-
+            activeTable: ''
         };
+    
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    handleClick(e){
+        console.log(e.target.name)
+        this.setState({activeTable: e.target.name});
     }
 
     render(){
+        const {activeTable} = this.state;
+
+        const defaultStyle = 'btn btn-lg btn-secondary'; 
+        const activeStyle = `${defaultStyle} active`;
+
+        const departmentBtnStyle = (activeTable === 'department') ? activeStyle: defaultStyle;
+        const courseBtnStyle = (activeTable === 'course') ? activeStyle: defaultStyle;
+        const userBtnStyle = (activeTable === 'user') ? activeStyle: defaultStyle;
+
         return(
-            <div className= "admin">
+            <div className= 'admin'>
                 <h1>Administrator</h1>
-                <hr></hr>
-                <div className="btn-group-wrap"> 
-                    <div className="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" className="btn btn-lg btn-secondary">Departments</button>
-                        <button type="button" className="btn btn-lg btn-secondary">Courses</button>
-                        <button type="button" className="btn btn-lg btn-secondary">Users</button>
+
+                <hr/>
+
+                <div className='btn-group-wrap'> 
+                    <div className='btn-group' role="group" aria-label="Basic example">
+                        <button className={departmentBtnStyle} name='department' onClick={this.handleClick}>
+                            Departments
+                        </button>
+
+                        <button className={courseBtnStyle} name='course' onClick={this.handleClick}>
+                            Courses
+                        </button>
+                       
+                        <button className={userBtnStyle} name='user' onClick={this.handleClick}>
+                            Users
+                        </button>
                     </div>
                 </div>
                 <br></br>
 
-                <CourseTable/>
+                {activeTable === 'department' ? 
+                    (<DepartmentTable/>) : (activeTable === 'course') ?
+                    (<CourseTable/>) : 
+                    (<UserTable/>)
+                }
             </div>
         )
     }

@@ -71,7 +71,7 @@ class DepartmentTable extends Component{
         const {deparments, name, code} = this.state;
 
         return(
-            <div className='departments-table'>
+            <div className='department-table'>
                 <table>
                     <thead>
                         <th>Department ID</th>

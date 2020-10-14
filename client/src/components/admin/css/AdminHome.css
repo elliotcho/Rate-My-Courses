@@ -4,7 +4,8 @@
     height: 100%;
     width: 100%;
 }
-hr{
+
+.admin hr{
     background-color: white;
 }
 
@@ -13,16 +14,20 @@ hr{
     color: whitesmoke;
 }
 
-.btn-group-wrap {
+.admin .btn-group-wrap {
     text-align: center;
     display: flex;
     align-items: center;
 
 }
 
-div.btn-group{
+.admin div.btn-group{
     text-align: center;
     margin: 0 auto;
-  
+}
+
+.admin button:focus{
+    outline: none;
+    box-shadow: none;
 }
 
