@@ -7,82 +7,124 @@ class Departments extends Component{
         super();
 
         this.state = {
-            deparments: []
-            
+            deparments: [],
+            name: '',
+            code: ''
         }
 
+        this.handleChange = this.handleChange.bind(this);
         this.createDepartment = this.createDepartment.bind(this);
+        this.deleteDepartment = this.deleteDepartment.bind(this);
     }
 
     async componentDidMount(){
         const response = await axios.get('http://localhost:8080/api/department');
         const deparments = response.data;
 
-        console.log(deparments);
+        this.setState({deparments : deparments.reverse()});
+    }
 
-        this.setState({deparments});
+    handleChange(e){
+        this.setState({[e.target.id]: e.target.value});
     }
 
     async createDepartment(e){
         e.preventDefault();
-        const data = { 
-            name: e.target.dName.value,
-            code: Number(e.target.dID.value)
-        }
-        console.log(data);
+        
+        const {name, code} = this.state;
+
         const config = {headers: {'Content-Type': 'application/json'}};
-        const response = await axios.post('http://localhost:8080/api/department', data, config);
 
+        const response = await axios.post('http://localhost:8080/api/department', {name, code}, config);
+        const newDepartment = response.data;
 
+        const {deparments} = this.state;
+        deparments.unshift(newDepartment);
+
+        this.setState({
+            deparments,
+            name: '',
+            code: ''
+        });
     }
 
-    async deleteDepartment(d){
-        d.preventDefault();
-        const ID = d.target.deleteDepartID.value;
-        const response = await axios.delete(`http://localhost:8080/api/department/${ID}`);
+    async deleteDepartment(id){
+        if(!window.confirm("Are you sure you want to delete this department?")){
+            return;
+        }
+
+        const {deparments} = this.state;
+
+        await axios.delete(`http://localhost:8080/api/department/${id}`);
+
+        for(let i=0;i<deparments.length;i++){
+            if(deparments[i].id === id){
+                deparments.splice(i, 1);
+                break;
+            }
+        }
+
+        this.setState({deparments});
     }
 
     render(){
-        const {deparments} = this.state;
+        const {deparments, name, code} = this.state;
 
         return(
-            <div className="departments page"> 
-
-                <form onSubmit={this.createDepartment} className="add-department">
-                    <h2>Create New Department</h2>
-                    <label for='name'>Enter Department Name</label>
-                    <input id='name' type='text' name='dName'/>
-                    <label for='code'>Enter Department Code</label>
-                    <input id='code' type='double' name='dID'/>
-                    <button>Create Department</button>
-                </form>
-
-                <form onSubmit={this.deleteDepartment} className="delete-department">
-                    <h2>Delete Department</h2>
-                    <label for='deleteID'>Enter Department ID</label>
-                    <input id='deleteID' name='deleteDepartID'/>
-                    <button>Delete Department</button>
-                </form>
-
-                <h1>Current Active Departments</h1>
-                <table className='department-list'>
-                    <tr>
+            <div className='departments'>
+                <table>
+                    <thead>
                         <th>Department ID</th>
                         <th>Department Name</th>
                         <th>Department Code</th>
+                        <th>Create/Delete</th>
+                    </thead>
+
+                    <tr>
+                        <td>ID Auto Generated</td>
+
+                        <td>
+                            <input 
+                                id='name' 
+                                type='text'
+                                onChange={this.handleChange}
+                                value={name}
+                            />
+                        </td>
+
+                        <td>
+                            <input 
+                                id='code' 
+                                type='text' 
+                                onChange={this.handleChange}
+                                value={code}
+                            />
+                        </td>
+
+                        <td>
+                            <button className ='btn btn-success' onClick={this.createDepartment}>
+                                Create
+                            </button>
+                        </td>
                     </tr>
                     
-                    {deparments.map(department =>
+                    {deparments.map(d =>
                         <tr>
-                            <th>{department.id}</th>
-                            <th>{department.name}</th>
-                            <th>{department.code}</th>
+                            <td>{d.id}</td>
+                            <td>{d.name}</td>
+                            <td>{d.code}</td>
+
+                            <td>
+                                <button className='btn btn-danger' onClick={() => this.deleteDepartment(d.id)}>
+                                    Delete
+                                </button>
+                            </td>
                         </tr>
-                    )
-                    }
+                    )}
                 </table> 
             </div>
         )
     }
 }
+
 export default Departments;

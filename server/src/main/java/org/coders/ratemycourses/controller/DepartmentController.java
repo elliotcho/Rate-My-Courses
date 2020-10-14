@@ -26,8 +26,8 @@ public class DepartmentController{
     }
 
     @PostMapping
-    public void createNewDepartment(@RequestBody Department newDepartment){
-        departmentService.createDepartment(newDepartment);
+    public Department createNewDepartment(@RequestBody Department newDepartment){
+        return departmentService.createDepartment(newDepartment);
     }
 
     @DeleteMapping("/{id}")

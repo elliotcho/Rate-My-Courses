@@ -16,8 +16,8 @@ public class DepartmentService{
         return repo.findAll();
     }
 
-    public void createDepartment(Department D){
-        repo.save(D);
+    public Department createDepartment(Department department){
+        return repo.save(department);
     }
 
     public void deleteDepartment(String ID){

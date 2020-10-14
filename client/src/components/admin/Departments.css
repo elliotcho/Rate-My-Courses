@@ -1,4 +1,25 @@
-.department-list{
-    max-width: 800 px;
-    margin: 0 auto;
+.departments{
+    max-width: 800px;
+    margin: 50px auto;
+    font-family: 'Arial';
+}
+
+.departments h1{
+    text-align: center;
+}
+
+.departments thead th{
+    padding: 15px;
+    background: lightblue;
+}
+
+.departments tr td{
+    text-align: center;
+    padding: 15px;
+    font-family: 'Tahoma';
+}
+
+.departments button:focus{
+    outline: none;
+    box-shadow: none;
 }
