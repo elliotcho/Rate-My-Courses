@@ -26,8 +26,14 @@
     margin: 0 auto;
 }
 
+.admin tr td{
+    text-align: center;
+    padding: 15px;
+    font-family: 'Tahoma';
+    background: white;
+}
+
 .admin button:focus{
     outline: none;
     box-shadow: none;
 }
-

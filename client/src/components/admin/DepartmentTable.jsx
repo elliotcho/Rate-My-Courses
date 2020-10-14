@@ -7,7 +7,7 @@ class DepartmentTable extends Component{
         super();
 
         this.state = {
-            deparments: [],
+            departments: [],
             name: '',
             code: ''
         }
@@ -19,9 +19,9 @@ class DepartmentTable extends Component{
 
     async componentDidMount(){
         const response = await axios.get('http://localhost:8080/api/department');
-        const deparments = response.data;
+        const departments = response.data;
 
-        this.setState({deparments : deparments.reverse()});
+        this.setState({departments : departments.reverse()});
     }
 
     handleChange(e){
@@ -38,11 +38,11 @@ class DepartmentTable extends Component{
         const response = await axios.post('http://localhost:8080/api/department', {name, code}, config);
         const newDepartment = response.data;
 
-        const {deparments} = this.state;
-        deparments.unshift(newDepartment);
+        const {departments} = this.state;
+        departments.unshift(newDepartment);
 
         this.setState({
-            deparments,
+            departments,
             name: '',
             code: ''
         });
@@ -53,22 +53,22 @@ class DepartmentTable extends Component{
             return;
         }
 
-        const {deparments} = this.state;
+        const {departments} = this.state;
 
         await axios.delete(`http://localhost:8080/api/department/${id}`);
 
-        for(let i=0;i<deparments.length;i++){
-            if(deparments[i].id === id){
-                deparments.splice(i, 1);
+        for(let i=0;i<departments.length;i++){
+            if(departments[i].id === id){
+                departments.splice(i, 1);
                 break;
             }
         }
 
-        this.setState({deparments});
+        this.setState({departments});
     }
 
     render(){
-        const {deparments, name, code} = this.state;
+        const {departments, name, code} = this.state;
 
         return(
             <div className='department-table'>
@@ -108,7 +108,7 @@ class DepartmentTable extends Component{
                         </td>
                     </tr>
                     
-                    {deparments.map(d =>
+                    {departments.map(d =>
                         <tr>
                             <td>{d.id}</td>
                             <td>{d.name}</td>

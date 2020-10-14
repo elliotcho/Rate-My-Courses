@@ -16,15 +16,3 @@
     padding: 15px;
     background: lightblue;
 }
-
-.department-table tr td{
-    text-align: center;
-    padding: 15px;
-    font-family: 'Tahoma';
-    background: white;
-}
-
-.department-table button:focus{
-    outline: none;
-    box-shadow: none;
-}

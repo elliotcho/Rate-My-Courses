@@ -1,0 +1,18 @@
+.course-table{
+    max-width: 900px;
+    margin: 50px auto;
+    font-family: 'Segoe UI';
+}
+
+.course-table table{
+    box-shadow: 0 0 5px black;
+}
+
+.course-table h1{
+    text-align: center;
+}
+
+.course-table thead th{
+    padding: 15px;
+    background: lightgreen;
+}

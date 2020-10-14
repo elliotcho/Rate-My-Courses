@@ -17,7 +17,6 @@ class AdminHome extends Component{
     }
 
     handleClick(e){
-        console.log(e.target.name)
         this.setState({activeTable: e.target.name});
     }
 
