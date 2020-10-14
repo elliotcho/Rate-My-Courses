@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Post from './Post.jsx';
-import './PostList.css';
+import './css/PostList.css';
 
 class PostList extends Component{
     render(){

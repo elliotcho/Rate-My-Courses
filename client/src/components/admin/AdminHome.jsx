@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
-import  Courses from './Courses'
-import Users from './Users';
-import Departments from './Departments';
-import './AdminHome.css';
+import  CourseTable from './CourseTable'
+import UserTable from './UserTable';
+import DepartmentTable from './DepartmentTable';
+import './css/AdminHome.css';
 
 
 class AdminHome extends Component{
     constructor(){
         super();
+        
         this.state={
 
         };
@@ -26,9 +27,8 @@ class AdminHome extends Component{
                     </div>
                 </div>
                 <br></br>
-                <Courses/>
-                <Departments/>
-                <Users/>
+
+                <CourseTable/>
             </div>
         )
     }

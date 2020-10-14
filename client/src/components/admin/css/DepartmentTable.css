@@ -1,25 +1,25 @@
-.departments{
+.departments-table{
     max-width: 800px;
     margin: 50px auto;
     font-family: 'Arial';
 }
 
-.departments h1{
+.departments-table h1{
     text-align: center;
 }
 
-.departments thead th{
+.departments-table thead th{
     padding: 15px;
     background: lightblue;
 }
 
-.departments tr td{
+.departments-table tr td{
     text-align: center;
     padding: 15px;
     font-family: 'Tahoma';
 }
 
-.departments button:focus{
+.departments-table button:focus{
     outline: none;
     box-shadow: none;
 }

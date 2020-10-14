@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import './Departments.css';
+import './css/DepartmentTable.css';
 
-class Departments extends Component{
+class DepartmentTable extends Component{
     constructor(){
         super();
 
@@ -71,7 +71,7 @@ class Departments extends Component{
         const {deparments, name, code} = this.state;
 
         return(
-            <div className='departments'>
+            <div className='departments-table'>
                 <table>
                     <thead>
                         <th>Department ID</th>
@@ -127,4 +127,4 @@ class Departments extends Component{
     }
 }
 
-export default Departments;
+export default DepartmentTable;

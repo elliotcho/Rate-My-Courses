@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
-import './Courses.css';
+import './css/SearchCourse.css';
 
-class Courses extends Component{
+class SearchCourse extends Component{
     render(){
         return(
             <div className="courses container-fluid">
                 <form>
                     <h1>Pick your course</h1>
                     <p> <i>Select the criteria you want</i> </p>
+                    
                     <section className="selection">
                         <label htmlFor="department_name">Department Name:</label>
                         <input className="department_name" type="text" placeholder="KNES"/>
@@ -24,11 +25,12 @@ class Courses extends Component{
                             <option value="ratings">5</option>
                         </select>
                     </section>
+                    
                     <button className="btn btn-outline-warning btn-block">Search</button>
                 </form>
-               
             </div>
         )
     }
 }
-export default Courses;
+
+export default SearchCourse;
