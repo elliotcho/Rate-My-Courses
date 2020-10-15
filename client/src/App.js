@@ -13,6 +13,7 @@ function App() {
   // <Navigate></Navigate>
   return (
     <div className="App">
+      <Navigate/>
       <BrowserRouter>
         <Switch>
           <Route path='/admin' component={AdminHome}/>
