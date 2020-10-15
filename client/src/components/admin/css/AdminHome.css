@@ -1,8 +1,9 @@
 .admin{
-    background-color: #252a34;
     position: fixed;
+    background-color: #252a34;
     height: 100%;
     width: 100%;
+    overflow: auto;
 }
 
 .admin hr{

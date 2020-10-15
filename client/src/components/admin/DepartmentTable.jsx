@@ -70,7 +70,7 @@ class DepartmentTable extends Component{
             title: 'Rate My Courses',
             message: 'Are you sure you want to delete this department?',
             buttons: [
-                {label: 'Yes', onClick: () => confirmDelete},
+                {label: 'Yes', onClick: confirmDelete},
                 {label: 'No', onClick: () => {return;}}
             ]
         });
