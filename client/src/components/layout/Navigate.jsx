@@ -29,7 +29,7 @@ class Navigate extends Component{
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                     <Form className="form-center">
-                        <FormControl type="text" placeholder="Search" className="" />
+                       
                     </Form>
                     <Navbar.Collapse id="basic-navbar-nav">
                         <div className="ml-auto">
