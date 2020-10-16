@@ -1,11 +1,13 @@
-import React from 'react';
-import { Component } from 'react';
+import React, {Component} from 'react';
+import AuthModal from '../auth/AuthModal';
 import { Nav} from 'react-bootstrap';
-import './css/SignedOutLinks.css'
+import './css/SignedOutLinks.css';
+
 class SignedOutLinks extends Component{
     
     constructor(){
         super();
+
         this.state={
           
         };
@@ -15,9 +17,12 @@ class SignedOutLinks extends Component{
         return(
             <div className= "ml-auto">
                 <Nav>
-                    <Nav.Item><Nav.Link href="/" className="signIn">Sign In</Nav.Link></Nav.Item> 
-                   
+                    <Nav.Item className='signIn' data-toggle='modal' data-target='#auth'>
+                        Sign In
+                    </Nav.Item> 
                 </Nav>
+
+                <AuthModal/>
             </div>
             
         )

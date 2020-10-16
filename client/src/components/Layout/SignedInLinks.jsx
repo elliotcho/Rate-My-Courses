@@ -1,6 +1,5 @@
-import React from 'react';
-import { Component } from 'react';
-import { Nav} from 'react-bootstrap';
+import React, {Component} from 'react';
+import {Nav} from 'react-bootstrap';
 import './css/SignedInLinks.css'
 class SignedInLinks extends Component{
     
