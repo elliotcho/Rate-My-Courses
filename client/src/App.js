@@ -14,9 +14,11 @@ function App() {
   return (
     <div className="App">
       <Navigate/>
+
       <BrowserRouter>
         <Switch>
-          <Route path='/admin' component={AdminHome}/>
+          <Route exact path='/admin' component={AdminHome}/>
+          <Route exact path='/admin/:type' component={AdminHome}/>
           <Route exact path='/posts' component={Post}/>
           <Route exact path='/createpost' component={CreatePost}/>
           <Route exact path='/postlist' component={PostList}/>
@@ -24,7 +26,6 @@ function App() {
           
           <Route exact path='/auth' render = {() =>
             <div>
-
                 <div>
                     <button data-toggle='modal' data-target='#auth'>
                       Sign In
