@@ -96,6 +96,7 @@ class DepartmentTable extends Component{
                                 type='text'
                                 onChange={this.handleChange}
                                 value={name}
+                                required
                             />
                         </td>
 
@@ -105,6 +106,7 @@ class DepartmentTable extends Component{
                                 type='text' 
                                 onChange={this.handleChange}
                                 value={code}
+                                required
                             />
                         </td>
 

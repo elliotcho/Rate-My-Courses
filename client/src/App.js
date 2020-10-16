@@ -6,6 +6,7 @@ import PostList from './components/posts/PostList.jsx';
 import {Switch, Route, BrowserRouter} from 'react-router-dom';
 import SearchCourse from './components/search/SearchCourse';
 import Navigate from './components/layout/Navigate.jsx';
+import './App.css';
 
 function App() {
   

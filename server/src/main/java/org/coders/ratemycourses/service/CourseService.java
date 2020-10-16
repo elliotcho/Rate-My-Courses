@@ -15,18 +15,8 @@ public class CourseService{
         return repo.findAll();
     }
 
-    public Course addNewCourse(Course theCourse){
-        try {
-            if( !theCourse.getDepartmentId().isEmpty()){
-                return repo.save(theCourse);
-            } else{
-                return null;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }  
-
-        return new Course("", "", -1 , "");
+    public Course addNewCourse(Course course){
+        return repo.save(course);
     }
 
     public void deleteCourse(String id){
@@ -34,7 +24,6 @@ public class CourseService{
             if( !repo.findById(id).isEmpty()){
                 repo.deleteById(id);
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
