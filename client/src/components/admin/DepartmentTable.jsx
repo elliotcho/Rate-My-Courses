@@ -30,9 +30,7 @@ class DepartmentTable extends Component{
         this.setState({[e.target.id]: e.target.value});
     }
 
-    async createDepartment(e){
-        e.preventDefault();
-        
+    async createDepartment(){    
         const {name, code} = this.state;
 
         const config = {headers: {'Content-Type': 'application/json'}};
