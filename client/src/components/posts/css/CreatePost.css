@@ -1,7 +1,25 @@
-.creating-post{
-    background-color: peru;
-    margin: 0 auto;
+.container{
+    height: 600px;
+    width: 400px;
+    box-shadow: 5px 10px 5px 10px #888888;
+    background-color: #0c2233;
+    color: whitesmoke;
+}
 
+.container .but {
+  
+    text-align: center;
+}
+
+.creating-post{
+    
+    margin-left: 0 auto;
+    margin-right: 0 auto;
+    text-align: center;
+}
+
+.container h3{
+    text-align: center
 }
 
 
