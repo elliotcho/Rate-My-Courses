@@ -16,8 +16,7 @@ class AdminHome extends Component{
 
     render(){
         const {type} = this.props.match.params;
-        console.log(this.props.match)
-    
+   
         const defaultStyle = 'btn btn-lg btn-secondary'; 
         const activeStyle = `${defaultStyle} active`;
 

@@ -25,6 +25,13 @@ class CourseTable extends Component{
         response = await axios.get('http://localhost:8080/api/course');
         const courses = response.data;
 
+        courses.forEach( async (course, i) => {
+            const route = `http://localhost:8080/api/department/code/${course.id}`;
+            const response = await axios.get(route);
+
+            courses[i].departmentCode = response.data;
+        });
+
         departments.sort((d1, d2) => d1.code.toLowerCase() - d2.code.toLowerCase());
 
         this.setState({
@@ -122,12 +129,12 @@ class CourseTable extends Component{
                     </tr>
 
                     {courses.map(c =>
-                        <tr>
+                        <tr key={c.id}>
                             <td>{c.id}</td>
                             <td>{c.name}</td>
                             <td>{c.number}</td>
                             <td>N/A</td>
-                            <td>{c.departmentId}</td>      
+                            <td>{c.departmentCode}</td>      
                             <td>
                                 <button className='btn btn-danger' onClick={() => this.deleteDepartment(c.id)}>
                                     Delete

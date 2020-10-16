@@ -116,7 +116,7 @@ class DepartmentTable extends Component{
                     </tr>
                     
                     {departments.map(d =>
-                        <tr>
+                        <tr key={d.id}>
                             <td>{d.id}</td>
                             <td>{d.name}</td>
                             <td>{d.code}</td>

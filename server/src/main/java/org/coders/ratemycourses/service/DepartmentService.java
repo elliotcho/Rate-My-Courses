@@ -31,12 +31,12 @@ public class DepartmentService{
     }
 
     public String getCode(String id){
-        Optional<Department> result = null;
-        try {
-            result = repo.findById(id);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return result.get().getCode();
+        // try {
+        //     return repo.findById(id).get().getCode();
+        // } catch (Exception e) {
+        //     e.printStackTrace();
+        // }
+
+        return "";
     }
 }
