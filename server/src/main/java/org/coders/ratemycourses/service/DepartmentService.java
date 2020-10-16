@@ -1,6 +1,8 @@
 package org.coders.ratemycourses.service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import org.coders.ratemycourses.model.Department;
 import org.coders.ratemycourses.repository.DepartmentRepo;
@@ -26,5 +28,15 @@ public class DepartmentService{
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public String getCode(String id){
+        Optional<Department> result = null;
+        try {
+            result = repo.findById(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result.get().getCode();
     }
 }

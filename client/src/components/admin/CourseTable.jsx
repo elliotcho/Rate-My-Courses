@@ -127,7 +127,7 @@ class CourseTable extends Component{
                             <td>{c.name}</td>
                             <td>{c.number}</td>
                             <td>N/A</td>
-                            <td>{c.departmentId}</td>
+                            <td>{c.departmentId}</td>      
                             <td>
                                 <button className='btn btn-danger' onClick={() => this.deleteDepartment(c.id)}>
                                     Delete
