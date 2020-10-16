@@ -35,4 +35,9 @@ public class DepartmentController{
         departmentService.deleteDepartment(id);
     }
 
+    @GetMapping
+    public String getDepartmentCode(@RequestBody String ID){
+        return departmentService.getCode(ID);
+    }
+
 }
