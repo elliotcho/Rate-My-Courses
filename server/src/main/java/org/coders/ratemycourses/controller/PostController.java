@@ -36,9 +36,8 @@ public class PostController{
         postService.deletePost(id);
     }
 
-    @GetMapping("/{id")
+    @GetMapping("/{id}")
     public Post getPost(@PathVariable String id){
-        return postService.getPostByID(id);
+        return postService.getPostById(id);
     }
-
 }

@@ -28,7 +28,7 @@ public class PostService{
         }
     }
 
-    public Post getPostByID(String id){
+    public Post getPostById(String id){
         return repo.findById(id).orElse(null);
     }
 }
