@@ -6,7 +6,11 @@ class PostList extends Component{
     render(){
         return(
             <div className="post-list">
-                <Post/> 
+                <h1 className ='my-5'>Active posts</h1>
+
+                <Post/>
+
+                <Post/>
             </div>
         )
     }

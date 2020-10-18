@@ -1,26 +1,21 @@
-.post-page {
-    position: fixed;
-    text-align: center;
-    width: 100%;
-    height: 100%;
-    background-color: #f8efd4;
-}
 
-.post-page .title {
-    margin: 3% 0 7%;
-    color: #ff847c;
-    font-family: 'Permanent Marker', cursive;
-}
 
 /* First Section ~ Course ID, User ID, Review, Date Posted */
-.post-page .post-background {
+.post  {
+    text-align: center;
     background-color: #aacfcf;
-    width: 70%;
+    margin: auto;
+    margin-bottom: 50px;
+    max-width: 800px;
     border-radius: 10px;
     padding: 10px;  
 }
 
-.post-page #course-id {
+.post:last-child{
+    margin-bottom: 100px;
+}
+
+.post #course-id {
     margin: 30% auto 11%;
     border-radius: 100%;
     padding: 10px;
@@ -28,12 +23,12 @@
     font-family: 'Arvo', serif;
 }
 
-.post-page .username {
+.post .username {
     font-family:'Caveat', cursive;
     font-size: 21px;
 }
 
-.post-page .review {
+.post .review {
     margin: 6% 7% 0;
     font-family: 'Playfair Display', serif;
     font-weight: bold;
@@ -42,7 +37,7 @@
     text-align: justify;
 }
 
-.post-page .date-posted {
+.post .date-posted {
     font-family: 'Caveat', cursive;
     font-size: 21px;
     text-align: right;
@@ -50,24 +45,23 @@
 }
 
 /* Second Section ~ total number of likes, dislikes and user's rating   */
-.post-page .ratings {
+.post .ratings {
     margin-top: 9%;
 }
 
-.post-page .likes, .post-page .dislikes, .post-page .users-rating {
+.post .likes, .post .dislikes, .post .users-rating {
     font-family: 'Indie Flower', cursive;
     font-weight: bolder;
     font-size: 30px;
     margin-bottom: 20px;
 }
 
-.post-page .likes-btn, .post-page .dislikes-btn {
+.post .likes-btn, .post .dislikes-btn {
     width: 30%;
     margin-bottom: 20%;
 }
 
-
-.post-page .ratings-score {
+.post .ratings-score {
     font-family: 'Playfair Display', serif;
     font-size: 24px;
     font-weight: bolder;
