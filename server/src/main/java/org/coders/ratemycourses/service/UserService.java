@@ -38,10 +38,10 @@ public class UserService{
         List<User> searchResult = repo.findByUsername(user.getUsername());
 
         if(searchResult.isEmpty()){
-            return "Email is not registred";
+            return "Username is not registred";
         }
 
-        if(!passwordEncoder.matches(searchResult.get(0).getPassword(), user.getPassword())){
+        if(!passwordEncoder.matches(user.getPassword() , searchResult.get(0).getPassword())){
            return "Password is incorrect";
         }
 
