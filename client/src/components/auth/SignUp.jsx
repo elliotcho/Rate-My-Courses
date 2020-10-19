@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import {withAlert} from 'react-alert';
 import './css/Signup.css';
 
 class Signup extends Component{
@@ -25,9 +26,10 @@ class Signup extends Component{
         e.preventDefault();
 
         const {email, username, password, confirmPassword} = this.state;
+        const {alert} = this.props;
 
         if(password !== confirmPassword){
-            alert("Passwords do not match");
+            alert.error("Passwords do not match");
             return;
         }
 
@@ -41,7 +43,11 @@ class Signup extends Component{
         const response = await axios.post('http://localhost:8080/api/user', data, config);
         const msg = response.data;    
     
-        alert(msg);
+        if(msg === "Email is already registered"){
+            alert.error(msg);
+        } else{
+            alert.success(msg);
+        }
     }
 
     render(){
@@ -101,4 +107,4 @@ class Signup extends Component{
     }
 }
 
-export default Signup;
+export default withAlert()(Signup);

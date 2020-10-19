@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import {withAlert} from 'react-alert';
 import './css/Login.css';
 
 class Login extends Component{
@@ -23,6 +24,7 @@ class Login extends Component{
         e.preventDefault();
 
         const {username, password} = this.state;
+        const {alert} = this.props;
 
         const data = {
             email: '',
@@ -34,7 +36,11 @@ class Login extends Component{
         const response = await axios.post('http://localhost:8080/api/user/login', data, config);
         const msg = response.data;    
     
-        alert(msg);
+        if(msg === "Username is not registered" || msg === "Password is incorrect"){
+            alert.error(msg);
+        } else{
+            alert.success(msg);
+        }
     }
 
     render(){
@@ -76,4 +82,4 @@ class Login extends Component{
     }
 }
 
-export default Login;
+export default withAlert()(Login);

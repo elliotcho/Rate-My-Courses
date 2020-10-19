@@ -42,7 +42,7 @@ public class UserService{
         List<User> searchResult = repo.findByUsername(user.getUsername());
 
         if(searchResult.isEmpty()){
-            return "Username is not registred";
+            return "Username is not registered";
         }
 
         if(!passwordEncoder.matches(user.getPassword() , searchResult.get(0).getPassword())){
