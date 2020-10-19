@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 import './css/Signup.css';
 
 class Signup extends Component{
@@ -20,8 +21,27 @@ class Signup extends Component{
         this.setState({[e.target.id] : e.target.value});
     }
 
-    handleSubmit(e){
+    async handleSubmit(e){
         e.preventDefault();
+
+        const {email, username, password, confirmPassword} = this.state;
+
+        if(password !== confirmPassword){
+            alert("Passwords do not match");
+            return;
+        }
+
+        const data = {
+            email,
+            username, 
+            password
+        }
+
+        const config = {headers: {'content-type': 'application/json'}};
+        const response = await axios.post('http://localhost:8080/api/user', data, config);
+        const msg = response.data;    
+    
+        alert(msg);
     }
 
     render(){

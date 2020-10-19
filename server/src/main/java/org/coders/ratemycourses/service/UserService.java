@@ -30,6 +30,10 @@ public class UserService{
             return "Email is already registered";
         }
 
+        if(!repo.findByUsername(newUser.getUsername()).isEmpty()){
+            return "Username is already registered";
+        }
+
         newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
         return repo.save(newUser).getId();
     }
