@@ -7,13 +7,19 @@ class PostList extends Component{
     render(){
         return(
             <div className="post-list">
-                <div className ='my-5 text-center'>
-                    <h1>Active posts</h1>
+                <header className='row my-5'>
+                    <h1 className='col-5'>
+                        Active posts
+                    </h1>
 
-                    <button data-toggle='modal' data-target='#create-post'>
-                        Create Post
-                    </button> 
-                </div>   
+                    <div className='col-5'></div>
+
+                    <div className ='col-2 my-auto'>
+                        <button className='btn' data-toggle='modal' data-target='#create-post'>
+                            <span>+</span>
+                        </button> 
+                    </div>
+                </header>   
                          
                 <CreatePost/>
 
