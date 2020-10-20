@@ -1,25 +1,23 @@
-.container{
-    height: 600px;
-    width: 400px;
-    box-shadow: 5px 10px 5px 10px #888888;
-    background-color: #0c2233;
-    color: whitesmoke;
+.post-modal{
+    background: rgba(0,0,0,0.5);
+    color: black;
 }
 
-.container .but {
+.post-modal .modal-body{
+    background-color: #9370db;
+}
+
+.post-modal .but {
   
     text-align: center;
 }
 
-.creating-post{
-    
+.post-modal .creating-post{
     margin-left: 0 auto;
     margin-right: 0 auto;
     text-align: center;
 }
 
-.container h3{
+.post-modal h3{
     text-align: center
 }
-
-

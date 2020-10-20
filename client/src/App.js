@@ -18,9 +18,7 @@ function App() {
         <Switch>
           <Route exact path='/admin' component={AdminHome}/>
           <Route exact path='/admin/:type' component={AdminHome}/>
-          <Route exact path='/posts' component={Post}/>
-          <Route exact path='/createpost' component={CreatePost}/>
-          <Route exact path='/postlist' component={PostList}/>
+          <Route exact path='/posts' component={PostList}/>
           <Route exact path ='/courses' component={SearchCourse}/>
         </Switch>
       </BrowserRouter>
