@@ -5,7 +5,7 @@ import './css/AuthModal.css';
 
 function AuthModal(){
     return(
-        <div className='auth-modal modal fade' id='auth' data-backdrop='static'>
+        <div className='auth-modal modal fade' id='auth' data-backdrop='false'>
             <div className ='modal-dialog modal-dialog-centered'>
                 <div className ='modal-content'>
                     <div className ='modal-header'>
