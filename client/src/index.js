@@ -6,6 +6,13 @@ import * as serviceWorker from './serviceWorker';
 import {Provider as AlertProvider} from 'react-alert';
 import Alert from './components/layout/Alert';
 
+import rootReducer from './store/reducers/rootReducer';
+import {createStore, applyMiddleware} from 'redux';
+import {Provider} from 'react-redux';
+import thunk from 'redux-thunk';
+
+const store = createStore(rootReducer, applyMiddleware(thunk));
+
 const AlertTemplate = ({style, options, message, close}) =>(
   <Alert
     style = {style}
@@ -15,18 +22,13 @@ const AlertTemplate = ({style, options, message, close}) =>(
   />
 );
 
-import rootReducer from './store/reducers/rootReducer';
-import {createStore, applyMiddleware} from 'redux';
-import {Provider} from 'react-redux';
-import thunk from 'redux-thunk';
-
-const store = createStore(rootReducer, applyMiddleware(thunk));
-
 ReactDOM.render(
   <React.StrictMode>
-    <AlertProvider template={AlertTemplate}>
-      <App />
-    </AlertProvider>
+    <Provider store = {store}>
+      <AlertProvider template={AlertTemplate}>
+        <App />
+      </AlertProvider>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

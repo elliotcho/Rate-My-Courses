@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import axios from 'axios';
+import {connect} from 'react-redux';
+import {login} from '../../store/actions/authActions';
 import {withAlert} from 'react-alert';
 import './css/Login.css';
 
@@ -20,11 +21,11 @@ class Login extends Component{
         this.setState({[e.target.id]: e.target.value});
     }
 
-    async handleSubmit(e){
+    handleSubmit(e){
         e.preventDefault();
 
         const {username, password} = this.state;
-        const {alert} = this.props;
+        const {dispatch, alert} = this.props;
 
         const data = {
             email: '',
@@ -32,15 +33,7 @@ class Login extends Component{
             password
         }
 
-        const config = {headers: {'content-type': 'application/json'}};
-        const response = await axios.post('http://localhost:8080/api/user/login', data, config);
-        const msg = response.data;    
-    
-        if(msg === "Username is not registered" || msg === "Password is incorrect"){
-            alert.error(msg);
-        } else{
-            alert.success(msg);
-        }
+        dispatch(login(data, alert));
     }
 
     render(){
@@ -82,4 +75,6 @@ class Login extends Component{
     }
 }
 
-export default withAlert()(Login);
+const mapDispatchToProps = (dispatch) => ({dispatch});
+
+export default connect(null, mapDispatchToProps)(withAlert()(Login));

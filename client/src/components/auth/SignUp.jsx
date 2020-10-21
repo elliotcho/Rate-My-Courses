@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import axios from 'axios';
+import {connect} from 'react-redux';
+import {signup} from '../../store/actions/authActions';
 import {withAlert} from 'react-alert';
 import './css/Signup.css';
 
@@ -22,11 +23,11 @@ class Signup extends Component{
         this.setState({[e.target.id] : e.target.value});
     }
 
-    async handleSubmit(e){
+    handleSubmit(e){
         e.preventDefault();
 
         const {email, username, password, confirmPassword} = this.state;
-        const {alert} = this.props;
+        const {dispatch, alert} = this.props;
 
         if(password !== confirmPassword){
             alert.error("Passwords do not match");
@@ -39,15 +40,7 @@ class Signup extends Component{
             password
         }
 
-        const config = {headers: {'content-type': 'application/json'}};
-        const response = await axios.post('http://localhost:8080/api/user', data, config);
-        const msg = response.data;    
-    
-        if(msg === "Email is already registered"){
-            alert.error(msg);
-        } else{
-            alert.success(msg);
-        }
+        dispatch(signup(data, alert));
     }
 
     render(){
@@ -107,4 +100,7 @@ class Signup extends Component{
     }
 }
 
-export default withAlert()(Signup);
+
+const mapDispatchToProps = (dispatch) => ({dispatch});
+
+export default connect(null, mapDispatchToProps)(withAlert()(Signup));
