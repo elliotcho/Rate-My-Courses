@@ -26,14 +26,8 @@ public class CourseController{
     }
 
     @PostMapping
-    public Course addNewCourseToDB(@RequestBody Course c){
-        Course newCourse = courseService.addNewCourse(c);
-
-        if(newCourse.getId().equals("")){
-            return null;
-        }
-
-        return newCourse;
+    public Course addNewCourse(@RequestBody Course course){
+        return courseService.addNewCourse(course);
     }
 
     @DeleteMapping("/{id}")

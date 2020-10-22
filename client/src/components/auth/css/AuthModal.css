@@ -1,3 +1,8 @@
+.auth-modal{
+    z-index: 1;
+    background: rgba(0,0,0,0.5);
+}
+
 .auth-modal .modal-content{
     font-family: 'Tahoma';
     border: 0;

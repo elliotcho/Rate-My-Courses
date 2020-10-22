@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {signup} from '../../store/actions/authActions';
+import {withAlert} from 'react-alert';
 import './css/Signup.css';
 
 class Signup extends Component{
@@ -22,6 +25,22 @@ class Signup extends Component{
 
     handleSubmit(e){
         e.preventDefault();
+
+        const {email, username, password, confirmPassword} = this.state;
+        const {dispatch, alert} = this.props;
+
+        if(password !== confirmPassword){
+            alert.error("Passwords do not match");
+            return;
+        }
+
+        const data = {
+            email,
+            username, 
+            password
+        }
+
+        dispatch(signup(data, alert));
     }
 
     render(){
@@ -81,4 +100,7 @@ class Signup extends Component{
     }
 }
 
-export default Signup;
+
+const mapDispatchToProps = (dispatch) => ({dispatch});
+
+export default connect(null, mapDispatchToProps)(withAlert()(Signup));

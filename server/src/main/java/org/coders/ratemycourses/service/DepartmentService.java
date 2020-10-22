@@ -22,21 +22,15 @@ public class DepartmentService{
         return repo.save(department);
     }
 
-    public void deleteDepartment(String ID){
+    public void deleteDepartment(String id){
         try {
-            repo.deleteById(ID);
+            repo.deleteById(id);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public String getCode(String id){
-        // try {
-        //     return repo.findById(id).get().getCode();
-        // } catch (Exception e) {
-        //     e.printStackTrace();
-        // }
-
-        return "";
+    public Department getDepartment(String id){
+        return repo.findById(id).orElse(null);
     }
 }

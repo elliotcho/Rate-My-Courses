@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
-import './css/Login.css'
+import {connect} from 'react-redux';
+import {login} from '../../store/actions/authActions';
+import {withAlert} from 'react-alert';
+import './css/Login.css';
 
 class Login extends Component{
     constructor(){
@@ -20,6 +23,17 @@ class Login extends Component{
 
     handleSubmit(e){
         e.preventDefault();
+
+        const {username, password} = this.state;
+        const {dispatch, alert} = this.props;
+
+        const data = {
+            email: '',
+            username, 
+            password
+        }
+
+        dispatch(login(data, alert));
     }
 
     render(){
@@ -61,4 +75,6 @@ class Login extends Component{
     }
 }
 
-export default Login;
+const mapDispatchToProps = (dispatch) => ({dispatch});
+
+export default connect(null, mapDispatchToProps)(withAlert()(Login));
