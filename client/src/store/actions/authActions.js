@@ -22,7 +22,7 @@ export const signup = (data, alert) => {
         const response = await axios.post('http://localhost:8080/api/user', data, config);
         const msg = response.data;    
     
-        if(msg === "Email is already registered"){
+        if(msg === "Email is already registered" || "Username is already registered"){
             alert.error(msg);
         } else{
             alert.success(msg);
