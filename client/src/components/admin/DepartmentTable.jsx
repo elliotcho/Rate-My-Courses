@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css'; 
 import './css/DepartmentTable.css';
 
 class DepartmentTable extends Component{
@@ -28,9 +30,7 @@ class DepartmentTable extends Component{
         this.setState({[e.target.id]: e.target.value});
     }
 
-    async createDepartment(e){
-        e.preventDefault();
-        
+    async createDepartment(){    
         const {name, code} = this.state;
 
         const config = {headers: {'Content-Type': 'application/json'}};
@@ -49,22 +49,29 @@ class DepartmentTable extends Component{
     }
 
     async deleteDepartment(id){
-        if(!window.confirm("Are you sure you want to delete this department?")){
-            return;
-        }
-
         const {departments} = this.state;
 
-        await axios.delete(`http://localhost:8080/api/department/${id}`);
+        const confirmDelete = async () => {
+            await axios.delete(`http://localhost:8080/api/department/${id}`);
 
-        for(let i=0;i<departments.length;i++){
-            if(departments[i].id === id){
-                departments.splice(i, 1);
-                break;
+            for(let i=0;i<departments.length;i++){
+                if(departments[i].id === id){
+                    departments.splice(i, 1);
+                    break;
+                }
             }
+
+            this.setState({departments});
         }
 
-        this.setState({departments});
+        confirmAlert({
+            title: 'Rate My Courses',
+            message: 'Are you sure you want to delete this department?',
+            buttons: [
+                {label: 'Yes', onClick: confirmDelete},
+                {label: 'No', onClick: () => {return;}}
+            ]
+        });
     }
 
     render(){
@@ -109,7 +116,7 @@ class DepartmentTable extends Component{
                     </tr>
                     
                     {departments.map(d =>
-                        <tr>
+                        <tr key={d.id}>
                             <td>{d.id}</td>
                             <td>{d.name}</td>
                             <td>{d.code}</td>

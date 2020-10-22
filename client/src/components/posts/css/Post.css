@@ -2,7 +2,7 @@
     position: fixed;
     text-align: center;
     width: 100%;
-    height: 100%;
+    overflow: auto;
     background-color: #f8efd4;
 }
 
@@ -14,10 +14,10 @@
 
 /* First Section ~ Course ID, User ID, Review, Date Posted */
 .post-page .post-background {
+    max-width: 60%;
     background-color: #aacfcf;
-    width: 70%;
     border-radius: 10px;
-    padding: 10px;  
+    padding: 10px; 
 }
 
 .post-page #course-id {

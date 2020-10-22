@@ -1,13 +1,23 @@
 import React from 'react';
 import { Component } from 'react';
-import { Nav, Navbar, Form, FormControl } from 'react-bootstrap';
-import styled from 'styled-components';
+import { Navbar, Form, FormControl } from 'react-bootstrap';
 import logo from "../../images/logo.png";
+import SignedInLinks from './SignedInLinks';
+import SignedOutLinks from './SignedOutLinks';
+import './css/Navigate.css';
+
 class Navigate extends Component{
+    constructor(){
+        super();
+        this.state={
+            isLoggedIn:false
+        };
+    }
+    
     render(){
         return(
             <div>
-                <Navbar expand="lg">
+                <Navbar expand="lg" className="nav-bar">
                     <Navbar.Brand href="/">
                     <img
                     src= {logo}
@@ -19,14 +29,13 @@ class Navigate extends Component{
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                     <Form className="form-center">
-                        <FormControl type="text" placeholder="Search" className="" />
+                       
                     </Form>
                     <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="ml-auto">
-                            <Nav.Item><Nav.Link href="/">Home</Nav.Link></Nav.Item> 
-                            <Nav.Item><Nav.Link href="/about">Account</Nav.Link></Nav.Item>
-                            <Nav.Item><Nav.Link href="/about">Logout</Nav.Link></Nav.Item>
-                        </Nav>
+                        <div className="ml-auto">
+                        {this.state.isLoggedIn?<SignedInLinks/>:<SignedOutLinks/>}
+                        </div>
+                        
                     </Navbar.Collapse>
                 </Navbar>
             </div>

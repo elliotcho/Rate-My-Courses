@@ -35,4 +35,9 @@ public class DepartmentController{
         departmentService.deleteDepartment(id);
     }
 
+    @GetMapping("/code/{id}")
+    public String getDepartmentCode(@PathVariable String id){
+        return departmentService.getCode(id);
+    }
+
 }

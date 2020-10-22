@@ -4,31 +4,25 @@ import UserTable from './UserTable';
 import DepartmentTable from './DepartmentTable';
 import './css/AdminHome.css';
 
-
 class AdminHome extends Component{
     constructor(){
-        super();
-        
-        this.state={
-            activeTable: ''
-        };
-    
+        super();  
         this.handleClick = this.handleClick.bind(this);
     }
 
     handleClick(e){
-        this.setState({activeTable: e.target.name});
+        this.props.history.push(`/admin/${e.target.name}`);
     }
 
     render(){
-        const {activeTable} = this.state;
-
+        const {type} = this.props.match.params;
+   
         const defaultStyle = 'btn btn-lg btn-secondary'; 
         const activeStyle = `${defaultStyle} active`;
 
-        const departmentBtnStyle = (activeTable === 'department') ? activeStyle: defaultStyle;
-        const courseBtnStyle = (activeTable === 'course') ? activeStyle: defaultStyle;
-        const userBtnStyle = (activeTable === 'user') ? activeStyle: defaultStyle;
+        const departmentBtnStyle = (type === 'department') ? activeStyle: defaultStyle;
+        const courseBtnStyle = (type === 'course') ? activeStyle: defaultStyle;
+        const userBtnStyle = (type === 'user') ? activeStyle: defaultStyle;
 
         return(
             <div className= 'admin'>
@@ -53,8 +47,8 @@ class AdminHome extends Component{
                 </div>
                 <br></br>
 
-                {activeTable === 'department' ? 
-                    (<DepartmentTable/>) : (activeTable === 'course') ?
+                {type === 'department' ? 
+                    (<DepartmentTable/>) : (type === 'course') ?
                     (<CourseTable/>) : 
                     (<UserTable/>)
                 }
