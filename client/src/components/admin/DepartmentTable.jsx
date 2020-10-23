@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import * as departmentActions from '../../store/actions/departmentActions';
-import axios from 'axios';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'; 
 import './css/DepartmentTable.css';
@@ -29,10 +28,11 @@ class DepartmentTable extends Component{
         this.setState({[e.target.id]: e.target.value});
     }
 
-    async createDepartment(){    
+    async createDepartment(){   
         const {name, code} = this.state;
-
-       const newDepartment = await departmentActions.createDepartment(name, code);
+        const data = {name, code};
+        
+       const newDepartment = await departmentActions.createDepartment(data);
 
         const {departments} = this.state;
         departments.unshift(newDepartment);
@@ -51,6 +51,7 @@ class DepartmentTable extends Component{
             const {deleteDepartment} = departmentActions;
 
             const departments = await deleteDepartment(departmentsList, id);
+            departments.reverse();
             
             this.setState({departments});
         }

@@ -5,11 +5,11 @@ const config = {headers: {'Content-Type': 'application/json'}};
 export const getAllDepartments = async () => {
     const response = await axios.get('http://localhost:8080/api/department');
     const departments = response.data;
-    return departments.reverse();
+    return departments;
 }
 
-export const createDepartment = async (name, code) => {
-    const response = await axios.post('http://localhost:8080/api/department', {name, code}, config);
+export const createDepartment = async (data) => {
+    const response = await axios.post('http://localhost:8080/api/department', data, config);
     const newDepartment = response.data;
     return newDepartment;
 }

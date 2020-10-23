@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import axios from 'axios';
+import {getAllDepartments} from '../../store/actions/departmentActions';
+import * as courseActions from '../../store/actions/courseActions';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'; 
 import './css/CourseTable.css';
@@ -22,26 +23,15 @@ class CourseTable extends Component{
     }
 
     async componentDidMount(){
-        let response = await axios.get('http://localhost:8080/api/department');
-        const departments = response.data;
-
-        response = await axios.get('http://localhost:8080/api/course');
-        const courses = response.data;
-
-        for(let i=0;i<courses.length;i++){
-            const {departmentId} = courses[i];
-
-            const response = await axios.get(`http://localhost:8080/api/department/${departmentId}`);
-            const {code} = response.data;
-           
-            courses[i].departmentCode = code;
-        }
+        const departments = await getAllDepartments();
+        const courses = await courseActions.getAllCourses();
 
         departments.sort((d1, d2) => d1.code.toLowerCase() - d2.code.toLowerCase());
+        courses.reverse();
 
         this.setState({
             departments,
-            courses: courses.reverse()
+            courses
         });
     }
 
@@ -56,24 +46,11 @@ class CourseTable extends Component{
             return;
         }
 
-        const data = {
-            name,
-            number,
-            departmentId
-        };
-
-        const config = {headers: {'Content-Type': 'application/json'}};
-        let response = await axios.post('http://localhost:8080/api/course', data, config);
-        const newCourse = response.data;
-
+        const data = {name, number, departmentId};
+        const newCourse = await courseActions.createCourse(data);
+        
         if(newCourse !== null){
             courses.unshift(newCourse);
-
-            response = await axios.get(`http://localhost:8080/api/department/${newCourse.departmentId}`);
-            const {code} = response.data;
-
-            newCourse.departmentCode = code;
-
             this.setState({courses});
         }
         
@@ -85,17 +62,12 @@ class CourseTable extends Component{
     }
 
     async deleteCourse(id){
-        const {courses} = this.state;
+        const coursesList = this.state.courses;
 
         const confirmDelete = async () => {
-            await axios.delete(`http://localhost:8080/api/course/${id}`);
+            const {deleteCourse} = courseActions;
 
-            for(let i=0;i<courses.length;i++){
-                if(courses[i].id === id){
-                    courses.splice(i, 1);
-                    break;
-                }
-            }
+            const courses = await deleteCourse(coursesList, id);
 
             this.setState({courses});
         }
