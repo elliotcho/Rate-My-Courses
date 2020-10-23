@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import * as departmentActions from '../../store/actions/departmentActions';
 import axios from 'axios';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'; 
@@ -20,10 +21,8 @@ class DepartmentTable extends Component{
     }
 
     async componentDidMount(){
-        const response = await axios.get('http://localhost:8080/api/department');
-        const departments = response.data;
-
-        this.setState({departments : departments.reverse()});
+        const departments = await departmentActions.getAllDepartments();
+        this.setState({departments});
     }
 
     handleChange(e){
@@ -33,10 +32,7 @@ class DepartmentTable extends Component{
     async createDepartment(){    
         const {name, code} = this.state;
 
-        const config = {headers: {'Content-Type': 'application/json'}};
-
-        const response = await axios.post('http://localhost:8080/api/department', {name, code}, config);
-        const newDepartment = response.data;
+       const newDepartment = await departmentActions.createDepartment(name, code);
 
         const {departments} = this.state;
         departments.unshift(newDepartment);
@@ -49,18 +45,13 @@ class DepartmentTable extends Component{
     }
 
     async deleteDepartment(id){
-        const {departments} = this.state;
+        const departmentsList = this.state.departments;
 
         const confirmDelete = async () => {
-            await axios.delete(`http://localhost:8080/api/department/${id}`);
+            const {deleteDepartment} = departmentActions;
 
-            for(let i=0;i<departments.length;i++){
-                if(departments[i].id === id){
-                    departments.splice(i, 1);
-                    break;
-                }
-            }
-
+            const departments = await deleteDepartment(departmentsList, id);
+            
             this.setState({departments});
         }
 
