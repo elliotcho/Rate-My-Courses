@@ -1,3 +1,4 @@
+import {USER_AUTHENTICATED} from '../constants/actionTypes';
 import axios from 'axios';
 
 const config = {headers: {'content-type': 'application/json'}};
@@ -12,7 +13,10 @@ export const login = (data, alert) => {
         }
 
         else{
-            alert.success(msg);
+            dispatch({
+                type: USER_AUTHENTICATED, 
+                uid: msg
+            });
         }
     }
 }
@@ -24,8 +28,13 @@ export const signup = (data, alert) => {
     
         if(msg === "Email is already registered" || "Username is already registered"){
             alert.error(msg);
-        } else{
-            alert.success(msg);
+        } 
+        
+        else{
+            dispatch({
+                type: USER_AUTHENTICATED, 
+                uid: msg
+            });
         }
     }
 }
