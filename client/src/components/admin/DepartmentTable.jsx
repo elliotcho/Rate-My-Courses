@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import * as departmentActions from '../../store/actions/departmentActions';
+import {getAllDepartments} from '../../store/actions/departmentActions';
+import {createDepartment, deleteDepartment} from '../../store/actions/adminActions';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'; 
 import './css/DepartmentTable.css';
@@ -20,7 +21,7 @@ class DepartmentTable extends Component{
     }
 
     async componentDidMount(){
-        const departments = await departmentActions.getAllDepartments();
+        const departments = await getAllDepartments();
         this.setState({departments});
     }
 
@@ -32,7 +33,7 @@ class DepartmentTable extends Component{
         const {name, code} = this.state;
         const data = {name, code};
         
-       const newDepartment = await departmentActions.createDepartment(data);
+       const newDepartment = await createDepartment(data);
 
         const {departments} = this.state;
         departments.unshift(newDepartment);
@@ -48,8 +49,6 @@ class DepartmentTable extends Component{
         const departmentsList = this.state.departments;
 
         const confirmDelete = async () => {
-            const {deleteDepartment} = departmentActions;
-
             const departments = await deleteDepartment(departmentsList, id);
             departments.reverse();
             

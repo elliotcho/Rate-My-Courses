@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {getAllDepartments} from '../../store/actions/departmentActions';
-import * as courseActions from '../../store/actions/courseActions';
+import {getAllCourses} from '../../store/actions/courseActions';
+import {createCourse, deleteCourse} from '../../store/actions/adminActions';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'; 
 import './css/CourseTable.css';
@@ -24,7 +25,7 @@ class CourseTable extends Component{
 
     async componentDidMount(){
         const departments = await getAllDepartments();
-        const courses = await courseActions.getAllCourses();
+        const courses = await getAllCourses();
 
         departments.sort((d1, d2) => d1.code.toLowerCase() - d2.code.toLowerCase());
         courses.reverse();
@@ -47,7 +48,7 @@ class CourseTable extends Component{
         }
 
         const data = {name, number, departmentId};
-        const newCourse = await courseActions.createCourse(data);
+        const newCourse = await createCourse(data);
         
         if(newCourse !== null){
             courses.unshift(newCourse);
@@ -65,10 +66,7 @@ class CourseTable extends Component{
         const coursesList = this.state.courses;
 
         const confirmDelete = async () => {
-            const {deleteCourse} = courseActions;
-
             const courses = await deleteCourse(coursesList, id);
-
             this.setState({courses});
         }
 
