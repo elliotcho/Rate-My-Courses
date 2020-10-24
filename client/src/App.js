@@ -11,9 +11,9 @@ function App() {
   
   return (
     <div className="App">
-      <Navigate/>
-
       <BrowserRouter>
+        <Navigate/>
+
         <Switch>
           <Route exact path='/admin' component={AdminHome}/>
           <Route exact path='/admin/:type' component={AdminHome}/>
