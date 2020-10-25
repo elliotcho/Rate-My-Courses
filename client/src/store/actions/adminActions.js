@@ -2,6 +2,12 @@ import axios from 'axios';
 
 const config = {headers: {'Content-Type': 'application/json'}};
 
+export const getAllUsers = async () => {
+    const response = await axios.get('http://localhost:8080/api/user');
+    const users = response.data;
+    return users;
+}
+
 export const createDepartment = async (data) => {
     const response = await axios.post('http://localhost:8080/api/department', data, config);
     const newDepartment = response.data;

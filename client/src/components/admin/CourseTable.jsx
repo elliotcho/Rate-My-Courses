@@ -137,15 +137,15 @@ class CourseTable extends Component{
                         </td>
                     </tr>
 
-                    {courses.map(c =>
-                        <tr key={c.id}>
-                            <td>{c.id}</td>
-                            <td>{c.name}</td>
-                            <td>{c.number}</td>
+                    {courses.map(course =>
+                        <tr key={course.id}>
+                            <td>{course.id}</td>
+                            <td>{course.name}</td>
+                            <td>{course.number}</td>
                             <td>N/A</td>
-                            <td>{c.departmentCode}</td>      
+                            <td>{course.departmentCode}</td>      
                             <td>
-                                <button className='btn btn-danger' onClick={() => this.deleteCourse(c.id)}>
+                                <button className='btn btn-danger' onClick={() => this.deleteCourse(course.id)}>
                                     Delete
                                 </button>
                             </td>
