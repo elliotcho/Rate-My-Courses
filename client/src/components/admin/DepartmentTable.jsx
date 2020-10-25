@@ -72,55 +72,59 @@ class DepartmentTable extends Component{
             <div className='department-table'>
                 <table>
                     <thead>
-                        <th>Department ID</th>
-                        <th>Department Name</th>
-                        <th>Department Code</th>
-                        <th>Create/Delete</th>
+                        <tr>
+                            <th>Department ID</th>
+                            <th>Department Name</th>
+                            <th>Department Code</th>
+                            <th>Create/Delete</th>
+                        </tr>
                     </thead>
 
-                    <tr>
-                        <td>ID Auto Generated</td>
-
-                        <td>
-                            <input 
-                                id='name' 
-                                type='text'
-                                onChange={this.handleChange}
-                                value={name}
-                                required
-                            />
-                        </td>
-
-                        <td>
-                            <input 
-                                id='code' 
-                                type='text' 
-                                onChange={this.handleChange}
-                                value={code}
-                                required
-                            />
-                        </td>
-
-                        <td>
-                            <button className ='btn btn-success' onClick={this.createDepartment}>
-                                Create
-                            </button>
-                        </td>
-                    </tr>
-                    
-                    {departments.map(d =>
-                        <tr key={d.id}>
-                            <td>{d.id}</td>
-                            <td>{d.name}</td>
-                            <td>{d.code}</td>
+                    <tbody>
+                        <tr>
+                            <td>ID Auto Generated</td>
 
                             <td>
-                                <button className='btn btn-danger' onClick={() => this.deleteDepartment(d.id)}>
-                                    Delete
+                                <input 
+                                    id='name' 
+                                    type='text'
+                                    onChange={this.handleChange}
+                                    value={name}
+                                    required
+                                />
+                            </td>
+
+                            <td>
+                                <input 
+                                    id='code' 
+                                    type='text' 
+                                    onChange={this.handleChange}
+                                    value={code}
+                                    required
+                                />
+                            </td>
+
+                            <td>
+                                <button className ='btn btn-success' onClick={this.createDepartment}>
+                                    Create
                                 </button>
                             </td>
                         </tr>
-                    )}
+                        
+                        {departments.map(department =>
+                            <tr key={department.id}>
+                                <td>{department.id}</td>
+                                <td>{department.name}</td>
+                                <td>{department.code}</td>
+
+                                <td>
+                                    <button className='btn btn-danger' onClick={() => this.deleteDepartment(department.id)}>
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        )}
+                    </tbody>
                 </table> 
             </div>
         )

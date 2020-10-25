@@ -23,22 +23,26 @@ class UserTable extends Component{
             <div className = 'user-table'>
                 <table>
                     <thead>
-                        <th>User ID</th>
-                        <th>Username</th>
-                        <th>User email</th>
-                        <th>Status</th>
+                        <tr>
+                            <th>User ID</th>
+                            <th>Username</th>
+                            <th>User email</th>
+                            <th>Status</th>
+                        </tr>
                     </thead>
 
-                    {users.map(user =>
-                        <tr key = {user.id}>
-                            <td>{user.id}</td>
-                            <td>{user.username}</td>
-                            <td>{user.email}</td>
-                            <td>
-                                {user.admin? 'Admin' : 'User'}
-                            </td>
-                        </tr>
-                    )}
+                    <tbody>
+                        {users.map(user =>
+                            <tr key = {user.id}>
+                                <td>{user.id}</td>
+                                <td>{user.username}</td>
+                                <td>{user.email}</td>
+                                <td>
+                                    {user.admin? 'Admin' : 'User'}
+                                </td>
+                            </tr>
+                        )}
+                    </tbody>
                 </table>
             </div>
         )

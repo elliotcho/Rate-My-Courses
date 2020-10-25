@@ -87,70 +87,76 @@ class CourseTable extends Component{
             <div className='course-table'>
                 <table>
                     <thead>
-                        <th>Course ID</th>
-                        <th>Course Name</th>
-                        <th>Course Number</th>
-                        <th>Average Rating</th>
-                        <th>Department Code</th>
-                        <th>Create/Delete</th>
+                        <tr>
+                            <th>Course ID</th>
+                            <th>Course Name</th>
+                            <th>Course Number</th>
+                            <th>Average Rating</th>
+                            <th>Department Code</th>
+                            <th>Create/Delete</th>
+                        </tr>
                     </thead>
 
-                    <tr>
-                        <td>ID Auto Generated</td>
+                    <tbody>
+                        <tr>
+                            <td>ID Auto Generated</td>
 
-                        <td>
-                            <input 
-                                type='text'
-                                id = 'name'
-                                onChange = {this.handleChange}
-                                value = {name}
-                                required
-                            />
-                        </td>
-
-                        <td>
-                            <input 
-                                type='text' 
-                                id = 'number'
-                                onChange = {this.handleChange}
-                                value = {number}
-                                required
-                            />
-                        </td>
-
-                        <td>N/A</td>
-
-                        <td>
-                            <select onChange={this.handleChange} id='departmentId' value={departmentId}>
-                                <option value=''></option>
-
-                                {departments.map(d =>
-                                    <option value={d.id}>{d.code}</option>
-                                )}
-                            </select>
-                        </td>
-
-                        <td>
-                            <button className ='btn btn-success' onClick={this.createCourse}>
-                                Create
-                            </button>
-                        </td>
-                    </tr>
-
-                    {courses.map(course =>
-                        <tr key={course.id}>
-                            <td>{course.id}</td>
-                            <td>{course.name}</td>
-                            <td>{course.number}</td>
-                            <td>N/A</td>
-                            <td>{course.departmentCode}</td>      
                             <td>
-                                <button className='btn btn-danger' onClick={() => this.deleteCourse(course.id)}>
-                                    Delete
+                                <input 
+                                    type='text'
+                                    id = 'name'
+                                    onChange = {this.handleChange}
+                                    value = {name}
+                                    required
+                                />
+                            </td>
+
+                            <td>
+                                <input 
+                                    type='text' 
+                                    id = 'number'
+                                    onChange = {this.handleChange}
+                                    value = {number}
+                                    required
+                                />
+                            </td>
+
+                            <td>N/A</td>
+
+                            <td>
+                                <select onChange={this.handleChange} id='departmentId' value={departmentId}>
+                                    <option value=''></option>
+
+                                    {departments.map(department =>
+                                        <option value={department.id} key={department.id}>
+                                            {department.code}
+                                        </option>
+                                    )}
+                                </select>
+                            </td>
+
+                            <td>
+                                <button className ='btn btn-success' onClick={this.createCourse}>
+                                    Create
                                 </button>
                             </td>
                         </tr>
-                    )}
+
+                        {courses.map(course =>
+                            <tr key={course.id}>
+                                <td>{course.id}</td>
+                                <td>{course.name}</td>
+                                <td>{course.number}</td>
+                                <td>N/A</td>
+                                <td>{course.departmentCode}</td>      
+                                <td>
+                                    <button className='btn btn-danger' onClick={() => this.deleteCourse(course.id)}>
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        )}
+                    </tbody>
                 </table>
             </div>
         )

@@ -9,8 +9,8 @@ class Login extends Component{
         super();
 
         this.state = {
-            username: '',
-            password: ''
+            usrname: '',
+            pwd: ''
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -24,20 +24,20 @@ class Login extends Component{
     handleSubmit(e){
         e.preventDefault();
 
-        const {username, password} = this.state;
+        const {usrname, pwd} = this.state;
         const {dispatch, alert} = this.props;
 
         const data = {
             email: '',
-            username, 
-            password
+            username: usrname, 
+            password: pwd
         }
 
         dispatch(login(data, alert));
     }
 
     render(){
-        const {username, password} = this.state;
+        const {usrname, pwd} = this.state;
 
         return(
             <div className='login'>
@@ -50,18 +50,18 @@ class Login extends Component{
                         
                     <label  htmlFor='username'>Username <span>*</span></label><br/>
                     <input
-                        id='username'
+                        id='usrname'
                         type='text'
-                        value={username}
+                        value={usrname}
                         onChange={this.handleChange}
                         required
                     />
                     
                     <label htmlFor='password'>Password <span>*</span></label><br/>
                     <input
-                        id='password'
+                        id='pwd'
                         type='password'
-                        value={password}
+                        value={pwd}
                         onChange={this.handleChange}
                         required
                     />
