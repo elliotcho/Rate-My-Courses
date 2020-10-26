@@ -49,8 +49,8 @@ class AdminHome extends Component{
 
                 {type === 'department' ? 
                     (<DepartmentTable/>) : (type === 'course') ?
-                    (<CourseTable/>) : 
-                    (<UserTable/>)
+                    (<CourseTable/>) : (type === 'user') ? 
+                    (<UserTable/>): null
                 }
             </div>
         )

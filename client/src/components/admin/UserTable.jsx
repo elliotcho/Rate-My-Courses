@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {getAllUsers} from '../../store/actions/adminActions';
+import {getAllUsers, handleBan} from '../../store/actions/adminActions';
 import './css/UserTable.css';
 
 class UserTable extends Component{
@@ -9,6 +9,8 @@ class UserTable extends Component{
         this.state = {
             users: []
         }
+
+        this.handleBan = this.handleBan.bind(this);
     }
 
     async componentDidMount(){
@@ -16,8 +18,19 @@ class UserTable extends Component{
         this.setState({users});
     }
 
+    async handleBan(id, action){
+        const data = {id, action};
+
+        const users = await handleBan(data, this.state.users);
+
+        this.setState({users});
+    }
+
     render(){
         const {users} = this.state;
+
+        const banUser = (id) => this.handleBan(id, 'Ban');
+        const unbanUser = (id) => this.handleBan(id, 'unBan')
 
         return(
             <div className = 'user-table'>
@@ -28,6 +41,7 @@ class UserTable extends Component{
                             <th>Username</th>
                             <th>User email</th>
                             <th>Status</th>
+                            <th>Ban Account</th>
                         </tr>
                     </thead>
 
@@ -37,8 +51,20 @@ class UserTable extends Component{
                                 <td>{user.id}</td>
                                 <td>{user.username}</td>
                                 <td>{user.email}</td>
+                                
                                 <td>
                                     {user.admin? 'Admin' : 'User'}
+                                </td>
+
+                                <td>
+                                    {user.banned?    
+                                        (<button className='btn btn-success' onClick={() => unbanUser(user.id)}>
+                                            Approve User
+                                        </button>) :
+                                        (<button className='btn btn-danger' onClick={() => banUser(user.id)}>
+                                            Ban User
+                                        </button>)
+                                    }
                                 </td>
                             </tr>
                         )}

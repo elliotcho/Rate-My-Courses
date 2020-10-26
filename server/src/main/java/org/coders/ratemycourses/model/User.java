@@ -28,4 +28,5 @@ public class User{
     private String password;
     
     private boolean admin = false;
+    private boolean banned = false;
 }

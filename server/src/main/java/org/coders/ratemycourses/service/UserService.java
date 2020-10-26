@@ -51,4 +51,18 @@ public class UserService{
 
         return searchResult.get(0).getId();
     }
+
+    public User handleBan(String id, String action){
+        User user = repo.findById(id).orElse(null);
+
+        if(action.equals("Ban")){
+            user.setBanned(true);
+        } else{
+            user.setBanned(false);
+        }
+
+        repo.save(user);
+
+        return user;
+    }
 }
