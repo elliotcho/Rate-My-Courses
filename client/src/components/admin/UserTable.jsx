@@ -59,10 +59,10 @@ class UserTable extends Component{
                                 <td>
                                     {user.banned?    
                                         (<button className='btn btn-success' onClick={() => unbanUser(user.id)}>
-                                            Approve User
+                                            Undo
                                         </button>) :
                                         (<button className='btn btn-danger' onClick={() => banUser(user.id)}>
-                                            Ban User
+                                            Ban
                                         </button>)
                                     }
                                 </td>

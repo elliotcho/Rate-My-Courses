@@ -12,11 +12,11 @@ export const handleBan = async (data, users) => {
     const response = await axios.post('http://localhost:8080/api/user/ban', JSON.stringify(data), config);
     const updatedUser =  response.data;
 
-    for(let i=0;i<users.length;i++){
-        if(users[i].id === data.id){
+    users.forEach((user, i) => {
+        if(user.id === data.id){
             users[i] = updatedUser;
         }
-    }
+    });
 
     return users;
 }

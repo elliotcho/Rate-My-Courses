@@ -41,14 +41,22 @@ public class UserService{
     public String loginUser(User user){
         List<User> searchResult = repo.findByUsername(user.getUsername());
 
+        //user not found
         if(searchResult.isEmpty()){
             return "Username is not registered";
         }
 
+        //passwords do not match
         if(!passwordEncoder.matches(user.getPassword() , searchResult.get(0).getPassword())){
            return "Password is incorrect";
         }
 
+        //account is banned
+        if(searchResult.get(0).isBanned()){
+            return "Account is banned";
+        }
+
+        //return user id
         return searchResult.get(0).getId();
     }
 
