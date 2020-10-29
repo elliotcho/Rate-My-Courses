@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import './css/CreatePost.css';
-import {connect} from 'react-redux';
 import {createPost} from '../../store/actions/postActions';
-
 
 class CreatePost extends Component{
     constructor(){

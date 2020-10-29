@@ -9,9 +9,11 @@ class SearchCourse extends Component{
 
         this.state = {
             departments: [],
+            courses: []
         }
 
         this.handleChange = this.handleChange.bind(this);
+        this.toCourse = this.toCourse.bind(this);
     }
 
     async componentDidMount(){
@@ -21,14 +23,19 @@ class SearchCourse extends Component{
 
     async handleChange(e){
         const courses = await getCoursesInDepartment(e.target.value);
-        console.log(courses);
+        this.setState({courses});
+    }
+
+    toCourse(){
+        this.props.history.push('/posts');
     }
 
     render(){
-        const {departments} = this.state;
+        const {departments, courses} = this.state;
 
         return(
             <div className="search-course">
+                    <h1>Select a Department</h1>
                 
                     <select onChange={this.handleChange}>
                         <option value=''></option>
@@ -39,7 +46,12 @@ class SearchCourse extends Component{
                             </option>
                         )}
                     </select>
-                
+                    
+                    {courses.map(course => 
+                        <div key={course.id} onClick={this.toCourse}>
+                            {course.departmentCode} {course.number}: {course.name}
+                        </div>
+                    )}
             </div>
         )
     }
