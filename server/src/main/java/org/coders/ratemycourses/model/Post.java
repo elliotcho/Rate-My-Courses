@@ -19,7 +19,7 @@ public class Post{
     private List<String> dislikes;
 
     @NotEmpty
-    private String content; 
+    private String reason; 
 
     @NotEmpty
     private Date datePosted;
@@ -29,4 +29,12 @@ public class Post{
     
     @NotEmpty
     private String courseId;
+
+    @NotEmpty
+    private String courseNumber;
+
+    @NotEmpty
+    private String prof;
+
+    
 }
