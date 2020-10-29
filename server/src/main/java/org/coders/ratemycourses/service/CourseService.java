@@ -28,4 +28,8 @@ public class CourseService{
             e.printStackTrace();
         }
     }
+
+    public List<Course> getCoursesInDepartment(String departmentId){
+        return repo.findByDepartmentId(departmentId);
+    }
 }

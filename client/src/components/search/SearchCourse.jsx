@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {getAllDepartments} from '../../store/actions/departmentActions';
+import {getCoursesInDepartment} from '../../store/actions/courseActions';
 import './css/SearchCourse.css';
 
 class SearchCourse extends Component{
@@ -7,8 +8,10 @@ class SearchCourse extends Component{
         super();
 
         this.state = {
-            departments: []
+            departments: [],
         }
+
+        this.handleChange = this.handleChange.bind(this);
     }
 
     async componentDidMount(){
@@ -16,20 +19,27 @@ class SearchCourse extends Component{
         this.setState({departments});
     }
 
+    async handleChange(e){
+        const courses = await getCoursesInDepartment(e.target.value);
+        console.log(courses);
+    }
+
     render(){
         const {departments} = this.state;
 
         return(
-            <div className="courses container-fluid">
-                <select>
-                    <option value=''></option>
+            <div className="search-course">
+                
+                    <select onChange={this.handleChange}>
+                        <option value=''></option>
 
-                    {departments.map(department =>
-                        <option value={department.id} key={department.id}>
-                            {department.code}
-                        </option>
-                    )}
-                </select>
+                        {departments.map(department =>
+                            <option value={department.id} key={department.id}>
+                                {department.code}
+                            </option>
+                        )}
+                    </select>
+                
             </div>
         )
     }

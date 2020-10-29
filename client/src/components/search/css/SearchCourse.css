@@ -1,0 +1,9 @@
+.search-course{
+    margin: 50px auto;
+    width: 12rem;
+}
+
+.search-course select{
+    width: 12rem;
+    height: 2rem;
+}

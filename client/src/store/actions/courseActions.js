@@ -1,5 +1,11 @@
 import axios from 'axios';
 
+export const getCoursesInDepartment = async (departmentId) => {
+    const response = await axios.get(`http://localhost:8080/api/course/${departmentId}`);
+    const courses = response.data;
+    return courses;
+}
+
 export const getAllCourses = async () => {
     const response = await axios.get('http://localhost:8080/api/course');
     const courses = response.data;
