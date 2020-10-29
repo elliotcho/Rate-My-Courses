@@ -1,33 +1,35 @@
 import React, {Component} from 'react';
+import {getAllDepartments} from '../../store/actions/departmentActions';
 import './css/SearchCourse.css';
 
 class SearchCourse extends Component{
+    constructor(){
+        super();
+
+        this.state = {
+            departments: []
+        }
+    }
+
+    async componentDidMount(){
+        const departments = await getAllDepartments();
+        this.setState({departments});
+    }
+
     render(){
+        const {departments} = this.state;
+
         return(
             <div className="courses container-fluid">
-                <form>
-                    <h1>Pick your course</h1>
-                    <p> <i>Select the criteria you want</i> </p>
-                    
-                    <section className="selection">
-                        <label htmlFor="department_name">Department Name:</label>
-                        <input className="department_name" type="text" placeholder="KNES"/>
+                <select>
+                    <option value=''></option>
 
-                        <label htmlFor="course_number">Course Number:</label>
-                        <input className="course_number"type="text" placeholder="399"/>
-
-                        <label className="ratings" htmlFor="ratings">Minimum Rating:</label>
-                        <select className="ratings_choice" name="ratings">
-                            <option value="ratings">1</option>
-                            <option value="ratings">2</option>
-                            <option value="ratings">3</option>
-                            <option value="ratings">4</option>
-                            <option value="ratings">5</option>
-                        </select>
-                    </section>
-                    
-                    <button className="btn btn-outline-warning btn-block">Search</button>
-                </form>
+                    {departments.map(department =>
+                        <option value={department.id} key={department.id}>
+                            {department.code}
+                        </option>
+                    )}
+                </select>
             </div>
         )
     }

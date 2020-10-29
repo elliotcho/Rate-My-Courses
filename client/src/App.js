@@ -15,6 +15,7 @@ function App() {
         <Navigate/>
 
         <Switch>
+          <Route exact path='/' component={SearchCourse}/>
           <Route exact path='/admin' component={AdminHome}/>
           <Route exact path='/admin/:type' component={AdminHome}/>
           <Route exact path='/posts' component={PostList}/>
