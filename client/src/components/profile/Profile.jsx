@@ -49,8 +49,7 @@ class Profile extends Component {
                             <p className="ratings-score">10/10</p>
                         </div>
                     </div>
-                </section>
-                
+                </section>     
             </div>
         )
     }

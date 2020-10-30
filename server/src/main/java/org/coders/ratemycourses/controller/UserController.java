@@ -2,6 +2,7 @@ package org.coders.ratemycourses.controller;
 
 import org.coders.ratemycourses.model.User;
 import org.coders.ratemycourses.service.UserService;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,4 +33,15 @@ public class UserController{
     public String loginUser(@RequestBody User user){
         return userService.loginUser(user);
     }
+
+    @PostMapping("/ban")
+    public User banUser(@RequestBody String data){
+        JSONObject obj = new JSONObject(data);
+
+        String id = (String) obj.get("id");
+        String action = (String) obj.get("action");
+
+        return userService.handleBan(id, action);
+    }
+
 }

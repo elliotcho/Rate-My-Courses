@@ -1,39 +1,19 @@
-.courses {
-    background-color: #903749;
-    width: 40%;
-    margin-top: 100px;
-    border-radius: 14px;
-    padding-bottom: 20px;
+.search-course{
+    margin: 50px auto;
+    max-width: 600px;
 }
 
-.courses h1, .courses p{
-    color: #212121;
-    text-align: center;
-    font-family: 'Staatliches', cursive;
+.search-course select{
+    margin: auto;
+    width: 100%;
+    height: 2rem;
 }
 
-.courses section {
-    margin: 30px 0 10px;
+.search-course div{
+    padding: 15px;
+    cursor: pointer;
 }
 
-
-.courses label {
-    color: #1b262c;
-    font-family: 'Ubuntu', sans-serif;
+.search-course div:hover{
+    background: lightgray;
 }
-
-.courses input {
-    display: block;
-    width: 60%;
-    margin-bottom: 20px;
-    outline-color: #0f4c75;
-}
-
-.courses .ratings {
-    margin-bottom: 20px;
-}
-
-.courses .ratings_choice {
-    margin-left: 10px;
-}
-

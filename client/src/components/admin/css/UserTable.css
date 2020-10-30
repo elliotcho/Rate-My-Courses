@@ -1,18 +1,14 @@
-.userTable{
-    margin-left: auto;
-    margin-right: auto;
+.user-table{
+    max-width: 600px;
+    margin: 50px auto;
+    font-family: 'Segoe UI';
+}
+
+.user-table h1{
     text-align: center;
-    color: white;
-    padding: 10px;
 }
 
-.userTable .btn{
-    background-color:red;
-    color: white;
-    border-radius: 50%;
-    
-}
-
-th{
-    padding: 25px;
+.user-table thead th{
+    padding: 15px;
+    background: red;
 }

@@ -1,33 +1,57 @@
 import React, {Component} from 'react';
+import {getAllDepartments} from '../../store/actions/departmentActions';
+import {getCoursesInDepartment} from '../../store/actions/courseActions';
 import './css/SearchCourse.css';
 
 class SearchCourse extends Component{
+    constructor(){
+        super();
+
+        this.state = {
+            departments: [],
+            courses: []
+        }
+
+        this.handleChange = this.handleChange.bind(this);
+        this.toCourse = this.toCourse.bind(this);
+    }
+
+    async componentDidMount(){
+        const departments = await getAllDepartments();
+        this.setState({departments});
+    }
+
+    async handleChange(e){
+        const courses = await getCoursesInDepartment(e.target.value);
+        this.setState({courses});
+    }
+
+    toCourse(courseId){
+        this.props.history.push(`/posts/${courseId}`);
+    }
+
     render(){
+        const {departments, courses} = this.state;
+
         return(
-            <div className="courses container-fluid">
-                <form>
-                    <h1>Pick your course</h1>
-                    <p> <i>Select the criteria you want</i> </p>
-                    
-                    <section className="selection">
-                        <label htmlFor="department_name">Department Name:</label>
-                        <input className="department_name" type="text" placeholder="KNES"/>
+            <div className="search-course">
+                    <h1>Select a Department</h1>
+                
+                    <select onChange={this.handleChange}>
+                        <option value=''></option>
 
-                        <label htmlFor="course_number">Course Number:</label>
-                        <input className="course_number"type="text" placeholder="399"/>
-
-                        <label className="ratings" htmlFor="ratings">Minimum Rating:</label>
-                        <select className="ratings_choice" name="ratings">
-                            <option value="ratings">1</option>
-                            <option value="ratings">2</option>
-                            <option value="ratings">3</option>
-                            <option value="ratings">4</option>
-                            <option value="ratings">5</option>
-                        </select>
-                    </section>
+                        {departments.map(department =>
+                            <option value={department.id} key={department.id}>
+                                {department.code}
+                            </option>
+                        )}
+                    </select>
                     
-                    <button className="btn btn-outline-warning btn-block">Search</button>
-                </form>
+                    {courses.map(course => 
+                        <div key={course.id} onClick={() => this.toCourse(course.id)}>
+                            {course.departmentCode} {course.number}: {course.name}
+                        </div>
+                    )}
             </div>
         )
     }

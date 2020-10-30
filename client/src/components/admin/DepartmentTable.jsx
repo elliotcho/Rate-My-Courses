@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import axios from 'axios';
+import {getAllDepartments} from '../../store/actions/departmentActions';
+import {createDepartment, deleteDepartment} from '../../store/actions/adminActions';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'; 
 import './css/DepartmentTable.css';
@@ -20,23 +21,19 @@ class DepartmentTable extends Component{
     }
 
     async componentDidMount(){
-        const response = await axios.get('http://localhost:8080/api/department');
-        const departments = response.data;
-
-        this.setState({departments : departments.reverse()});
+        const departments = await getAllDepartments();
+        this.setState({departments});
     }
 
     handleChange(e){
         this.setState({[e.target.id]: e.target.value});
     }
 
-    async createDepartment(){    
+    async createDepartment(){   
         const {name, code} = this.state;
-
-        const config = {headers: {'Content-Type': 'application/json'}};
-
-        const response = await axios.post('http://localhost:8080/api/department', {name, code}, config);
-        const newDepartment = response.data;
+        const data = {name, code};
+        
+       const newDepartment = await createDepartment(data);
 
         const {departments} = this.state;
         departments.unshift(newDepartment);
@@ -49,18 +46,12 @@ class DepartmentTable extends Component{
     }
 
     async deleteDepartment(id){
-        const {departments} = this.state;
+        const departmentsList = this.state.departments;
 
         const confirmDelete = async () => {
-            await axios.delete(`http://localhost:8080/api/department/${id}`);
-
-            for(let i=0;i<departments.length;i++){
-                if(departments[i].id === id){
-                    departments.splice(i, 1);
-                    break;
-                }
-            }
-
+            const departments = await deleteDepartment(departmentsList, id);
+            departments.reverse();
+            
             this.setState({departments});
         }
 
@@ -81,55 +72,59 @@ class DepartmentTable extends Component{
             <div className='department-table'>
                 <table>
                     <thead>
-                        <th>Department ID</th>
-                        <th>Department Name</th>
-                        <th>Department Code</th>
-                        <th>Create/Delete</th>
+                        <tr>
+                            <th>Department ID</th>
+                            <th>Department Name</th>
+                            <th>Department Code</th>
+                            <th>Create/Delete</th>
+                        </tr>
                     </thead>
 
-                    <tr>
-                        <td>ID Auto Generated</td>
-
-                        <td>
-                            <input 
-                                id='name' 
-                                type='text'
-                                onChange={this.handleChange}
-                                value={name}
-                                required
-                            />
-                        </td>
-
-                        <td>
-                            <input 
-                                id='code' 
-                                type='text' 
-                                onChange={this.handleChange}
-                                value={code}
-                                required
-                            />
-                        </td>
-
-                        <td>
-                            <button className ='btn btn-success' onClick={this.createDepartment}>
-                                Create
-                            </button>
-                        </td>
-                    </tr>
-                    
-                    {departments.map(d =>
-                        <tr key={d.id}>
-                            <td>{d.id}</td>
-                            <td>{d.name}</td>
-                            <td>{d.code}</td>
+                    <tbody>
+                        <tr>
+                            <td>ID Auto Generated</td>
 
                             <td>
-                                <button className='btn btn-danger' onClick={() => this.deleteDepartment(d.id)}>
-                                    Delete
+                                <input 
+                                    id='name' 
+                                    type='text'
+                                    onChange={this.handleChange}
+                                    value={name}
+                                    required
+                                />
+                            </td>
+
+                            <td>
+                                <input 
+                                    id='code' 
+                                    type='text' 
+                                    onChange={this.handleChange}
+                                    value={code}
+                                    required
+                                />
+                            </td>
+
+                            <td>
+                                <button className ='btn btn-success' onClick={this.createDepartment}>
+                                    Create
                                 </button>
                             </td>
                         </tr>
-                    )}
+                        
+                        {departments.map(department =>
+                            <tr key={department.id}>
+                                <td>{department.id}</td>
+                                <td>{department.name}</td>
+                                <td>{department.code}</td>
+
+                                <td>
+                                    <button className='btn btn-danger' onClick={() => this.deleteDepartment(department.id)}>
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        )}
+                    </tbody>
                 </table> 
             </div>
         )

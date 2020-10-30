@@ -12,13 +12,14 @@ function App() {
   
   return (
     <div className="App">
-      <Navigate/>
-
       <BrowserRouter>
+        <Navigate/>
+
         <Switch>
+          <Route exact path='/' component={SearchCourse}/>
           <Route exact path='/admin' component={AdminHome}/>
           <Route exact path='/admin/:type' component={AdminHome}/>
-          <Route exact path='/posts' component={PostList}/>
+          <Route exact path='/posts/:id' component={PostList}/>
           <Route exact path ='/courses' component={SearchCourse}/>
           <Route exact path='/profile' component={Profile}/>
           <Route path = '/' component={DeadPage}/>

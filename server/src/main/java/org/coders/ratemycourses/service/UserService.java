@@ -41,14 +41,36 @@ public class UserService{
     public String loginUser(User user){
         List<User> searchResult = repo.findByUsername(user.getUsername());
 
+        //user not found
         if(searchResult.isEmpty()){
             return "Username is not registered";
         }
 
+        //passwords do not match
         if(!passwordEncoder.matches(user.getPassword() , searchResult.get(0).getPassword())){
            return "Password is incorrect";
         }
 
+        //account is banned
+        if(searchResult.get(0).isBanned()){
+            return "Account is banned";
+        }
+
+        //return user id
         return searchResult.get(0).getId();
+    }
+
+    public User handleBan(String id, String action){
+        User user = repo.findById(id).orElse(null);
+
+        if(action.equals("Ban")){
+            user.setBanned(true);
+        } else{
+            user.setBanned(false);
+        }
+
+        repo.save(user);
+
+        return user;
     }
 }

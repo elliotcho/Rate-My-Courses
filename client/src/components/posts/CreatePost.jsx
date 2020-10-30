@@ -1,8 +1,57 @@
 import React, {Component} from 'react';
+import {createPost} from '../../store/actions/postActions';
+import {withAlert} from 'react-alert';
 import './css/CreatePost.css';
 
 class CreatePost extends Component{
+    constructor(){
+        super();
+        this.state={
+            courseNumber : "",
+            year: "",
+            prof: "",
+            reason: "",
+            stars: 0,
+            
+        };
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    async handleSubmit(e){
+        e.preventDefault();
+
+        const {uid, alert} = this.props;
+
+        if(!uid){
+
+        }
+
+        const { year, courseNumber, prof, reason, stars} = this.state;
+
+        if(stars === 0){
+            alert.error('Please select a rating');
+            return;
+        }
+
+        const dateCreated = new Date();
+        const likes = [];
+        const dislikes= [];
+
+        const data = { courseNumber, year, prof, reason, stars, dateCreated, likes, dislikes };
+      
+        const post = await createPost(data);
+        console.log(post);
+    }
+
+    handleChange(e){
+        this.setState({[e.target.id]: e.target.value });
+    }
+
     render(){
+        const { year,  prof, reason, stars} = this.state;
+        const {course} = this.props;
+
         return(
             <div className='post-modal modal fade' id='create-post' data-backdrop='false'>
                 <div className='modal-dialog modal-dialog-centered'>
@@ -16,47 +65,72 @@ class CreatePost extends Component{
                         </div>
 
                         <div className='modal-body'>
-                            <form>
+                            <form onSubmit={this.handleSubmit}>
                                 <div className="form-group">
                                     <label htmlFor="course-id">Course Number</label>
                             
-                                    <select className="form-control" id="course-id">
-                                        <option value="">Select Course</option>
-                                        <option value="cs3305">CS3305</option>
-                                        <option value="polisci2244">POLISCI2244</option>
-                                        <option value="math1228">MATH1228</option>
-                                    </select>
+                                    <p>
+                                        {course? course.number: 'Loading...'}
+                                    </p>
                                 </div>
                         
                                 <div className="form-group">
-                                    <label htmlFor="coursetaken">Year Course Was Taken</label>
-                                    <input type='text' className="form-control"id='coursetaken' name="datetaken"/>
+                                    <label htmlFor="year">Year Course Was Taken</label>
+
+                                    <input 
+                                            type='text' 
+                                            className="form-control"
+                                            id='year' 
+                                            value={year} 
+                                            onChange={this.handleChange}
+                                    />
                                 </div>
                         
                                 <div className="form-group">
-                                    <label htmlFor="Prof">Professor</label>
-                                    <input type='text' className="form-control"id='Prof' name="Prof"/>
+                                    <label htmlFor="prof">Professor</label>
+
+                                    <input 
+                                        type='text' 
+                                        className="form-control"
+                                        id='prof' 
+                                        value={prof}
+                                        onChange={this.handleChange}
+                                        required
+                                    />
                                 </div>
 
                                 <div className="form-group">
-                                    <label htmlFor='content'>Reason For Rating</label>
-                                    <input type='text' className="form-control"id='content' name='userContent'/>
+                                    <label htmlFor='reason'>Reason For Rating</label>
+
+                                    <input 
+                                        type='text'
+                                        className="form-control"
+                                        id='reason'
+                                        value={reason}
+                                        onChange={this.handleChange}
+                                        required
+                                    />
                                 </div>
                         
                                 <div className="form-group">
-                                    <label htmlFor='rating'>Stars</label>
-                                    <input type='double' className="form-control" id='rating' name='stars'/>{/*also need a function to get current date/time, display t value here*/}
+                                    <label htmlFor='stars'>Stars</label>    
+
+                                    <select className='form-control' id='stars' value={stars} onChange={this.handleChange}>
+                                        <option value="">Select Rating</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                    </select>
                                 </div>
                         
-                               
                                 <button type="submit" className="btn btn-success">Submit</button>
                             </form>
                         </div>
                     </div>
-                </div>        
+                </div> 
             </div>
         )
     } 
 }
 
-export default CreatePost;
+export default (withAlert()(CreatePost));
