@@ -20,7 +20,6 @@ class Post extends Component{
                         <p className="date-posted">Sept 24, 2020</p>
                     </div>
                 </div>
-            
                 <div className="ratings row">
                     <div className="col-4">
                         <h5 className="likes" >Likes</h5>

@@ -1,12 +1,13 @@
 
 
 /* First Section ~ Course ID, User ID, Review, Date Posted */
+
 .post  {
     text-align: center;
     background-color: #aacfcf;
     margin: auto;
     margin-bottom: 50px;
-    max-width: 800px;
+    max-width: 900px;
     border-radius: 10px;
     padding: 10px;  
 }

@@ -34,7 +34,7 @@ class Profile extends Component {
 
                             <button className="likes-btn btn btn-lg btn-outline-success">
                                 <i class="fa fa-thumbs-up"></i>
-                        </button>
+                            </button>
                         </div>
                     
                         <div className="col-4">
@@ -49,8 +49,8 @@ class Profile extends Component {
                             <p className="ratings-score">10/10</p>
                         </div>
                     </div>
-                </section>    
-            </div> 
+                </section>     
+            </div>
         )
     }
 }
