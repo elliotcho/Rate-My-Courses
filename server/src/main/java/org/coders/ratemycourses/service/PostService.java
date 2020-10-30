@@ -28,6 +28,14 @@ public class PostService{
         }
     }
 
+    public List<Post> getUsersPosts(String userId){
+        return repo.findByUserId(userId);
+    }
+
+    public int numberofPosts(String userId){
+        return getUsersPosts(userId).size();
+    }
+  
     public List<Post> getPostByCourseId(String courseId){
         return repo.findByCourseId(courseId);
     }

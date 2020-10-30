@@ -29,4 +29,8 @@ public class User{
     
     private boolean admin = false;
     private boolean banned = false;
+
+    private String undergraduateProgram = "N/A";
+
+    private String yearofStudy = "N/A";
 }
