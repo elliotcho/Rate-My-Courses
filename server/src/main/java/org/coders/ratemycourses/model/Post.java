@@ -35,6 +35,4 @@ public class Post{
 
     @NotEmpty
     private String prof;
-
-    
 }

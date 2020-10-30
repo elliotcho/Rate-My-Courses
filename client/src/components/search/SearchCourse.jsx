@@ -26,8 +26,8 @@ class SearchCourse extends Component{
         this.setState({courses});
     }
 
-    toCourse(){
-        this.props.history.push('/posts');
+    toCourse(courseId){
+        this.props.history.push(`/posts/${courseId}`);
     }
 
     render(){
@@ -48,7 +48,7 @@ class SearchCourse extends Component{
                     </select>
                     
                     {courses.map(course => 
-                        <div key={course.id} onClick={this.toCourse}>
+                        <div key={course.id} onClick={() => this.toCourse(course.id)}>
                             {course.departmentCode} {course.number}: {course.name}
                         </div>
                     )}

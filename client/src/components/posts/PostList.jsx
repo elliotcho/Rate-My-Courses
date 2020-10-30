@@ -4,6 +4,11 @@ import CreatePost from './CreatePost.jsx';
 import './css/PostList.css';
 
 class PostList extends Component{
+    componentDidMount(){
+        const courseId = this.props.match.params.id;
+        
+    }
+
     render(){
         return(
             <div className="post-list">
