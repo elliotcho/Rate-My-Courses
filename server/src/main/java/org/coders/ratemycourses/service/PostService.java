@@ -32,8 +32,12 @@ public class PostService{
         return repo.findByUserId(userId);
     }
 
-    public int numberofPosts(String numberId){
-        return getUsersPosts(numberId).size();
+    public int numberofPosts(String userId){
+        return getUsersPosts(userId).size();
+    }
+  
+    public List<Post> getPostByCourseId(String courseId){
+        return repo.findByCourseId(courseId);
     }
 
     public int userRatingRatio(String id){

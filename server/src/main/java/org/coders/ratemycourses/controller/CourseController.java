@@ -39,4 +39,9 @@ public class CourseController{
     public List<Course> getCoursesInDepartment(@PathVariable String departmentId){
         return courseService.getCoursesInDepartment(departmentId);
     }
+
+    @GetMapping("/info/{courseId}")
+    public Course getCourseById(@PathVariable String courseId){
+        return courseService.getCourseById(courseId);
+    }
 }
