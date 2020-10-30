@@ -38,6 +38,7 @@ class CreatePost extends Component{
 
     render(){
         const { year, courseNumber, prof, reason, stars} = this.state;
+        const {course} = this.props;
 
         return(
             <div className='post-modal modal fade' id='create-post' data-backdrop='false'>
@@ -56,17 +57,7 @@ class CreatePost extends Component{
                                 <div className="form-group">
                                     <label htmlFor="course-id">Course Number</label>
                             
-                                    <select className="form-control"
-                                        id="course-id"  
-                                        value= {courseNumber} 
-                                        onChange= {this.handleChange}
-                                        name = 'courseNumber'
-                                    >
-                                        <option value="">Select Course</option>
-                                        <option value="cs3305">CS3305</option>
-                                        <option value="polisci2244">POLISCI2244</option>
-                                        <option value="math1228">MATH1228</option>
-                                    </select>
+                                    <p>{course? course.number: 'Loading...'}</p>
                                 </div>
                         
                                 <div className="form-group">

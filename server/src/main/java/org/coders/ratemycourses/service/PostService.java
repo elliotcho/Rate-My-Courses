@@ -28,7 +28,7 @@ public class PostService{
         }
     }
 
-    public Post getPostById(String id){
-        return repo.findById(id).orElse(null);
+    public List<Post> getPostByCourseId(String courseId){
+        return repo.findByCourseId(courseId);
     }
 }
