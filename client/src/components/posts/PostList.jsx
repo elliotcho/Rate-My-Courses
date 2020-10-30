@@ -72,7 +72,12 @@ class PostList extends Component{
 
                 {posts.map(post => 
                     <Post
-                    
+                        key={post.id}
+                        course={course}
+                        reason={post.reason}
+                        userId ={post.userId}
+                        likes={post.likes}
+                        dislikes={post.dislikes}
                     />    
                 )}
             </div>

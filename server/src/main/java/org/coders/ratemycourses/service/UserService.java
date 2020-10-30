@@ -73,4 +73,12 @@ public class UserService{
 
         return user;
     }
+
+    public User getUserById(String id){
+        User user = repo.findById(id).orElse(null);
+
+        user.setPassword("");
+
+        return user;
+    }
 }

@@ -31,8 +31,5 @@ public class Post{
     private String courseId;
 
     @NotEmpty
-    private String courseNumber;
-
-    @NotEmpty
     private String prof;
 }

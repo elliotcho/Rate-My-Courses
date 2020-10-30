@@ -1,20 +1,42 @@
 import React, {Component} from 'react';
+import {getUserById} from '../../store/actions/profileActions';
 import './css/Post.css';
 
-
 class Post extends Component{
+    constructor(){
+        super();
+
+        this.state = {
+            username: 'Loading User...'
+        }
+    }
+
+    async componentDidMount(){
+        const {userId} = this.props;
+
+        const user = await getUserById(userId);
+
+        this.setState({username: user.username});
+    }
+
     render(){
+        const {username} = this.state;
+        const {course, reason} = this.props;
+
         return(
             <section className='post'>
                 <div className='row'> 
                     <div className="col-3">
-                        <h4 id="course-id"> KNES 399</h4>
-                        <p className="username">Reviewed By: otw_up</p>
+                        <h4 id="course-id">
+                            {course? `${course.departmentCode} ${course.number}` : 'Loading...'}
+                        </h4>
+
+                        <p className="username">Reviewed By: {username}</p>
                     </div>     
                 
                     <div className="col-9">
                         <p className="review">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            {reason}
                         </p>
                         
                         <p className="date-posted">Sept 24, 2020</p>

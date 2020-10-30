@@ -8,7 +8,6 @@ class CreatePost extends Component{
         super();
 
         this.state={
-            courseNumber : "",
             year: "",
             prof: "",
             reason: "",
@@ -66,7 +65,7 @@ class CreatePost extends Component{
     render(){
         const { year,  prof, reason, stars} = this.state;
         const {course} = this.props;
-        
+
         return(
             <div className='post-modal modal fade' id='create-post' data-backdrop='false'>
                 <div className='modal-dialog modal-dialog-centered'>
