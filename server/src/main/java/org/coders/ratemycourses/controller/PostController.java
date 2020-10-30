@@ -36,8 +36,13 @@ public class PostController{
         postService.deletePost(id);
     }
 
-    @GetMapping("/{id}")
-    public Post getPost(@PathVariable String id){
-        return postService.getPostById(id);
+    @GetMapping("/user/{userId}")
+    public List<Post> getUserPosts(@PathVariable String userId){
+        return postService.getUsersPosts(userId);
+    }
+
+    @GetMapping("/user/{numberId}")
+    public int numberOfPosts(String numberId){
+        return postService.numberofPosts(numberId);
     }
 }

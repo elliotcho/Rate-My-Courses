@@ -28,7 +28,11 @@ public class PostService{
         }
     }
 
-    public Post getPostById(String id){
-        return repo.findById(id).orElse(null);
+    public List<Post> getUsersPosts(String userId){
+        return repo.findByUserId(userId);
+    }
+
+    public int numberofPosts(String numberId){
+        return getUsersPosts(numberId).size();
     }
 }
