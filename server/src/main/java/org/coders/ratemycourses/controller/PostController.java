@@ -45,4 +45,9 @@ public class PostController{
     public int numberOfPosts(String numberId){
         return postService.numberofPosts(numberId);
     }
+
+    @GetMapping("/user/rating/{id}")
+    public int ratingRatio(@PathVariable String id){
+        return postService.userRatingRatio(id);
+    }
 }

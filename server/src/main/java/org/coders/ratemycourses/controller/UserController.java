@@ -43,4 +43,5 @@ public class UserController{
 
         return userService.handleBan(id, action);
     }
+
 }
