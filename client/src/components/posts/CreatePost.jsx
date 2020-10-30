@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import './css/CreatePost.css';
 import {createPost} from '../../store/actions/postActions';
+import {withAlert} from 'react-alert';
+import './css/CreatePost.css';
 
 class CreatePost extends Component{
     constructor(){
@@ -19,14 +20,26 @@ class CreatePost extends Component{
 
     async handleSubmit(e){
         e.preventDefault();
+
+        const {uid, alert} = this.props;
+
+        if(!uid){
+
+        }
+
         const { year, courseNumber, prof, reason, stars} = this.state;
+
+        if(stars === 0){
+            alert.error('Please select a rating');
+            return;
+        }
+
         const dateCreated = new Date();
         const likes = [];
         const dislikes= [];
+
         const data = { courseNumber, year, prof, reason, stars, dateCreated, likes, dislikes };
-        if(courseNumber === "Select Course" || prof === "" || reason === "" || stars === "Select Rating"){
-            alert("Error: Fill in all values!");
-        }
+      
         const post = await createPost(data);
         console.log(post);
     }
@@ -37,7 +50,7 @@ class CreatePost extends Component{
     }
 
     render(){
-        const { year, courseNumber, prof, reason, stars} = this.state;
+        const { year,  prof, reason, stars} = this.state;
         const {course} = this.props;
 
         return(
@@ -62,32 +75,42 @@ class CreatePost extends Component{
                         
                                 <div className="form-group">
                                     <label htmlFor="coursetaken">Year Course Was Taken</label>
-                                    <input type='text' 
-                                    className="form-control"
-                                    id='coursetaken' 
-                                    name="year" 
-                                    value={year} 
-                                    onChange={this.handleChange}/>
+                                    <input 
+                                            type='text' 
+                                            className="form-control"
+                                            id='coursetaken' 
+                                            name="year" 
+                                            value={year} 
+                                            onChange={this.handleChange}
+                                    />
                                 </div>
                         
                                 <div className="form-group">
-                                    <label htmlFor="Prof">Professor</label>
-                                    <input type='text' 
-                                    className="form-control"
-                                    id='Prof' 
-                                    name="prof"
-                                    value={prof}
-                                    onChange={this.handleChange}/>
+                                    <label htmlFor="prof">Professor</label>
+
+                                    <input 
+                                        type='text' 
+                                        className="form-control"
+                                        id='prof' 
+                                        name="prof"
+                                        value={prof}
+                                        onChange={this.handleChange}
+                                        required
+                                    />
                                 </div>
 
                                 <div className="form-group">
-                                    <label htmlFor='content'>Reason For Rating</label>
-                                    <input type='text'
-                                     className="form-control"
-                                     id='content'
-                                      name='reason'
-                                       value={reason}
-                                        onChange={this.handleChange}/>
+                                    <label htmlFor='reason'>Reason For Rating</label>
+
+                                    <input 
+                                        type='text'
+                                        className="form-control"
+                                        id='reason'
+                                        name='reason'
+                                        value={reason}
+                                        onChange={this.handleChange}
+                                        required
+                                    />
                                 </div>
                         
                                 <div className="form-group">
@@ -115,4 +138,4 @@ class CreatePost extends Component{
     } 
 }
 
-export default CreatePost;
+export default (withAlert()(CreatePost));

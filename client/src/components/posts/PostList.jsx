@@ -29,6 +29,7 @@ class PostList extends Component{
 
     render(){
         const {course, posts} = this.state;
+        const {uid} = this.props;
 
         return(
             <div className="post-list">
@@ -46,7 +47,7 @@ class PostList extends Component{
                     </div>
                 </header>   
                          
-                <CreatePost course = {course}/>
+                <CreatePost course={course} uid={uid}/>
 
                 <Post/>
                 <Post/>
