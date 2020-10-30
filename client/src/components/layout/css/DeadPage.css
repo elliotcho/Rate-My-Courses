@@ -1,0 +1,35 @@
+.dead-page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #f3eac2;
+    text-align: center;
+}
+
+.dead-page h1 {
+    margin: 6% auto 2%;
+    color: #252a34;
+    font-family: 'Syne Mono', monospace;
+    font-size: 4.2rem;
+}
+
+.dead-page p {
+    margin: 0 auto;
+    color: #222831;
+    font-family: 'Turret Road', cursive;
+    font-size: 1.1rem;
+}
+
+.dead-page .icon {
+    margin: 6%;
+    font-size: 14rem;
+    color:#87431d;
+}
+
+.dead-page li, .dead-page a {
+    text-align: center;
+    display: inline-block;
+    margin: 7px;
+    font-size: 1.6rem;
+    text-decoration: none;
+}
