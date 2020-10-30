@@ -13,29 +13,42 @@ class PostList extends Component{
             course: null,
             posts: []
         }
+
+        this.addPost = this.addPost.bind(this);
     }
 
     async componentDidMount(){
         const courseId = this.props.match.params.id;
         
-        const course = await getCourseById(courseId);
         const posts = await getPostsByCourseId(courseId);
+        const course = await getCourseById(courseId);
 
         this.setState({
-            course,
-            posts
+            posts, 
+            course
         });
+    }
+
+    async addPost(newPost){
+        const {posts} = this.state;
+        posts.push(newPost);
     }
 
     render(){
         const {course, posts} = this.state;
         const {uid} = this.props;
 
+        let title;
+
+        if(course){
+            title = `${course.departmentCode} ${course.number}: ${course.name}`;
+        }
+
         return(
             <div className="post-list">
                 <header className='row my-5'>
                     <h1 className='col-5'>
-                        Active posts
+                        {title? title: 'Loading...'}
                     </h1>
 
                     <div className='col-5'></div>
@@ -47,10 +60,15 @@ class PostList extends Component{
                     </div>
                 </header>   
                          
-                <CreatePost course={course} uid={uid}/>
+                <CreatePost 
+                    uid={uid}
+                    course={course} 
+                    addPost = {this.addPost}
+                />
 
-                <Post/>
-                <Post/>
+                {posts.map(post => 
+                    <Post/>    
+                )}
             </div>
         )
     }

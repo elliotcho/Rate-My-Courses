@@ -6,6 +6,7 @@ import './css/CreatePost.css';
 class CreatePost extends Component{
     constructor(){
         super();
+        
         this.state={
             courseNumber : "",
             year: "",
@@ -14,6 +15,7 @@ class CreatePost extends Component{
             stars: 0,
             
         };
+
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
@@ -21,31 +23,42 @@ class CreatePost extends Component{
     async handleSubmit(e){
         e.preventDefault();
 
-        const {uid, alert} = this.props;
+        const {uid, alert, addPost, course} = this.props;
 
         if(!uid){
+            //close create post modal
+            document.getElementById('close-create-post').click();
+            
+            //open auth modal after 0.3 seconds and notify user they must sign in
+            setTimeout(() => {
+                document.getElementById('open-auth').click();
+                const msg = "User must be signed in to make a post!";
+                alert.error(msg);
+            }, 300);
 
+            return;
         }
 
-        const { year, courseNumber, prof, reason, stars} = this.state;
-
-        if(stars === 0){
+        if(this.state.stars === 0){
             alert.error('Please select a rating');
             return;
         }
 
-        const dateCreated = new Date();
-        const likes = [];
-        const dislikes= [];
-
-        const data = { courseNumber, year, prof, reason, stars, dateCreated, likes, dislikes };
+        const data = { 
+            userId: uid, 
+            courseId: course.id, 
+            dateCreated: new Date(), 
+            likes: [], 
+            dislikes: [], 
+            ...this.state 
+        };
       
         const post = await createPost(data);
-        console.log(post);
+        addPost(post);
     }
 
     handleChange(e){
-        this.setState({[e.target.id]: e.target.value });
+        this.setState({[e.target.id]: e.target.value});
     }
 
     render(){
