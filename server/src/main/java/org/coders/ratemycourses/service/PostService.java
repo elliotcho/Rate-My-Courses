@@ -39,4 +39,20 @@ public class PostService{
     public List<Post> getPostByCourseId(String courseId){
         return repo.findByCourseId(courseId);
     }
+
+    public int userRatingRatio(String id){
+        List<Post> temp = getUsersPosts(id);
+        int numLikes = 0;
+        int numDislikes = 0;
+        int numberofLikesandDislikes=0;
+        for (Post post : temp) {
+            numLikes += post.getLikes().size();
+            numDislikes += post.getDislikes().size();
+        }
+        numberofLikesandDislikes = numDislikes + numLikes;
+        return numLikes/numDislikes;
+        
+        
+    }
+
 }

@@ -50,4 +50,9 @@ public class PostController{
     public List<Post> getPostByCourseId(@PathVariable String courseId){
         return postService.getPostByCourseId(courseId);
     }
+
+    @GetMapping("/user/rating/{id}")
+    public int ratingRatio(@PathVariable String id){
+        return postService.userRatingRatio(id);
+    }
 }
