@@ -45,8 +45,7 @@ class CreatePost extends Component{
     }
 
     handleChange(e){
-        const{name, value} = e.target;
-        this.setState({[name]: value });
+        this.setState({[e.target.id]: e.target.value });
     }
 
     render(){
@@ -70,16 +69,18 @@ class CreatePost extends Component{
                                 <div className="form-group">
                                     <label htmlFor="course-id">Course Number</label>
                             
-                                    <p>{course? course.number: 'Loading...'}</p>
+                                    <p>
+                                        {course? course.number: 'Loading...'}
+                                    </p>
                                 </div>
                         
                                 <div className="form-group">
-                                    <label htmlFor="coursetaken">Year Course Was Taken</label>
+                                    <label htmlFor="year">Year Course Was Taken</label>
+
                                     <input 
                                             type='text' 
                                             className="form-control"
-                                            id='coursetaken' 
-                                            name="year" 
+                                            id='year' 
                                             value={year} 
                                             onChange={this.handleChange}
                                     />
@@ -92,7 +93,6 @@ class CreatePost extends Component{
                                         type='text' 
                                         className="form-control"
                                         id='prof' 
-                                        name="prof"
                                         value={prof}
                                         onChange={this.handleChange}
                                         required
@@ -106,7 +106,6 @@ class CreatePost extends Component{
                                         type='text'
                                         className="form-control"
                                         id='reason'
-                                        name='reason'
                                         value={reason}
                                         onChange={this.handleChange}
                                         required
@@ -114,13 +113,9 @@ class CreatePost extends Component{
                                 </div>
                         
                                 <div className="form-group">
-                                    <label htmlFor='rating'>Stars</label>                            
-                                    <select className="form-control"
-                                         id="rating"
-                                         value = {stars}
-                                         onChange = {this.handleChange}
-                                         name = 'stars'
-                                         >
+                                    <label htmlFor='stars'>Stars</label>    
+
+                                    <select className='form-control' id='stars' value={stars} onChange={this.handleChange}>
                                         <option value="">Select Rating</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
