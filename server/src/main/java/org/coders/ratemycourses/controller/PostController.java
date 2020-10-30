@@ -41,8 +41,13 @@ public class PostController{
         return postService.getUsersPosts(userId);
     }
 
-    @GetMapping("/user/{numberId}")
-    public int numberOfPosts(String numberId){
-        return postService.numberofPosts(numberId);
+    @GetMapping("/num_posts/${userId}")
+    public int numberOfPosts(@PathVariable String userId){
+        return postService.numberofPosts(userId);
+    }
+      
+    @GetMapping("/{courseId}")
+    public List<Post> getPostByCourseId(@PathVariable String courseId){
+        return postService.getPostByCourseId(courseId);
     }
 }

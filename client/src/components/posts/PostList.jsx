@@ -1,15 +1,35 @@
 import React, {Component} from 'react';
+import {getPostsByCourseId} from '../../store/actions/postActions';
+import {getCourseById} from '../../store/actions/courseActions';
 import Post from './Post.jsx';
 import CreatePost from './CreatePost.jsx';
 import './css/PostList.css';
 
 class PostList extends Component{
-    componentDidMount(){
+    constructor(){
+        super();
+
+        this.state = {
+            course: null,
+            posts: []
+        }
+    }
+
+    async componentDidMount(){
         const courseId = this.props.match.params.id;
         
+        const course = await getCourseById(courseId);
+        const posts = await getPostsByCourseId(courseId);
+
+        this.setState({
+            course,
+            posts
+        });
     }
 
     render(){
+        const {course, posts} = this.state;
+
         return(
             <div className="post-list">
                 <header className='row my-5'>
@@ -26,7 +46,7 @@ class PostList extends Component{
                     </div>
                 </header>   
                          
-                <CreatePost/>
+                <CreatePost course = {course}/>
 
                 <Post/>
                 <Post/>
