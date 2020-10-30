@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import {getPostsByCourseId} from '../../store/actions/postActions';
 import {getCourseById} from '../../store/actions/courseActions';
 import Post from './Post.jsx';
@@ -31,7 +32,10 @@ class PostList extends Component{
 
     async addPost(newPost){
         const {posts} = this.state;
+
         posts.push(newPost);
+
+        this.setState({posts});
     }
 
     render(){
@@ -67,11 +71,15 @@ class PostList extends Component{
                 />
 
                 {posts.map(post => 
-                    <Post/>    
+                    <Post
+                    
+                    />    
                 )}
             </div>
         )
     }
 }
 
-export default PostList;
+const mapStateToProps = (state) => ({uid: state.auth.uid});
+
+export default connect(mapStateToProps)(PostList);

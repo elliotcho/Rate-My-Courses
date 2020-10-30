@@ -6,7 +6,7 @@ import './css/CreatePost.css';
 class CreatePost extends Component{
     constructor(){
         super();
-        
+
         this.state={
             courseNumber : "",
             year: "",
@@ -32,7 +32,9 @@ class CreatePost extends Component{
             //open auth modal after 0.3 seconds and notify user they must sign in
             setTimeout(() => {
                 document.getElementById('open-auth').click();
+
                 const msg = "User must be signed in to make a post!";
+
                 alert.error(msg);
             }, 300);
 
@@ -64,7 +66,7 @@ class CreatePost extends Component{
     render(){
         const { year,  prof, reason, stars} = this.state;
         const {course} = this.props;
-
+        
         return(
             <div className='post-modal modal fade' id='create-post' data-backdrop='false'>
                 <div className='modal-dialog modal-dialog-centered'>

@@ -28,7 +28,7 @@ class SignedInLinks extends Component{
                     
                     <Nav.Item>
                         <Link to='/' onClick={this.signOut}>
-                            <i className="fa fa-sign-out mr-3" title="Sign Out"></i>
+                            <i className="fas fa-sign-out-alt" title="Sign Out"></i>
                         </Link>
                     </Nav.Item>
                 </Nav>
