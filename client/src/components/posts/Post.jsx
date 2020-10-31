@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {getUserById} from '../../store/actions/profileActions';
+import moment from 'moment';
 import './css/Post.css';
 
 class Post extends Component{
@@ -39,9 +40,10 @@ class Post extends Component{
                             {reason}
                         </p>
                         
-                        <p className="date-posted">{dateCreated}</p>
+                        <p className="date-posted">{moment(new Date(dateCreated)).calendar()}</p>
                     </div>
                 </div>
+                
                 <div className="ratings row">
                     <div className="col-4">
                         <h5 className="likes" >Likes</h5>
