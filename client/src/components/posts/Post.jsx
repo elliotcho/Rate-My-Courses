@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
 import {getUserById} from '../../store/actions/profileActions';
 import {getCourseById} from '../../store/actions/courseActions';
+import {deletePostById} from '../../store/actions/postActions';
 import moment from 'moment';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css'; 
 import './css/Post.css';
 
 class Post extends Component{
@@ -12,12 +15,15 @@ class Post extends Component{
             username: 'Loading User...',
             course: null
         }
+
+        this.deletePost = this.deletePost.bind(this);
     }
 
     async componentDidMount(){
-        const {userId, courseId} = this.props;
+        const {courseId} = this.props.post;
+        const {creatorId} = this.props;
 
-        const user = await getUserById(userId);
+        const user = await getUserById(creatorId);
         const course = await getCourseById(courseId);
 
         this.setState({
@@ -26,9 +32,29 @@ class Post extends Component{
         });
     }
 
+    deletePost(){
+        const {id} = this.props.post;
+        const {removePostFromList} = this.props;
+
+        const confirmDelete = async () => {
+            await deletePostById(id);
+            removePostFromList(id);
+        }
+
+        confirmAlert({
+            title: 'Rate My Courses',
+            message: 'Are you sure you want to delete this post?',
+            buttons: [
+                {label: 'Yes', onClick: confirmDelete},
+                {label: 'No', onClick: () => {return;}}
+            ]
+        });
+    }
+
     render(){
         const {username, course} = this.state;
-        const {reason, stars, dateCreated} = this.props;
+        const {reason, stars, dateCreated} = this.props.post;
+        const {uid, creatorId} = this.props;
 
         return(
             <section className='post mt-5'>
@@ -42,6 +68,15 @@ class Post extends Component{
                     </div>     
                 
                     <div className="col-9">
+                        {uid === creatorId? 
+                            (<div className='text-right pt-3 pr-5'>
+                               <button className='btn btn-danger' onClick={this.deletePost}>
+                                   Delete
+                               </button>
+                           </div>) :
+                           (<div style={{height: '2rem'}}/>)
+                        }
+
                         <p className="review">
                             {reason} 
                         </p>

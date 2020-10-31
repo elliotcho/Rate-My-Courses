@@ -15,6 +15,11 @@
     margin-bottom: 100px;
 }
 
+.post button:focus{
+    box-shadow: none;
+    outline: none;
+}
+
 .post #course-id {
     margin: 30% auto 11%;
     border-radius: 100%;
@@ -29,7 +34,7 @@
 }
 
 .post .review {
-    margin: 6% 7% 0;
+    margin: 2% 7% 0;
     font-family: 'Playfair Display', serif;
     font-weight: bold;
     line-height: 1.5;

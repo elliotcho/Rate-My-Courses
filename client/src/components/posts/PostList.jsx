@@ -16,6 +16,7 @@ class PostList extends Component{
         }
 
         this.addPost = this.addPost.bind(this);
+        this.removePostFromList = this.removePostFromList.bind(this);
     }
 
     async componentDidMount(){
@@ -30,10 +31,23 @@ class PostList extends Component{
         });
     }
 
-    async addPost(newPost){
+    addPost(newPost){
         const {posts} = this.state;
 
         posts.unshift(newPost);
+
+        this.setState({posts});
+    }
+
+    removePostFromList(id){
+        const {posts} = this.state;
+
+        for(let i=0;i<posts.length;i++){
+            if(posts[i].id === id){
+                posts.splice(i, 1);
+                break;
+            }
+        }
 
         this.setState({posts});
     }
@@ -73,13 +87,10 @@ class PostList extends Component{
                 {posts.map(post => 
                     <Post
                         key={post.id}
-                        courseId={post.courseId}
-                        reason={post.reason}
-                        stars={post.stars}
-                        dateCreated={post.dateCreated}
-                        userId ={post.userId}
-                        likes={post.likes}
-                        dislikes={post.dislikes}
+                        uid={uid}
+                        post={post}
+                        creatorId={post.userId}
+                        removePostFromList = {this.removePostFromList}
                     />    
                 )}
             </div>

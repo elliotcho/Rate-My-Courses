@@ -14,6 +14,8 @@ class Profile extends Component {
             userPosts: [], 
             user: null
         }
+
+        this.removePostFromList = this.removePostFromList.bind(this);
     }
 
     async componentDidMount(){
@@ -26,6 +28,19 @@ class Profile extends Component {
             userPosts,
             user
         });
+    }
+
+    removePostFromList(id){
+        const {posts} = this.state;
+
+        for(let i=0;i<posts.length;i++){
+            if(posts[i].id === id){
+                posts.splice(i, 1);
+                break;
+            }
+        }
+
+        this.setState({posts});
     }
 
     render() {
@@ -54,13 +69,10 @@ class Profile extends Component {
                     {userPosts.map(post => 
                         <Post
                             key={post.id}
-                            courseId={post.courseId}
-                            reason={post.reason}
-                            stars={post.stars}
-                            dateCreated={post.dateCreated}
-                            userId ={post.userId}
-                            likes={post.likes}
-                            dislikes={post.dislikes}
+                            uid={uid}
+                            post={post}
+                            creatorId={post.userId}
+                            removePostFromList={this.removePostFromList}
                         />    
                     )}
                 </section>     

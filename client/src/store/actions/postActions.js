@@ -18,3 +18,7 @@ export const getUserPosts = async (userId) => {
     const posts = response.data;
     return posts.reverse();
 }
+
+export const deletePostById = async (postId) => {
+    await axios.delete(`http://localhost:8080/api/post/${postId}`);
+}
