@@ -33,7 +33,7 @@ class PostList extends Component{
     async addPost(newPost){
         const {posts} = this.state;
 
-        posts.push(newPost);
+        posts.unshift(newPost);
 
         this.setState({posts});
     }
@@ -75,6 +75,8 @@ class PostList extends Component{
                         key={post.id}
                         course={course}
                         reason={post.reason}
+                        stars={post.stars}
+                        dateCreated={post.dateCreated}
                         userId ={post.userId}
                         likes={post.likes}
                         dislikes={post.dislikes}

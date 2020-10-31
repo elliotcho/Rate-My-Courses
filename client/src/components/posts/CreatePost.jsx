@@ -24,10 +24,13 @@ class CreatePost extends Component{
 
         const {uid, alert, addPost, course} = this.props;
 
+        if(this.state.stars === 0){
+            alert.error('Please select a rating');
+            return;
+        }
+
         if(!uid){
-            //close create post modal
-            document.getElementById('close-create-post').click();
-            
+
             //open auth modal after 0.3 seconds and notify user they must sign in
             setTimeout(() => {
                 document.getElementById('open-auth').click();
@@ -37,25 +40,24 @@ class CreatePost extends Component{
                 alert.error(msg);
             }, 300);
 
-            return;
+        } else {
+
+            const data = { 
+                userId: uid, 
+                courseId: course.id, 
+                dateCreated: new Date().toString(), 
+                likes: [], 
+                dislikes: [], 
+                ...this.state 
+            };
+          
+            const post = await createPost(data);
+            addPost(post);
+            
         }
 
-        if(this.state.stars === 0){
-            alert.error('Please select a rating');
-            return;
-        }
-
-        const data = { 
-            userId: uid, 
-            courseId: course.id, 
-            dateCreated: new Date(), 
-            likes: [], 
-            dislikes: [], 
-            ...this.state 
-        };
-      
-        const post = await createPost(data);
-        addPost(post);
+        //close create post modal
+        document.getElementById('close-create-post').click();    
     }
 
     handleChange(e){
@@ -131,9 +133,11 @@ class CreatePost extends Component{
 
                                     <select className='form-control' id='stars' value={stars} onChange={this.handleChange}>
                                         <option value="">Select Rating</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
+                                        <option value={1}>1</option>
+                                        <option value={2}>2</option>
+                                        <option value={3}>3</option>
+                                        <option value={4}>4</option>
+                                        <option value={5}>5</option>
                                     </select>
                                 </div>
                         

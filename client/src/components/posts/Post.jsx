@@ -21,7 +21,7 @@ class Post extends Component{
 
     render(){
         const {username} = this.state;
-        const {course, reason} = this.props;
+        const {course, reason, stars, dateCreated} = this.props;
 
         return(
             <section className='post'>
@@ -39,7 +39,7 @@ class Post extends Component{
                             {reason}
                         </p>
                         
-                        <p className="date-posted">Sept 24, 2020</p>
+                        <p className="date-posted">{dateCreated}</p>
                     </div>
                 </div>
                 <div className="ratings row">
@@ -60,7 +60,7 @@ class Post extends Component{
                 
                     <div className="col-4">
                         <h5 className="users-rating">User's Rating</h5>
-                        <p className="ratings-score">10/10</p>
+                        <p className="ratings-score">{`${stars}/5`}</p>
                     </div>
                 </div>
             </section>
