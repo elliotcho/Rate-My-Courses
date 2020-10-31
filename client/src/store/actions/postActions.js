@@ -12,3 +12,9 @@ export const getPostsByCourseId = async (courseId) => {
     const posts = response.data;
     return posts.reverse();
 }
+
+export const getUserPosts = async (userId) => {
+    const response = await axios.get(`http://localhost:8080/api/post/user/${userId}`);
+    const posts = response.data;
+    return posts.reverse();
+}

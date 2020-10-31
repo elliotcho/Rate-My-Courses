@@ -1,12 +1,13 @@
 .profile-pg {
     width: 100%;
     height: 100%;
+    position: fixed;
+    overflow: auto;
     background-color: #eaffd0;
     padding: 4%;
 }
 
 /* First Section ~ User Profile + Stats */
-
 .profile-pg .icon {
     display: block;
     text-align: center;
@@ -26,7 +27,7 @@
     background-color: #ffb6b9;
     text-align: justify;
     border-radius: 10px 60px;
-    margin-bottom: 10%;
+    margin-bottom: 5%;
 }
 
 /* Second Section ~ Previous Posts */
@@ -35,66 +36,4 @@
     margin-bottom: 30px;
     font-family: 'Permanent Marker', cursive;
     color: #ff847c;
-}
-
-.profile-pg .prev-posts{
-    text-align: center;
-    background-color: #aacfcf;
-    margin: auto;
-    margin-bottom: 50px;
-    max-width: 800px;
-    border-radius: 10px;
-    padding: 10px;  
-}
-
-.profile-pg #course-id {
-    margin: 30% auto 11%;
-    border-radius: 100%;
-    padding: 10px;
-    width: 70%;
-    font-family: 'Arvo', serif;
-}
-
-.profile-pg .username {
-    font-family:'Caveat', cursive;
-    font-size: 21px;
-}
-
-.profile-pg .review {
-    margin: 6% 7% 0;
-    font-family: 'Playfair Display', serif;
-    font-weight: bold;
-    line-height: 1.5;
-    color: #000000;
-    text-align: justify;
-}
-
-.profile-pg .date-posted {
-    font-family: 'Caveat', cursive;
-    font-size: 21px;
-    text-align: right;
-    margin: 2% 7% 0;
-}
-
-.profile-pg .ratings {
-    margin-top: 9%;
-}
-
-.profile-pg .likes, .profile-pg .dislikes, .profile-pg .users-rating {
-    font-family: 'Indie Flower', cursive;
-    font-weight: bolder;
-    font-size: 30px;
-    margin-bottom: 20px;
-}
-
-.profile-pg .likes-btn, .profile-pg .dislikes-btn {
-    width: 30%;
-    margin-bottom: 20%;
-}
-
-.profile-pg .ratings-score {
-    font-family: 'Playfair Display', serif;
-    font-size: 24px;
-    font-weight: bolder;
-    margin-bottom: 20%;
 }

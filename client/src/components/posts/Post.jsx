@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {getUserById} from '../../store/actions/profileActions';
+import {getCourseById} from '../../store/actions/courseActions';
 import moment from 'moment';
 import './css/Post.css';
 
@@ -8,24 +9,29 @@ class Post extends Component{
         super();
 
         this.state = {
-            username: 'Loading User...'
+            username: 'Loading User...',
+            course: null
         }
     }
 
     async componentDidMount(){
-        const {userId} = this.props;
+        const {userId, courseId} = this.props;
 
         const user = await getUserById(userId);
+        const course = await getCourseById(courseId);
 
-        this.setState({username: user.username});
+        this.setState({
+            username: user.username,
+            course
+        });
     }
 
     render(){
-        const {username} = this.state;
-        const {course, reason, stars, dateCreated} = this.props;
+        const {username, course} = this.state;
+        const {reason, stars, dateCreated} = this.props;
 
         return(
-            <section className='post'>
+            <section className='post mt-5'>
                 <div className='row'> 
                     <div className="col-3">
                         <h4 id="course-id">
@@ -37,7 +43,7 @@ class Post extends Component{
                 
                     <div className="col-9">
                         <p className="review">
-                            {reason}
+                            {reason} 
                         </p>
                         
                         <p className="date-posted">{moment(new Date(dateCreated)).calendar()}</p>

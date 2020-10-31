@@ -40,10 +40,6 @@ class Navigate extends Component{
     }
 }
 
-const mapStateToProps = (state) => {
-    return{
-        uid: state.auth.uid
-    }
-}
+const mapStateToProps = (state) => ({uid: state.auth.uid});
 
 export default connect(mapStateToProps)(Navigate);

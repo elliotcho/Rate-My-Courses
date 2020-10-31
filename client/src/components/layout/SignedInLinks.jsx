@@ -15,7 +15,7 @@ class SignedInLinks extends Component{
             <div className = 'ml-auto signed-in-links'>
                 <Nav>
                     <Nav.Item>
-                        <Link to='/'>
+                        <Link to='/profile'>
                             <i className="fa fa-user mr-3" title="Profile"></i>
                         </Link>
                     </Nav.Item> 

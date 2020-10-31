@@ -73,7 +73,7 @@ class PostList extends Component{
                 {posts.map(post => 
                     <Post
                         key={post.id}
-                        course={course}
+                        courseId={post.courseId}
                         reason={post.reason}
                         stars={post.stars}
                         dateCreated={post.dateCreated}
