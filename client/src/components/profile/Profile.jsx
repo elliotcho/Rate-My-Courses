@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {getUserPosts} from '../../store/actions/postActions';
+import {getUserById} from '../../store/actions/profileActions';
 import Post from '../posts/Post';
 import "./css/Profile.css";
 
@@ -10,7 +11,8 @@ class Profile extends Component {
         super();
 
         this.state = {
-            userPosts: []
+            userPosts: [], 
+            user: null
         }
     }
 
@@ -18,13 +20,17 @@ class Profile extends Component {
         const {uid} = this.props;
 
         const userPosts = await getUserPosts(uid);
+        const user = await getUserById(uid);
         
-        this.setState({userPosts});
+        this.setState({
+            userPosts,
+            user
+        });
     }
 
     render() {
+        const {userPosts, user} = this.state;
         const {uid} = this.props;
-        const {userPosts} = this.state;
 
         if(!uid){
             return <Redirect to='/'/>
@@ -34,7 +40,7 @@ class Profile extends Component {
             <div className="profile-pg container-fluid">
                 <section className="user-profile">
                     <i className="icon fas fa-user-graduate fa-3x m-2"></i>
-                    <h4 className="icon name mb-5">otw_up</h4>
+                    <h4 className="icon name mb-5">{user? user.username: 'Loading...'}</h4>
                     <p className="user-info"># of courses rated: 69</p>
                     <p className="user-info">Average rating given: 6.9/10</p>
                     <p className="user-info">Likes to dislikes ratio: 4/1</p>
