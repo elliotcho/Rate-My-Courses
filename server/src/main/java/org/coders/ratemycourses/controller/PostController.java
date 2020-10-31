@@ -40,15 +40,19 @@ public class PostController{
     public List<Post> getUserPosts(@PathVariable String userId){
         return postService.getUsersPosts(userId);
     }
-
-    @GetMapping("/num_posts/{userId}")
-    public int numberOfPosts(@PathVariable String userId){
-        return postService.numberofPosts(userId);
-    }
       
     @GetMapping("/{courseId}")
     public List<Post> getPostByCourseId(@PathVariable String courseId){
         return postService.getPostByCourseId(courseId);
+    }
+
+    ////////////////////////////////////////////////////////////////
+    //unused
+    ////////////////////////////////////////////////////////////////
+
+    @GetMapping("/num_posts/{userId}")
+    public int numberOfPosts(@PathVariable String userId){
+        return postService.numberofPosts(userId);
     }
 
     @GetMapping("/user/rating/{id}")
