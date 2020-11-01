@@ -1,22 +1,33 @@
-import React, {Component} from 'react';
+import React from 'react';
+import {Link} from 'react-router-dom';
 import './css/DeadPage.css';
 
-class DeadPage extends Component {
-    render() {
-        return (
-            <div className="dead-page">
-                <h1>Page Not Found!</h1>
-                <p>The link you followed is broken or the page has been removed.</p>
-                <i class="icon fas fa-poo"></i>
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li>|</li>
-                    <li><a href="/profile">Profile</a></li>
-                </ul>
+function DeadPage(){
+    return (
+        <div className="dead-page">
+            <h1 className='my-4'>
+                Page Not Found!
+            </h1>
+                
+            <p>The link you followed is broken or the page has been removed.</p>
 
-            </div>
+            <div className='my-5'>
+                <i class="fas fa-poo"></i>         
+            </div>       
+          
+            <ul>
+                <Link to='/'>
+                        <li>Home</li>
+                </Link>
+                    
+                <li>|</li>
+
+                <Link to='/profile'>
+                    <li>Profile</li>
+                </Link>
+            </ul>
+        </div>
     )
-    } 
 }
 
 export default DeadPage;

@@ -34,8 +34,8 @@ class SearchCourse extends Component{
         const {departments, courses} = this.state;
 
         return(
-            <div className='search-course-container text-white'>
-                <div className='search-course'>
+            <div className='search-course-container'>
+                <div className='search-course text-white'>
                     <h1>Select a Department</h1>
                 
                     <select onChange={this.handleChange}>
