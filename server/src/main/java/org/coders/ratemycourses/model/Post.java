@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import javax.validation.constraints.NotEmpty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -14,8 +14,8 @@ public class Post{
     @Id
     private String id;  
 
-    private List<String> likes;
-    private List<String> dislikes;
+    private Set<String> likes;
+    private Set<String> dislikes;
 
     @NotEmpty
     private String reason; 

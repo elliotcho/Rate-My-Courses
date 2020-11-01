@@ -1,6 +1,7 @@
 package org.coders.ratemycourses.service;
 
 import java.util.List;
+import java.util.HashSet;
 
 import org.coders.ratemycourses.model.Post;
 import org.coders.ratemycourses.repository.PostRepo;
@@ -17,6 +18,9 @@ public class PostService{
     }
 
     public Post createNewPost(Post newPost){
+        newPost.setLikes(new HashSet<>());
+        newPost.setDislikes(new HashSet<>());
+        
         return repo.save(newPost);
     }
 
@@ -31,13 +35,14 @@ public class PostService{
     public List<Post> getUsersPosts(String userId){
         return repo.findByUserId(userId);
     }
-
-    public int numberofPosts(String userId){
-        return getUsersPosts(userId).size();
-    }
   
     public List<Post> getPostByCourseId(String courseId){
         return repo.findByCourseId(courseId);
+    }
+
+    // <!-------------------------------------->
+    public int numberofPosts(String userId){
+        return getUsersPosts(userId).size();
     }
 
     public int userRatingRatio(String id){

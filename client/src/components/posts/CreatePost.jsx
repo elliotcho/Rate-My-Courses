@@ -46,8 +46,6 @@ class CreatePost extends Component{
                 userId: uid, 
                 courseId: course.id, 
                 dateCreated: new Date().toString(), 
-                likes: [], 
-                dislikes: [], 
                 ...this.state 
             };
           
