@@ -34,7 +34,7 @@ class Profile extends Component {
     }
 
     removePostFromList(id){
-        const {userPosts, numPosts} = this.state;
+        let {userPosts, numPosts} = this.state;
 
         for(let i=0;i<userPosts.length;i++){
             if(userPosts[i].id === id){
