@@ -11,7 +11,7 @@ class CreatePost extends Component{
             year: "",
             prof: "",
             reason: "",
-            stars: 0,
+            stars: "",
             
         };
 
@@ -24,7 +24,7 @@ class CreatePost extends Component{
 
         const {uid, alert, addPost, course} = this.props;
 
-        if(this.state.stars === 0){
+        if(!this.state.stars){
             alert.error('Please select a rating');
             return;
         }
