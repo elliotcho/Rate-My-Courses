@@ -63,9 +63,15 @@ class Post extends Component{
                         <h4 id="course-id">
                             {course? `${course.departmentCode} ${course.number}` : 'Loading...'}
                         </h4>
-                        <p className="year">Year Taken: {year}</p>
+
+                        {year? 
+                            (<p className="year">
+                                Year Taken: {year}
+                            </p>) :
+                            null
+                        }
+
                         <p className="prof">Professor: {prof}</p>
-                        
                     </div>     
                 
                     <div className="col-9">
@@ -91,14 +97,14 @@ class Post extends Component{
                         <h5 className="likes" >Likes</h5>
 
                         <button className="likes-btn btn btn-lg btn-outline-success">
-                            <i class="fa fa-thumbs-up"></i>
+                            <i className = "fa fa-thumbs-up"></i>
                         </button>
                     </div>
                 
                     <div className="col-4">
                         <h5 className="dislikes">Dislikes</h5>
                         <button className="dislikes-btn btn btn-lg btn-outline-danger">
-                            <i class="fa fa-thumbs-down"></i>
+                            <i className = "fa fa-thumbs-down"></i>
                         </button>
                     </div>
                 

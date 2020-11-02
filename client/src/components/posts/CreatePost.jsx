@@ -66,6 +66,8 @@ class CreatePost extends Component{
         const { year,  prof, reason, stars} = this.state;
         const {course} = this.props;
 
+        const maxYear = new Date().getFullYear();
+    
         return(
             <div className='post-modal modal fade' id='create-post' data-backdrop='false'>
                 <div className='modal-dialog modal-dialog-centered'>
@@ -92,10 +94,13 @@ class CreatePost extends Component{
                                     <label htmlFor="year">Year Course Was Taken</label>
 
                                     <input 
-                                            type='text' 
+                                            type='number' 
                                             className="form-control"
+                                            min = {1878}
+                                            max = {maxYear}
                                             id='year' 
                                             value={year} 
+                                            placeholder ={`Enter a year between 1878 and ${maxYear}`}
                                             onChange={this.handleChange}
                                     />
                                 </div>

@@ -57,6 +57,6 @@ public class PostController{
 
     @GetMapping("/user/rating/{id}")
     public int ratingRatio(@PathVariable String id){
-        return postService.userRatingRatio(id);
+        return postService.getUserLikesRatio(id);
     }
 }
