@@ -1,5 +1,5 @@
 .dead-page {
-    position: absolutee;
+    position: fixed;
     width: 100%;
     height: 100%;
     background-color: #f3eac2;
@@ -7,7 +7,6 @@
 }
 
 .dead-page h1 {
-    margin: 6% auto 2%;
     color: #252a34;
     font-family: 'Syne Mono', monospace;
     font-size: 4.2rem;
@@ -17,19 +16,23 @@
     margin: 0 auto;
     color: #222831;
     font-family: 'Turret Road', cursive;
-    font-size: 1.1rem;
+    font-size: 1.0rem;
 }
 
-.dead-page .icon {
-    margin: 6%;
+.dead-page .fa-poo {
     font-size: 14rem;
     color:#87431d;
 }
 
-.dead-page li, .dead-page a {
+.dead-page ul{
+    position: relative;
+    right: 20px;
     text-align: center;
+}
+
+.dead-page li{
     display: inline-block;
-    margin: 10px;
+    margin-left: 20px;
     font-size: 1.6rem;
     text-decoration: none;
     font-family: 'Balsamiq Sans', cursive;

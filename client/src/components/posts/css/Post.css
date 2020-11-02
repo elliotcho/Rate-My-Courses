@@ -1,7 +1,6 @@
 
 
 /* First Section ~ Course ID, User ID, Review, Date Posted */
-
 .post  {
     text-align: center;
     background-color: #aacfcf;
@@ -14,6 +13,15 @@
 
 .post:last-child{
     margin-bottom: 100px;
+}
+
+.post button{
+    font-family: 'Tahoma';
+}
+
+.post button:focus{
+    box-shadow: none;
+    outline: none;
 }
 
 .post #course-id {
@@ -30,7 +38,7 @@
 }
 
 .post .review {
-    margin: 6% 7% 0;
+    margin: 2% 7% 0;
     font-family: 'Playfair Display', serif;
     font-weight: bold;
     line-height: 1.5;
@@ -47,7 +55,7 @@
 
 /* Second Section ~ total number of likes, dislikes and user's rating   */
 .post .ratings {
-    margin-top: 9%;
+    margin-top: 4%;
 }
 
 .post .likes, .post .dislikes, .post .users-rating {
@@ -66,5 +74,5 @@
     font-family: 'Playfair Display', serif;
     font-size: 24px;
     font-weight: bolder;
-    margin-bottom: 20%;
+    margin-bottom: 5%;
 }

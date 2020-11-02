@@ -17,7 +17,7 @@ class SignedOutLinks extends Component{
         return(
             <div className= "ml-auto">
                 <Nav>
-                    <Nav.Item className='signIn' data-toggle='modal' data-target='#auth'>
+                    <Nav.Item className='signIn' data-toggle='modal' data-target='#auth' id='open-auth'>
                         Sign In
                     </Nav.Item> 
                 </Nav>

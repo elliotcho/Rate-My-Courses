@@ -10,5 +10,15 @@ export const createPost = async (data) =>{
 export const getPostsByCourseId = async (courseId) => {
     const response = await axios.get(`http://localhost:8080/api/post/${courseId}`);
     const posts = response.data;
-    return posts;
+    return posts.reverse();
+}
+
+export const getUserPosts = async (userId) => {
+    const response = await axios.get(`http://localhost:8080/api/post/user/${userId}`);
+    const posts = response.data;
+    return posts.reverse();
+}
+
+export const deletePostById = async (postId) => {
+    await axios.delete(`http://localhost:8080/api/post/${postId}`);
 }

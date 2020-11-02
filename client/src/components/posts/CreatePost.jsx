@@ -6,14 +6,15 @@ import './css/CreatePost.css';
 class CreatePost extends Component{
     constructor(){
         super();
+
         this.state={
-            courseNumber : "",
             year: "",
             prof: "",
             reason: "",
-            stars: 0,
+            stars: "",
             
         };
+
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
@@ -21,31 +22,44 @@ class CreatePost extends Component{
     async handleSubmit(e){
         e.preventDefault();
 
-        const {uid, alert} = this.props;
+        const {uid, alert, addPost, course} = this.props;
 
-        if(!uid){
-
-        }
-
-        const { year, courseNumber, prof, reason, stars} = this.state;
-
-        if(stars === 0){
+        if(!this.state.stars){
             alert.error('Please select a rating');
             return;
         }
 
-        const dateCreated = new Date();
-        const likes = [];
-        const dislikes= [];
+        if(!uid){
 
-        const data = { courseNumber, year, prof, reason, stars, dateCreated, likes, dislikes };
-      
-        const post = await createPost(data);
-        console.log(post);
+            //open auth modal after 0.3 seconds and notify user they must sign in
+            setTimeout(() => {
+                document.getElementById('open-auth').click();
+
+                const msg = "User must be signed in to make a post!";
+
+                alert.error(msg);
+            }, 300);
+
+        } else {
+
+            const data = { 
+                userId: uid, 
+                courseId: course.id, 
+                dateCreated: new Date().toString(), 
+                ...this.state 
+            };
+          
+            const post = await createPost(data);
+            addPost(post);
+            
+        }
+
+        //close create post modal
+        document.getElementById('close-create-post').click();    
     }
 
     handleChange(e){
-        this.setState({[e.target.id]: e.target.value });
+        this.setState({[e.target.id]: e.target.value});
     }
 
     render(){
@@ -117,9 +131,11 @@ class CreatePost extends Component{
 
                                     <select className='form-control' id='stars' value={stars} onChange={this.handleChange}>
                                         <option value="">Select Rating</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
+                                        <option value={1}>1</option>
+                                        <option value={2}>2</option>
+                                        <option value={3}>3</option>
+                                        <option value={4}>4</option>
+                                        <option value={5}>5</option>
                                     </select>
                                 </div>
                         

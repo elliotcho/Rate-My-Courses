@@ -1,3 +1,13 @@
+html {
+    overflow: hidden;
+    height: 100%;
+}
+
+body {
+    overflow: auto;
+    height: 100%;
+}
+
 .react-confirm-alert-overlay{
     background: white;
     -webkit-animation: react-confirm-alert-fadeIn 0.0s 0.s forwards;

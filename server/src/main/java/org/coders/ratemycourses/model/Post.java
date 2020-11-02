@@ -5,8 +5,7 @@ import lombok.AllArgsConstructor;
 import javax.validation.constraints.NotEmpty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -15,14 +14,14 @@ public class Post{
     @Id
     private String id;  
 
-    private List<String> likes;
-    private List<String> dislikes;
+    private Set<String> likes;
+    private Set<String> dislikes;
 
     @NotEmpty
     private String reason; 
 
     @NotEmpty
-    private Date datePosted;
+    private String dateCreated;
 
     @NotEmpty
     private String userId;
@@ -31,8 +30,10 @@ public class Post{
     private String courseId;
 
     @NotEmpty
-    private String courseNumber;
+    private String prof;
 
     @NotEmpty
-    private String prof;
+    private Integer stars;
+
+    private Integer year;
 }
