@@ -25,38 +25,60 @@
 }
 
 .post #course-id {
-    margin: 30% auto 11%;
-    border-radius: 100%;
+    margin: 30% auto 9%;
     padding: 10px;
     width: 70%;
     font-family: 'Arvo', serif;
 }
 
-.post .username {
-    font-family:'Caveat', cursive;
-    font-size: 21px;
+.post .year, .post .prof {
+    margin: 2% auto;
+    width: 70%;
+    font-family: 'Caveat', cursive;
+    font-size: 20px;
 }
 
 .post .review {
     margin: 2% 7% 0;
     font-family: 'Playfair Display', serif;
+    font-size: 17px;
     font-weight: bold;
     line-height: 1.5;
     color: #000000;
     text-align: justify;
 }
 
-.post .date-posted {
+.post .date-posted, .post .username {
     font-family: 'Caveat', cursive;
     font-size: 21px;
     text-align: right;
     margin: 2% 7% 0;
 }
 
+
+
+hr { 
+    height: 30px; 
+    width: 90%;
+    margin: 1rem auto;
+    border-style: solid; 
+    border-color: #8c8b8b; 
+    border-width: 1px 0 0 0; 
+    border-radius: 20px; 
+  } 
+  hr:before { 
+    display: block; 
+    content: ""; 
+    height: 30px; 
+    margin-top: -31px; 
+    border-style: solid; 
+    border-color: #8c8b8b; 
+    border-width: 0 0 1px 0; 
+    border-radius: 20px; 
+  }
+  
+
 /* Second Section ~ total number of likes, dislikes and user's rating   */
-.post .ratings {
-    margin-top: 4%;
-}
 
 .post .likes, .post .dislikes, .post .users-rating {
     font-family: 'Indie Flower', cursive;

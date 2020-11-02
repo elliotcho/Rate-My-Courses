@@ -53,7 +53,7 @@ class Post extends Component{
 
     render(){
         const {username, course} = this.state;
-        const {reason, stars, dateCreated} = this.props.post;
+        const {reason, stars, dateCreated, year, prof} = this.props.post;
         const {uid, creatorId} = this.props;
 
         return(
@@ -63,8 +63,9 @@ class Post extends Component{
                         <h4 id="course-id">
                             {course? `${course.departmentCode} ${course.number}` : 'Loading...'}
                         </h4>
-
-                        <p className="username">Reviewed By: {username}</p>
+                        <p className="year">Year Taken: {year}</p>
+                        <p className="prof">Professor: {prof}</p>
+                        
                     </div>     
                 
                     <div className="col-9">
@@ -80,11 +81,11 @@ class Post extends Component{
                         <p className="review">
                             {reason} 
                         </p>
-                        
+                        <p className="username">Reviewed By: {username}</p>
                         <p className="date-posted">{moment(new Date(dateCreated)).calendar()}</p>
                     </div>
                 </div>
-                
+                <hr/>
                 <div className="ratings row">
                     <div className="col-4">
                         <h5 className="likes" >Likes</h5>
