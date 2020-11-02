@@ -46,14 +46,14 @@ public class PostController{
         return postService.getPostByCourseId(courseId);
     }
 
-    ////////////////////////////////////////////////////////////////
-    //unused
-    ////////////////////////////////////////////////////////////////
-
     @GetMapping("/num_posts/{userId}")
     public int numberOfPosts(@PathVariable String userId){
         return postService.numberofPosts(userId);
     }
+
+    ////////////////////////////////////////////////////////////////
+    //unused
+    ////////////////////////////////////////////////////////////////
 
     @GetMapping("/user/rating/{id}")
     public int ratingRatio(@PathVariable String id){

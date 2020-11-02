@@ -40,24 +40,23 @@ public class PostService{
         return repo.findByCourseId(courseId);
     }
 
-    // <!-------------------------------------->
     public int numberofPosts(String userId){
         return getUsersPosts(userId).size();
     }
 
-    public int userRatingRatio(String id){
-        List<Post> temp = getUsersPosts(id);
+    // <!-------------------------------------->
+    public int getUserLikesRatio(String id){
+        List<Post> userPosts = getUsersPosts(id);
         int numLikes = 0;
         int numDislikes = 0;
-        int numberofLikesandDislikes=0;
-        for (Post post : temp) {
+
+        for (Post post : userPosts) {
             numLikes += post.getLikes().size();
             numDislikes += post.getDislikes().size();
         }
-        numberofLikesandDislikes = numDislikes + numLikes;
+        
+        int total = numDislikes + numLikes;
+        
         return numLikes/numDislikes;
-        
-        
     }
-
 }
