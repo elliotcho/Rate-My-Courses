@@ -46,40 +46,70 @@ public class PostService{
         return getUsersPosts(userId).size();
     }
 
-    public String like(String userId, String id){
+    public boolean[] likeStatus(String userId, String postId){
+        Post post = repo.findById(postId).orElse(null);
+
+        boolean[] result = new boolean[2];
+        result[0] = post.getLikes().contains(userId);
+        result[1] = post.getDislikes().contains(userId);
+
+        return result;
+    }
+
+    public boolean[] like(String userId, String id){
         Post post = repo.findById(id).orElse(null);
 
         Set<String> currentLikes = post.getLikes();
-        boolean exists = currentLikes.contains(userId);
+        Set<String> currentDislikes = post.getDislikes();
 
-        if(exists){
+        boolean inLikes = currentLikes.contains(userId);
+        boolean inDislikes = currentDislikes.contains(userId);
+
+        if(inLikes){
             currentLikes.remove(userId);
             post.setLikes(currentLikes);
-        } else{
+        }
+
+        if(inDislikes){
+            currentDislikes.remove(userId);
+            post.setDislikes(currentDislikes);
+        }
+
+        if(!inLikes){
             post.getLikes().add(userId);
         }
       
         repo.save(post);
         
-        return exists? "Failed" : "Success";
+        return new boolean[]{inLikes, inDislikes};
     }
 
-    public String dislike(String userId, String postId){
+    public boolean[] dislike(String userId, String postId){
         Post post = repo.findById(postId).orElse(null);
 
-        Set<String> currentDislike = post.getDislikes();
-        boolean exists = currentDislike.contains(userId);
+        Set<String> currentLikes = post.getLikes();
+        Set<String> currentDislikes = post.getDislikes();
+        
+        boolean inLikes = currentLikes.contains(userId);
+        boolean inDislikes = currentDislikes.contains(userId);
 
-        if(exists){
-            currentDislike.remove(userId);
-            post.setDislikes(currentDislike);
-        } else{
+        if(inDislikes){
+            currentDislikes.remove(userId);
+            post.setDislikes(currentDislikes);
+        }
+
+        if(inLikes){
+            currentLikes.remove(userId);
+            post.setLikes(currentLikes);
+        }
+
+        if(!inDislikes){
             post.getDislikes().add(userId);
         }
      
         repo.save(post);
 
-        return exists? "Failed" : "Success";
+        return new boolean[]{inLikes, inDislikes};
     }
 
     // <!-------------------------------------->

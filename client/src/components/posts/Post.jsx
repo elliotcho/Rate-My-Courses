@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {getUserById} from '../../store/actions/profileActions';
 import {getCourseById} from '../../store/actions/courseActions';
-import {deletePostById, dislikePost, likePost} from '../../store/actions/postActions';
+import {deletePostById, dislikePost, likePost, getLikeStatus} from '../../store/actions/postActions';
 import moment from 'moment';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'; 
@@ -13,7 +13,9 @@ class Post extends Component{
 
         this.state = {
             username: 'Loading User...',
-            course: null
+            course: null,
+            liked: false,
+            disliked: false
         }
 
         this.deletePost = this.deletePost.bind(this);
@@ -22,15 +24,17 @@ class Post extends Component{
     }
 
     async componentDidMount(){
-        const {courseId} = this.props.post;
-        const {creatorId} = this.props;
+        const {uid, creatorId, post} = this.props;
 
         const user = await getUserById(creatorId);
-        const course = await getCourseById(courseId);
+        const course = await getCourseById(post.courseId);
+        const status = await getLikeStatus(uid, post.id);
 
         this.setState({
             username: user.username,
-            course
+            course,
+            liked: status[0],
+            disliked: status[1]
         });
     }
 
@@ -63,12 +67,16 @@ class Post extends Component{
             return;
         }
 
-        const msg = await likePost(uid, postId);
+        const flags = await likePost(uid, postId);
 
-        if(msg === 'Success'){
-            alert("liked post");
-        } else{
-            alert("unliked post");
+        if(flags[0]){
+            this.setState({liked: false});
+        } else if(!flags[0]){
+            this.setState({liked: true});
+        }
+
+        if(flags[1]){
+            this.setState({disliked: false});
         }
     }
 
@@ -79,16 +87,21 @@ class Post extends Component{
             alert('User must be signed in to dislike a post');
             return;
         }
-        const msg = await dislikePost(uid, postId);
-        if(msg === 'Success'){
-            alert('disliked post');
-        } else{
-            alert('un-disliked post');
+        const flags  = await dislikePost(uid, postId);
+
+        if(flags[1]){
+            this.setState({disliked: false});
+        } else if(!flags[1]){
+            this.setState({disliked: true});
+        }
+
+        if(flags[0]){
+            this.setState({liked: false});
         }
     }
 
     render(){
-        const {username, course} = this.state;
+        const {username, course, liked, disliked} = this.state;
         const {reason, stars, dateCreated, year, prof} = this.props.post;
         const {uid, creatorId} = this.props;
 
@@ -134,6 +147,7 @@ class Post extends Component{
 
                         <button className="likes-btn btn btn-lg btn-outline-success" onClick={this.handleLike}>
                             <i className = "fa fa-thumbs-up"></i>
+                            {liked? 'LIKED': null}
                         </button>
                     </div>
                 
@@ -141,6 +155,7 @@ class Post extends Component{
                         <h5 className="dislikes">Dislikes</h5>
                         <button className="dislikes-btn btn btn-lg btn-outline-danger" onClick={this.handleDislike}>
                             <i className = "fa fa-thumbs-down"></i>
+                            {disliked? 'DISIKED': null}
                         </button>
                     </div>
                 
