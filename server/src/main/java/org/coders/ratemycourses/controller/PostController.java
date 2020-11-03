@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.coders.ratemycourses.model.Post;
 import org.coders.ratemycourses.service.PostService;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
@@ -49,6 +51,22 @@ public class PostController{
     @GetMapping("/num_posts/{userId}")
     public int numberOfPosts(@PathVariable String userId){
         return postService.numberofPosts(userId);
+    }
+
+    @PutMapping("/like")
+    public String likePost(@RequestBody String data){
+        JSONObject obj = new JSONObject(data);
+        String userId = (String) obj.get("userId");
+        String postId = (String) obj.get("postId");
+        return postService.like(userId, postId);
+    }
+
+    @PutMapping("/dislike")
+    public String dislikePost(@RequestBody String data){
+        JSONObject temp = new JSONObject(data);
+        String userId = (String) temp.get("userId");
+        String postId = (String) temp.get("postId");
+        return postService.dislike(userId, postId);
     }
 
     ////////////////////////////////////////////////////////////////

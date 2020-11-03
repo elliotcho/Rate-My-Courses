@@ -1,6 +1,8 @@
 package org.coders.ratemycourses.service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.HashSet;
 
 import org.coders.ratemycourses.model.Post;
@@ -42,6 +44,39 @@ public class PostService{
 
     public int numberofPosts(String userId){
         return getUsersPosts(userId).size();
+    }
+
+    public String like(String userId, String postId){
+        Optional<Post> temp = repo.findById(postId);
+        Set<String> currentLikes = temp.get().getLikes();
+        boolean exists = currentLikes.contains(userId);
+
+        if(exists){
+            currentLikes.remove(userId);
+            temp.get().setLikes(currentLikes);
+            repo.save(temp.get());
+            return "Removed Like \n";
+        }
+        //currentLikes.add(userId);
+        temp.get().getLikes().add(userId);
+        repo.save(temp.get());
+        return userId;
+    }
+
+    public String dislike(String userId, String postId){
+        Optional<Post> temp = repo.findById(postId);
+        Set<String> currentDislike = temp.get().getDislikes();
+        boolean exists = currentDislike.contains(userId);
+        if(exists){
+            currentDislike.remove(userId);
+            temp.get().setDislikes(currentDislike);
+            repo.save(temp.get());
+            return "Removed Dislike \n";
+        }
+       // currentDislike.add(userId);
+        temp.get().getDislikes().add(userId);
+        repo.save(temp.get());
+        return userId;
     }
 
     // <!-------------------------------------->
