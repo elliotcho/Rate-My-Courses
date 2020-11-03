@@ -14,8 +14,8 @@ class Post extends Component{
         this.state = {
             username: 'Loading User...',
             course: null,
-            liked: false,
-            disliked: false
+            userLiked: false,
+            userDisliked: false
         }
 
         this.deletePost = this.deletePost.bind(this);
@@ -33,8 +33,8 @@ class Post extends Component{
         this.setState({
             username: user.username,
             course,
-            liked: status[0],
-            disliked: status[1]
+            userLiked: status[0],
+            userDisliked: status[1]
         });
     }
 
@@ -70,40 +70,41 @@ class Post extends Component{
         const flags = await likePost(uid, postId);
 
         if(flags[0]){
-            this.setState({liked: false});
-        } else if(!flags[0]){
-            this.setState({liked: true});
+            this.setState({userLiked: false});
+        } else {
+            this.setState({userLiked: true});
         }
 
         if(flags[1]){
-            this.setState({disliked: false});
+            this.setState({userDisliked: false});
         }
     }
 
     async handleDislike(){
         const{uid, post} = this.props;
         const postId = post.id;
+
         if(!uid){
             alert('User must be signed in to dislike a post');
             return;
         }
+
         const flags  = await dislikePost(uid, postId);
 
         if(flags[1]){
-            this.setState({disliked: false});
-        } else if(!flags[1]){
-            this.setState({disliked: true});
+            this.setState({userDisliked: false});
+        } else {
+            this.setState({userDisliked: true});
         }
 
         if(flags[0]){
-            this.setState({liked: false});
+            this.setState({userLiked: false});
         }
     }
 
     render(){
-        const {username, course, liked, disliked} = this.state;
-        const {reason, stars, dateCreated, year, prof} = this.props.post;
-        const {uid, creatorId} = this.props;
+        const {username, course, userLiked, userDisliked} = this.state;
+        const {uid, creatorId, post} = this.props;
 
         return(
             <section className='post mt-5'>
@@ -113,14 +114,14 @@ class Post extends Component{
                             {course? `${course.departmentCode} ${course.number}` : 'Loading...'}
                         </h4>
 
-                        {year? 
+                        {post.year? 
                             (<p className="year">
-                                Year Taken: {year}
+                                Year Taken: {post.year}
                             </p>) :
                             null
                         }
 
-                        <p className="prof">Professor: {prof}</p>
+                        <p className="prof">Professor: {post.prof}</p>
                     </div>     
                 
                     <div className="col-9">
@@ -134,10 +135,10 @@ class Post extends Component{
                         }
 
                         <p className="review">
-                            {reason} 
+                            {post.reason} 
                         </p>
                         <p className="username">Reviewed By: {username}</p>
-                        <p className="date-posted">{moment(new Date(dateCreated)).calendar()}</p>
+                        <p className="date-posted">{moment(new Date(post.dateCreated)).calendar()}</p>
                     </div>
                 </div>
                 <hr/>
@@ -147,7 +148,7 @@ class Post extends Component{
 
                         <button className="likes-btn btn btn-lg btn-outline-success" onClick={this.handleLike}>
                             <i className = "fa fa-thumbs-up"></i>
-                            {liked? 'LIKED': null}
+                            {userLiked? 'LIKED': null}
                         </button>
                     </div>
                 
@@ -155,13 +156,13 @@ class Post extends Component{
                         <h5 className="dislikes">Dislikes</h5>
                         <button className="dislikes-btn btn btn-lg btn-outline-danger" onClick={this.handleDislike}>
                             <i className = "fa fa-thumbs-down"></i>
-                            {disliked? 'DISIKED': null}
+                            {userDisliked? 'DISIKED': null}
                         </button>
                     </div>
                 
                     <div className="col-4">
                         <h5 className="users-rating">User's Rating</h5>
-                        <p className="ratings-score">{`${stars}/5`}</p>
+                        <p className="ratings-score">{`${post.stars}/5`}</p>
                     </div>
                 </div>
             </section>
