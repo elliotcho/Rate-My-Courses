@@ -21,7 +21,7 @@ class SignedInLinks extends Component{
                     </Nav.Item> 
                     
                     <Nav.Item>
-                        <Link to='/'>
+                        <Link to='/settings'>
                             <i className="fa fa-cog mr-3" title="Settings"></i>
                         </Link>
                     </Nav.Item>
