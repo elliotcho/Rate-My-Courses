@@ -30,6 +30,10 @@ export const getNumPostsByUser = async (userId) => {
 }
 
 export const likePost = async (uid, postId) => {
+    if(!uid){
+        return;
+    }
+
     const data = {userId: uid, postId};
 
     const response = await axios.put('http://localhost:8080/api/post/like', JSON.stringify(data), config);
@@ -38,14 +42,24 @@ export const likePost = async (uid, postId) => {
 }
 
 export const dislikePost = async (uid, postId) => {
+    if(!uid){
+        return;
+    }
+
     const data = {userId: uid, postId};
+
     const response = await axios.put('http://localhost:8080/api/post/dislike', JSON.stringify(data), config);
     const flags = response.data;
     return flags ;
 }
 
 export const getLikeStatus = async (uid, postId) => {
+    if(!uid){
+        return [false, false];
+    }
+
     const data = {userId: uid, postId};
+
     const response = await axios.post('http://localhost:8080/api/post/like_status', JSON.stringify(data), config);
     const status = response.data;
     return status;
