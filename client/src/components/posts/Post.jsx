@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {getUserById} from '../../store/actions/profileActions';
 import {getCourseById} from '../../store/actions/courseActions';
-import {deletePostById, likePost} from '../../store/actions/postActions';
+import {deletePostById, dislikePost, likePost} from '../../store/actions/postActions';
 import moment from 'moment';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'; 
@@ -18,6 +18,7 @@ class Post extends Component{
 
         this.deletePost = this.deletePost.bind(this);
         this.handleLike = this.handleLike.bind(this);
+        this.handleDislike = this.handleDislike.bind(this);
     }
 
     async componentDidMount(){
@@ -68,6 +69,21 @@ class Post extends Component{
             alert("liked post");
         } else{
             alert("unliked post");
+        }
+    }
+
+    async handleDislike(){
+        const{uid, post} = this.props;
+        const postId = post.id;
+        if(!uid){
+            alert('User must be signed in to dislike a post');
+            return;
+        }
+        const msg = await dislikePost(uid, postId);
+        if(msg === 'Success'){
+            alert('disliked post');
+        } else{
+            alert('un-disliked post');
         }
     }
 
@@ -123,7 +139,7 @@ class Post extends Component{
                 
                     <div className="col-4">
                         <h5 className="dislikes">Dislikes</h5>
-                        <button className="dislikes-btn btn btn-lg btn-outline-danger">
+                        <button className="dislikes-btn btn btn-lg btn-outline-danger" onClick={this.handleDislike}>
                             <i className = "fa fa-thumbs-down"></i>
                         </button>
                     </div>
