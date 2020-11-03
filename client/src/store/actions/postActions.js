@@ -36,3 +36,10 @@ export const likePost = async (uid, postId) => {
     const msg = response.data;
     return msg;
 }
+
+export const dislikePost = async (uid, postId) => {
+    const data = {userId: uid, postId};
+    const response = await axios.put('http://localhost:8080/api/post/dislike', JSON.stringify(data), config);
+    const msg = response.data;
+    return msg;
+}

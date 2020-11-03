@@ -79,7 +79,7 @@ public class PostService{
      
         repo.save(post);
 
-        return exists? "Remove dislike" : userId;
+        return exists? "Failed" : "Success";
     }
 
     // <!-------------------------------------->
