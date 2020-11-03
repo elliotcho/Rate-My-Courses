@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {getUserById} from '../../store/actions/profileActions';
 import {getCourseById} from '../../store/actions/courseActions';
-import {deletePostById} from '../../store/actions/postActions';
+import {deletePostById, likePost} from '../../store/actions/postActions';
 import moment from 'moment';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'; 
@@ -17,6 +17,7 @@ class Post extends Component{
         }
 
         this.deletePost = this.deletePost.bind(this);
+        this.handleLike = this.handleLike.bind(this);
     }
 
     async componentDidMount(){
@@ -49,6 +50,25 @@ class Post extends Component{
                 {label: 'No', onClick: () => {return;}}
             ]
         });
+    }
+
+    async handleLike(){
+        const {uid, post} = this.props;
+
+        const postId = post.id;
+
+        if(!uid){
+            alert('User must be signed in to like a post');
+            return;
+        }
+
+        const msg = await likePost(uid, postId);
+
+        if(msg === 'Success'){
+            alert("liked post");
+        } else{
+            alert("unliked post");
+        }
     }
 
     render(){
@@ -96,7 +116,7 @@ class Post extends Component{
                     <div className="col-4">
                         <h5 className="likes" >Likes</h5>
 
-                        <button className="likes-btn btn btn-lg btn-outline-success">
+                        <button className="likes-btn btn btn-lg btn-outline-success" onClick={this.handleLike}>
                             <i className = "fa fa-thumbs-up"></i>
                         </button>
                     </div>

@@ -46,37 +46,40 @@ public class PostService{
         return getUsersPosts(userId).size();
     }
 
-    public String like(String userId, String postId){
-        Optional<Post> temp = repo.findById(postId);
-        Set<String> currentLikes = temp.get().getLikes();
+    public String like(String userId, String id){
+        Post post = repo.findById(id).orElse(null);
+
+        Set<String> currentLikes = post.getLikes();
         boolean exists = currentLikes.contains(userId);
 
         if(exists){
             currentLikes.remove(userId);
-            temp.get().setLikes(currentLikes);
-            repo.save(temp.get());
-            return "Removed Like \n";
+            post.setLikes(currentLikes);
+        } else{
+            post.getLikes().add(userId);
         }
-        //currentLikes.add(userId);
-        temp.get().getLikes().add(userId);
-        repo.save(temp.get());
-        return userId;
+      
+        repo.save(post);
+        
+        return exists? "Failed" : "Success";
     }
 
     public String dislike(String userId, String postId){
-        Optional<Post> temp = repo.findById(postId);
-        Set<String> currentDislike = temp.get().getDislikes();
+        Post post = repo.findById(postId).orElse(null);
+
+        Set<String> currentDislike = post.getDislikes();
         boolean exists = currentDislike.contains(userId);
+
         if(exists){
             currentDislike.remove(userId);
-            temp.get().setDislikes(currentDislike);
-            repo.save(temp.get());
-            return "Removed Dislike \n";
+            post.setDislikes(currentDislike);
+        } else{
+            post.getDislikes().add(userId);
         }
-       // currentDislike.add(userId);
-        temp.get().getDislikes().add(userId);
-        repo.save(temp.get());
-        return userId;
+     
+        repo.save(post);
+
+        return exists? "Remove dislike" : userId;
     }
 
     // <!-------------------------------------->

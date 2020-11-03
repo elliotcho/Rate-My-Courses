@@ -56,16 +56,20 @@ public class PostController{
     @PutMapping("/like")
     public String likePost(@RequestBody String data){
         JSONObject obj = new JSONObject(data);
+        
         String userId = (String) obj.get("userId");
-        String postId = (String) obj.get("postId");
-        return postService.like(userId, postId);
+        String id = (String) obj.get("postId");
+
+        return postService.like(userId, id);
     }
 
     @PutMapping("/dislike")
     public String dislikePost(@RequestBody String data){
         JSONObject temp = new JSONObject(data);
+
         String userId = (String) temp.get("userId");
         String postId = (String) temp.get("postId");
+
         return postService.dislike(userId, postId);
     }
 

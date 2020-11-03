@@ -28,3 +28,11 @@ export const getNumPostsByUser = async (userId) => {
     const numPosts = response.data;
     return numPosts;
 }
+
+export const likePost = async (uid, postId) => {
+    const data = {userId: uid, postId};
+
+    const response = await axios.put('http://localhost:8080/api/post/like', JSON.stringify(data), config);
+    const msg = response.data;
+    return msg;
+}
