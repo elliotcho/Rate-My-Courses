@@ -57,4 +57,14 @@ public class UserController{
         String newName = (String) temp.get("newUsername");
         return userService.changeName(userId, newName);
     }
+  
+    @PostMapping("/change_password")
+    public boolean changeUserPassword(@RequestBody String data){
+        JSONObject obj = new JSONObject(data);
+
+        String userId = (String) obj.get("userId");
+        String newPassword = (String) obj.get("newPassword");
+
+        return userService.changeUserPassword(newPassword, userId);
+    }
 }

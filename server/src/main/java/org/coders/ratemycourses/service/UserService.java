@@ -95,4 +95,17 @@ public class UserService{
         repo.save(temp);
         return newUsername;
     }
+      
+    public boolean changeUserPassword(String newPassword, String userId){
+        User user = repo.findById(userId).orElse(null);
+
+        if(passwordEncoder.matches(newPassword, user.getPassword())){
+            user.setPassword(passwordEncoder.encode(newPassword));
+            repo.save(user);
+
+            return true;
+        }
+
+        return false;
+    }
 }
