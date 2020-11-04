@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import './css/Settings.css';
 
 class Settings extends Component {
+    constructor(){
+        super();
+    }
     render() {
         return (
             <div className='settings'>

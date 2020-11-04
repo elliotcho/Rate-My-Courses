@@ -49,4 +49,12 @@ public class UserController{
     public User getUserById(@PathVariable String id){
         return userService.getUserById(id);
     }
+
+    @PostMapping("/change_username")
+    public String changeUsername(@RequestBody String data){
+        JSONObject temp = new JSONObject(data);
+        String userId = (String) temp.get("userId");
+        String newName = (String) temp.get("newUsername");
+        return userService.changeName(userId, newName);
+    }
 }
