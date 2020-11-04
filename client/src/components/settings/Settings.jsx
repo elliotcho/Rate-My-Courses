@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
+import {changeUsername} from '../../../src/store/actions/profileActions';
+import {withAlert} from 'react-alert';
 import './css/Settings.css';
-import {changeUsername} from '../../../src/store/actions/postActions';
 
 class Settings extends Component {
     constructor(){
@@ -15,10 +16,19 @@ class Settings extends Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
-    async changeName(){
+    async changeName(e){
+        e.preventDefault();
+
         const{newName} = this.state;
-        const {uid} = this.props;
-        const response = await changeUsername(uid, newName);
+        const {uid, alert} = this.props;
+
+        const msg = await changeUsername(uid, newName);
+
+        if(msg === 'Failed'){
+            alert.error("Username already exists");
+        } else{
+            alert.success("Username changed successfully");
+        }
     }
 
     handleChange(e){
@@ -62,7 +72,7 @@ class Settings extends Component {
 
                 </form>
 
-                <form className="change-username">
+                <form className="change-username" onSubmit={this.changeName}>
                     <h3>Change My Username</h3>
 
                     <label htmlFor="currentName">Current Username<span>*</span></label>
@@ -79,8 +89,9 @@ class Settings extends Component {
                         value={newName}
                     />
                   
-                    <button className='btn btn-block btn-outline-secondary btn-lg' onClick={this.changeName}>
-                        CHANGE</button>
+                    <button className='btn btn-block btn-outline-secondary btn-lg'>
+                        CHANGE
+                    </button>
                 </form>
             </div>
         )
@@ -89,4 +100,4 @@ class Settings extends Component {
 
 const mapStateToProps = (state) => ({uid: state.auth.uid});
 
-export default connect(mapStateToProps)(Settings);
+export default connect(mapStateToProps)(withAlert()(Settings));

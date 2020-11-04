@@ -64,10 +64,3 @@ export const getLikeStatus = async (uid, postId) => {
     const status = response.data;
     return status;
 }
-
-export const changeUsername = async (uid, newUsername){
-    const data = {userId: uid, newUsername};
-    const response = await axios.post('http://localhost:8080/api/user/change_username', JSON.stringify(data), config);
-    const changed = response.data;
-    return changed;
-}
