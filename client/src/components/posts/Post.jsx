@@ -4,6 +4,7 @@ import {getCourseById} from '../../store/actions/courseActions';
 import {deletePostById, dislikePost, likePost, getLikeStatus} from '../../store/actions/postActions';
 import moment from 'moment';
 import { confirmAlert } from 'react-confirm-alert';
+import { withAlert } from 'react-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'; 
 import './css/Post.css';
 
@@ -14,8 +15,10 @@ class Post extends Component{
         this.state = {
             username: 'Loading User...',
             course: null,
-            liked: false,
-            disliked: false
+            userLiked: false,
+            userDisliked: false,
+            likes: [], 
+            dislikes: []
         }
 
         this.deletePost = this.deletePost.bind(this);
@@ -30,12 +33,30 @@ class Post extends Component{
         const course = await getCourseById(post.courseId);
         const status = await getLikeStatus(uid, post.id);
 
+        const likes = post.likes;
+        const dislikes = post.dislikes;
+
         this.setState({
             username: user.username,
             course,
-            liked: status[0],
-            disliked: status[1]
+            userLiked: status[0],
+            userDisliked: status[1],
+            likes,
+            dislikes
         });
+    }
+
+    async componentDidUpdate(prevProps){
+        const {uid, post} = this.props;
+
+        if((!prevProps.uid && uid) || (prevProps.uid && !uid)){
+            const status = await getLikeStatus(uid, post.id);
+
+            this.setState({
+                userLiked: status[0],
+                userDisliked: status[1]
+            });
+        }
     }
 
     deletePost(){
@@ -58,52 +79,82 @@ class Post extends Component{
     }
 
     async handleLike(){
+        const {likes, dislikes} = this.state;
         const {uid, post} = this.props;
 
         const postId = post.id;
 
         if(!uid){
-            alert('User must be signed in to like a post');
+            this.props.alert.error('User must be signed in to like a post');
             return;
         }
 
         const flags = await likePost(uid, postId);
 
+        let userLiked, userDisliked;
+
+        //unliking the post
         if(flags[0]){
-            this.setState({liked: false});
-        } else if(!flags[0]){
-            this.setState({liked: true});
+            likes.splice(likes.indexOf(uid), 1);
+            userLiked = false;
+        } 
+        
+        //liking the post
+        else {
+           likes.push(uid);
+           userLiked = true;
         }
 
+        //removing dislike
         if(flags[1]){
-            this.setState({disliked: false});
+            dislikes.splice(dislikes.indexOf(uid), 1);
+            userDisliked = false;
         }
+
+        this.setState({userLiked, userDisliked, likes, dislikes});
     }
 
     async handleDislike(){
+        const {likes, dislikes} = this.state;
         const{uid, post} = this.props;
+
         const postId = post.id;
+
         if(!uid){
-            alert('User must be signed in to dislike a post');
+            this.props.alert.error('User must be signed in to dislike a post');
             return;
         }
+
         const flags  = await dislikePost(uid, postId);
 
+        let userLiked, userDisliked;
+
+        //cancelling dislike
         if(flags[1]){
-            this.setState({disliked: false});
-        } else if(!flags[1]){
-            this.setState({disliked: true});
+            dislikes.splice(dislikes.indexOf(uid), 1);
+            userDisliked = false;
+        } 
+        
+        //disliking post
+        else {
+            dislikes.push(uid);
+            userDisliked = true;
         }
 
         if(flags[0]){
-            this.setState({liked: false});
+            likes.splice(likes.indexOf(uid), 1);
+            userLiked = false;
         }
+
+        this.setState({userLiked, userDisliked, likes, dislikes});
     }
 
     render(){
-        const {username, course, liked, disliked} = this.state;
-        const {reason, stars, dateCreated, year, prof} = this.props.post;
-        const {uid, creatorId} = this.props;
+        const {username, course, userLiked, userDisliked, likes, dislikes} = this.state;
+        const {uid, creatorId, post} = this.props;
+
+        const greenClass = (userLiked) ? 'btn-success' : 'btn-outline-success';
+        const redClass = (userDisliked) ? 'btn-danger' : 'btn-outline-danger';
 
         return(
             <section className='post mt-5'>
@@ -113,14 +164,14 @@ class Post extends Component{
                             {course? `${course.departmentCode} ${course.number}` : 'Loading...'}
                         </h4>
 
-                        {year? 
+                        {post.year? 
                             (<p className="year">
-                                Year Taken: {year}
+                                Year Taken: {post.year}
                             </p>) :
                             null
                         }
 
-                        <p className="prof">Professor: {prof}</p>
+                        <p className="prof">Professor: {post.prof}</p>
                     </div>     
                 
                     <div className="col-9">
@@ -134,10 +185,10 @@ class Post extends Component{
                         }
 
                         <p className="review">
-                            {reason} 
+                            {post.reason} 
                         </p>
                         <p className="username">Reviewed By: {username}</p>
-                        <p className="date-posted">{moment(new Date(dateCreated)).calendar()}</p>
+                        <p className="date-posted">{moment(new Date(post.dateCreated)).calendar()}</p>
                     </div>
                 </div>
                 <hr/>
@@ -145,23 +196,36 @@ class Post extends Component{
                     <div className="col-4">
                         <h5 className="likes" >Likes</h5>
 
-                        <button className="likes-btn btn btn-lg btn-outline-success" onClick={this.handleLike}>
+                        <button className={`likes-btn btn btn-lg ${greenClass}`} onClick={this.handleLike}>
                             <i className = "fa fa-thumbs-up"></i>
-                            {liked? 'LIKED': null}
                         </button>
+
+                        <p className='likes-count'>
+                            {likes.length !== 0 ? 
+                                likes.length:
+                                null
+                            }
+                        </p>
                     </div>
                 
                     <div className="col-4">
                         <h5 className="dislikes">Dislikes</h5>
-                        <button className="dislikes-btn btn btn-lg btn-outline-danger" onClick={this.handleDislike}>
+
+                        <button className={`dislikes-btn btn btn-lg ${redClass}`} onClick={this.handleDislike}>
                             <i className = "fa fa-thumbs-down"></i>
-                            {disliked? 'DISIKED': null}
                         </button>
+
+                        <p className='dislikes-count'>
+                            {dislikes.length !== 0 ?
+                                dislikes.length:
+                                null
+                            }
+                        </p>
                     </div>
                 
                     <div className="col-4">
                         <h5 className="users-rating">User's Rating</h5>
-                        <p className="ratings-score">{`${stars}/5`}</p>
+                        <p className="ratings-score">{`${post.stars}/5`}</p>
                     </div>
                 </div>
             </section>
@@ -169,4 +233,4 @@ class Post extends Component{
     }
 }
 
-export default Post;
+export default withAlert()(Post);
