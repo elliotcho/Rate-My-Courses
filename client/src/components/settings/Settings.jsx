@@ -34,6 +34,9 @@ class Settings extends Component {
                         id='confirm-password'
                         type="password"
                     />
+
+                    <button className='btn btn-block btn-outline-dark btn-lg'>CHANGE</button>
+
                 </form>
 
                 <form className="change-username">
@@ -50,6 +53,8 @@ class Settings extends Component {
                         id='new-name'
                         type="text"
                     />
+                  
+                    <button className='btn btn-block btn-outline-secondary btn-lg'>CHANGE</button>
                 </form>
             </div>
         )
