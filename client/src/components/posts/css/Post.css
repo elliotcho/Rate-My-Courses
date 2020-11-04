@@ -55,9 +55,7 @@
     margin: 2% 7% 0;
 }
 
-
-
-hr { 
+.post hr { 
     height: 30px; 
     width: 90%;
     margin: 1rem auto;
@@ -66,7 +64,8 @@ hr {
     border-width: 1px 0 0 0; 
     border-radius: 20px; 
   } 
-  hr:before { 
+
+  .post hr:before { 
     display: block; 
     content: ""; 
     height: 30px; 
@@ -89,7 +88,12 @@ hr {
 
 .post .likes-btn, .post .dislikes-btn {
     width: 30%;
-    margin-bottom: 20%;
+    margin-bottom: 5%;
+}
+
+.post .likes-count, .post .dislikes-count{
+    font-family: 'Indie Flower', cursive;
+    font-size: 1.6rem;
 }
 
 .post .ratings-score {
