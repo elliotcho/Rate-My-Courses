@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {changeUsername} from '../../../src/store/actions/profileActions';
+import {changePassword, changeUsername} from '../../../src/store/actions/profileActions';
 import {withAlert} from 'react-alert';
 import './css/Settings.css';
 
@@ -9,11 +9,25 @@ class Settings extends Component {
     constructor(){
         super();
         this.state={
-            newName: ""
+            newName: "",
+            newPassword: ""
         };
 
         this.changeName = this.changeName.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.changePassword = this.changePassword.bind(this);
+    }
+    
+    async changePassword(e){
+        e.preventDefault();
+        const{newPassword} = this.state;
+        const{uid, alert} = this.props;
+        const msg = await changePassword(uid, newPassword);
+        if(msg === 'Failed'){
+            alert.error("Error changing password");
+        } else{
+            alert.success("Password successfully changed");
+        }
     }
 
     async changeName(e){
@@ -36,7 +50,7 @@ class Settings extends Component {
     }
 
     render() {
-        const {uid, newName} = this.props;
+        const {uid, newName, newPassword} = this.props;
         
 
         if(!uid){
@@ -56,10 +70,12 @@ class Settings extends Component {
                         type='password'
                     />
 
-                    <label htmlFor='new-password'>New Password<span>*</span></label>
+                    <label htmlFor='newPassword'>New Password<span>*</span></label>
                     <input 
-                        id='new-password'
+                        id='newPassword'
                         type="password"
+                        onChange = {this.handleChange}
+                        value = {newPassword}
                     />
 
                     <label htmlFor="confirm-password">Confirm New Password<span>*</span></label>
@@ -68,7 +84,8 @@ class Settings extends Component {
                         type="password"
                     />
 
-                    <button className='btn btn-block btn-outline-dark btn-lg'>CHANGE</button>
+                    <button className='btn btn-block btn-outline-dark btn-lg'>
+                        CHANGE</button>
 
                 </form>
 
