@@ -4,6 +4,7 @@ import {getCourseById} from '../../store/actions/courseActions';
 import {deletePostById, dislikePost, likePost, getLikeStatus} from '../../store/actions/postActions';
 import moment from 'moment';
 import { confirmAlert } from 'react-confirm-alert';
+import { withAlert } from 'react-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'; 
 import './css/Post.css';
 
@@ -15,7 +16,9 @@ class Post extends Component{
             username: 'Loading User...',
             course: null,
             userLiked: false,
-            userDisliked: false
+            userDisliked: false,
+            likes: [], 
+            dislikes: []
         }
 
         this.deletePost = this.deletePost.bind(this);
@@ -30,12 +33,30 @@ class Post extends Component{
         const course = await getCourseById(post.courseId);
         const status = await getLikeStatus(uid, post.id);
 
+        const likes = post.likes;
+        const dislikes = post.dislikes;
+
         this.setState({
             username: user.username,
             course,
             userLiked: status[0],
-            userDisliked: status[1]
+            userDisliked: status[1],
+            likes,
+            dislikes
         });
+    }
+
+    async componentDidUpdate(prevProps){
+        const {uid, post} = this.props;
+
+        if((!prevProps.uid && uid) || (prevProps.uid && !uid)){
+            const status = await getLikeStatus(uid, post.id);
+
+            this.setState({
+                userLiked: status[0],
+                userDisliked: status[1]
+            });
+        }
     }
 
     deletePost(){
@@ -58,52 +79,78 @@ class Post extends Component{
     }
 
     async handleLike(){
+        const {likes, dislikes} = this.state;
         const {uid, post} = this.props;
 
         const postId = post.id;
 
         if(!uid){
-            alert('User must be signed in to like a post');
+            this.props.alert.error('User must be signed in to like a post');
             return;
         }
 
         const flags = await likePost(uid, postId);
 
+        let userLiked, userDisliked;
+
+        //unliking the post
         if(flags[0]){
-            this.setState({userLiked: false});
-        } else {
-            this.setState({userLiked: true});
+            likes.splice(likes.indexOf(uid), 1);
+            userLiked = false;
+        } 
+        
+        //liking the post
+        else {
+           likes.push(uid);
+           userLiked = true;
         }
 
+        //removing dislike
         if(flags[1]){
-            this.setState({userDisliked: false});
+            dislikes.splice(dislikes.indexOf(uid), 1);
+            userDisliked = false;
         }
+
+        this.setState({userLiked, userDisliked, likes, dislikes});
     }
 
     async handleDislike(){
+        const {likes, dislikes} = this.state;
         const{uid, post} = this.props;
+
         const postId = post.id;
 
         if(!uid){
-            alert('User must be signed in to dislike a post');
+            this.props.alert.error('User must be signed in to dislike a post');
             return;
         }
 
         const flags  = await dislikePost(uid, postId);
 
+        let userLiked, userDisliked;
+
+        //cancelling dislike
         if(flags[1]){
-            this.setState({userDisliked: false});
-        } else {
-            this.setState({userDisliked: true});
+            dislikes.splice(dislikes.indexOf(uid), 1);
+            userDisliked = false;
+        } 
+        
+        //disliking post
+        else {
+            dislikes.push(uid);
+            userDisliked = true;
         }
 
         if(flags[0]){
-            this.setState({userLiked: false});
+            likes.splice(likes.indexOf(uid), 1);
+            userLiked = false;
         }
+
+        this.setState({userLiked, userDisliked, likes, dislikes});
     }
 
     render(){
-        const {username, course, userLiked, userDisliked} = this.state;
+        const {username, course, userLiked, userDisliked, likes, dislikes} = this.state;
         const {uid, creatorId, post} = this.props;
 
         return(
@@ -150,14 +197,29 @@ class Post extends Component{
                             <i className = "fa fa-thumbs-up"></i>
                             {userLiked? 'LIKED': null}
                         </button>
+
+                        <p className='likes-count'>
+                            {likes.length !== 0 ? 
+                                likes.length:
+                                null
+                            }
+                        </p>
                     </div>
                 
                     <div className="col-4">
                         <h5 className="dislikes">Dislikes</h5>
+
                         <button className="dislikes-btn btn btn-lg btn-outline-danger" onClick={this.handleDislike}>
                             <i className = "fa fa-thumbs-down"></i>
                             {userDisliked? 'DISIKED': null}
                         </button>
+
+                        <p className='dislikes-count'>
+                            {dislikes.length !== 0 ?
+                                dislikes.length:
+                                null
+                            }
+                        </p>
                     </div>
                 
                     <div className="col-4">
@@ -170,4 +232,4 @@ class Post extends Component{
     }
 }
 
-export default Post;
+export default withAlert()(Post);
