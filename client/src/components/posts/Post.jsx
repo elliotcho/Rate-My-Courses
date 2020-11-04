@@ -153,6 +153,9 @@ class Post extends Component{
         const {username, course, userLiked, userDisliked, likes, dislikes} = this.state;
         const {uid, creatorId, post} = this.props;
 
+        const greenClass = (userLiked) ? 'btn-success' : 'btn-outline-success';
+        const redClass = (userDisliked) ? 'btn-danger' : 'btn-outline-danger';
+
         return(
             <section className='post mt-5'>
                 <div className='row'> 
@@ -193,9 +196,8 @@ class Post extends Component{
                     <div className="col-4">
                         <h5 className="likes" >Likes</h5>
 
-                        <button className="likes-btn btn btn-lg btn-outline-success" onClick={this.handleLike}>
+                        <button className={`likes-btn btn btn-lg ${greenClass}`} onClick={this.handleLike}>
                             <i className = "fa fa-thumbs-up"></i>
-                            {userLiked? 'LIKED': null}
                         </button>
 
                         <p className='likes-count'>
@@ -209,9 +211,8 @@ class Post extends Component{
                     <div className="col-4">
                         <h5 className="dislikes">Dislikes</h5>
 
-                        <button className="dislikes-btn btn btn-lg btn-outline-danger" onClick={this.handleDislike}>
+                        <button className={`dislikes-btn btn btn-lg ${redClass}`} onClick={this.handleDislike}>
                             <i className = "fa fa-thumbs-down"></i>
-                            {userDisliked? 'DISIKED': null}
                         </button>
 
                         <p className='dislikes-count'>
