@@ -84,6 +84,18 @@ public class UserService{
         return user;
     }
 
+    public String changeName(String userId, String newUsername){
+        User temp = repo.findById(userId).orElse(null);
+        List<User> currUsers = repo.findByUsername(newUsername);
+        boolean exists = currUsers.isEmpty();
+        if(exists){
+            return "Username already exists in the database \n";
+        }
+        temp.setUsername(newUsername);
+        repo.save(temp);
+        return newUsername;
+    }
+      
     public boolean changeUserPassword(String newPassword, String userId){
         User user = repo.findById(userId).orElse(null);
 
