@@ -18,6 +18,6 @@ export const changeUsername = async (uid, newUsername) => {
 export const changePassword = async (uid, newPassword) => {
     const data = {userId: uid, newPassword};
     const response = await axios.post('http://localhost:8080/api/user/change_password', JSON.stringify(data), config);
-    const msg = response.data;
-    return msg;
+    const isSuccessful = response.data;
+    return isSuccessful;
 }

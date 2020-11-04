@@ -1,19 +1,19 @@
 import React, {Component} from 'react';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {changePassword, changeUsername} from '../../../src/store/actions/profileActions';
+import {changePassword} from '../../../src/store/actions/profileActions';
+import UsernameForm from './UsernameForm';
 import {withAlert} from 'react-alert';
 import './css/Settings.css';
 
 class Settings extends Component {
     constructor(){
         super();
+
         this.state={
-            newName: "",
             newPassword: ""
         };
 
-        this.changeName = this.changeName.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.changePassword = this.changePassword.bind(this);
     }
@@ -22,26 +22,12 @@ class Settings extends Component {
         e.preventDefault();
         const{newPassword} = this.state;
         const{uid, alert} = this.props;
-        const msg = await changePassword(uid, newPassword);
-        if(msg === 'Failed'){
+        const isSuccessful = await changePassword(uid, newPassword);
+
+        if(!isSuccessful){
             alert.error("Error changing password");
         } else{
             alert.success("Password successfully changed");
-        }
-    }
-
-    async changeName(e){
-        e.preventDefault();
-
-        const{newName} = this.state;
-        const {uid, alert} = this.props;
-
-        const msg = await changeUsername(uid, newName);
-
-        if(msg === 'Failed'){
-            alert.error("Username already exists");
-        } else{
-            alert.success("Username changed successfully");
         }
     }
 
@@ -50,7 +36,7 @@ class Settings extends Component {
     }
 
     render() {
-        const {uid, newName, newPassword} = this.props;
+        const {uid, alert, newPassword} = this.props;
         
 
         if(!uid){
@@ -58,10 +44,9 @@ class Settings extends Component {
         }
 
         return (
-
             <div className='settings'>
                 <h1>Settings</h1>
-                <form className='change-password'>
+                <form className='change-password' onSubmit={this.changePassword}>
                     <h3>Change My Password</h3>
 
                     <label htmlFor='current-password'>Current Password<span>*</span></label>
@@ -85,31 +70,11 @@ class Settings extends Component {
                     />
 
                     <button className='btn btn-block btn-outline-dark btn-lg'>
-                        CHANGE</button>
-
-                </form>
-
-                <form className="change-username" onSubmit={this.changeName}>
-                    <h3>Change My Username</h3>
-
-                    <label htmlFor="currentName">Current Username<span>*</span></label>
-                    <input 
-                        id='currentName'
-                        type='text'
-                    />
-
-                    <label htmlFor="newName">New Username<span>*</span></label>
-                    <input 
-                        id='newName'
-                        type="text"
-                        onChange={this.handleChange}
-                        value={newName}
-                    />
-                  
-                    <button className='btn btn-block btn-outline-secondary btn-lg'>
                         CHANGE
                     </button>
                 </form>
+
+                <UsernameForm uid={uid} alert={alert}/>
             </div>
         )
     } 
