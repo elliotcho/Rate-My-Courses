@@ -1,9 +1,10 @@
 package org.coders.ratemycourses.service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import java.util.HashSet;
+import java.text.DecimalFormat;
 
 import org.coders.ratemycourses.model.Post;
 import org.coders.ratemycourses.repository.PostRepo;
@@ -112,19 +113,28 @@ public class PostService{
         return new boolean[]{inLikes, inDislikes};
     }
 
-    // <!-------------------------------------->
-    public int getUserLikesRatio(String id){
-        List<Post> userPosts = getUsersPosts(id);
+    public String getUserLikesRatio(String id){
+        List<Post> posts = repo.findByUserId(id);
+
         int numLikes = 0;
         int numDislikes = 0;
 
-        for (Post post : userPosts) {
+        for (Post post : posts) {
             numLikes += post.getLikes().size();
             numDislikes += post.getDislikes().size();
         }
-        
-        int total = numDislikes + numLikes;
-        
-        return numLikes/numDislikes;
+
+        if(numLikes == 0){
+            return "0%";
+        } 
+
+        else if(numDislikes == 0){
+            return "100%";
+        } 
+  
+        double ratio = (double) (numLikes) / (numLikes + numDislikes);  
+        ratio *= 100; 
+
+        return (String) new DecimalFormat("0.0").format(ratio) + "%";
     }
 }

@@ -83,12 +83,8 @@ public class PostController{
         return postService.likeStatus(userId, postId);
     }
 
-    ////////////////////////////////////////////////////////////////
-    //unused
-    ////////////////////////////////////////////////////////////////
-
-    @GetMapping("/user/rating/{id}")
-    public int ratingRatio(@PathVariable String id){
+    @GetMapping("/user/likes_ratio/{id}")
+    public String getUserLikesRatio(@PathVariable String id){
         return postService.getUserLikesRatio(id);
     }
 }

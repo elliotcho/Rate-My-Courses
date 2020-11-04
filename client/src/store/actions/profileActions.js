@@ -8,6 +8,12 @@ export const getUserById = async (userId) => {
     return user;
 }
 
+export const getUserLikesRatio = async (uid) => {
+    const response = await axios.get(`http://localhost:8080/api/post/user/likes_ratio/${uid}`);
+    const percentage = response.data;
+    return percentage;
+}
+
 export const changeUsername = async (uid, newUsername) => {
     const data = {userId: uid, newUsername};
     const response = await axios.post('http://localhost:8080/api/user/change_username', JSON.stringify(data), config);

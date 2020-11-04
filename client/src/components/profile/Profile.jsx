@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {getUserById} from '../../store/actions/profileActions';
+import {getUserById, getUserLikesRatio} from '../../store/actions/profileActions';
 import {getUserPosts, getNumPostsByUser} from '../../store/actions/postActions';
 import Post from '../posts/Post';
 import "./css/Profile.css";
@@ -13,6 +13,7 @@ class Profile extends Component {
         this.state = {
             numPosts: 0,
             userPosts: [], 
+            likesRatio: 'Loading...',
             user: null
         }
 
@@ -24,11 +25,13 @@ class Profile extends Component {
 
         const numPosts = await getNumPostsByUser(uid);
         const userPosts = await getUserPosts(uid);
+        const likesRatio = await getUserLikesRatio(uid);
         const user = await getUserById(uid);
         
         this.setState({
             numPosts,
             userPosts,
+            likesRatio,
             user
         });
     }
@@ -51,7 +54,7 @@ class Profile extends Component {
     }
 
     render() {
-        const {numPosts, userPosts, user} = this.state;
+        const {numPosts, userPosts, likesRatio, user} = this.state;
         const {uid} = this.props;
 
         if(!uid){
@@ -64,8 +67,8 @@ class Profile extends Component {
                     <i className="icon fas fa-user-graduate fa-3x m-2"></i>
                     <h4 className="icon name mb-5">{user? user.username: 'Loading...'}</h4>
                     <p className="user-info"># of posts created: {numPosts}</p>
+                    <p className="user-info">% of likes from others: {likesRatio}</p>
                     <p className="user-info">Average rating given by user: 6.9/10</p>
-                    <p className="user-info">Likes to dislikes ratio of user's posts: 4/1</p>
                     <p className="user-info">Year of study: 4th</p>
                     <p className="user-info">Program type: Undergraduate</p>
                 </section>
