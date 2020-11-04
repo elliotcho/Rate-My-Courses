@@ -25,7 +25,11 @@ class Settings extends Component {
                     id='confirm-password'
                     type="text"
                     />
+
+                    <button className='btn btn-block btn-outline-dark btn-lg'>CHANGE</button>
+
                 </form>
+
                 <form className="change-username">
                     <h3>Change My Username</h3>
 
@@ -40,6 +44,8 @@ class Settings extends Component {
                     id='new-name'
                     type="text"
                     />
+
+                    <button className='btn btn-block btn-outline-secondary btn-lg'>CHANGE</button>
 
                 </form>
             </div>
