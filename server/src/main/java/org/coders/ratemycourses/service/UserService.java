@@ -84,8 +84,11 @@ public class UserService{
         return user;
     }
 
-    public String changeName(String userId, String newUsername){
+    public String changeName(String userId, String newUsername, String currUsername){
         User user = repo.findById(userId).orElse(null);
+        if(!user.getUsername().equals(currUsername)){
+            return "Mismatch";
+        }
 
         List<User> currUsers = repo.findByUsername(newUsername);
         boolean exists = !currUsers.isEmpty();
