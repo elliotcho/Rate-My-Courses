@@ -32,15 +32,15 @@ class AdminHome extends Component{
 
                 <div className='btn-group-wrap'> 
                     <div className='btn-group' role="group" aria-label="Basic example">
-                        <button className={departmentBtnStyle} name='department' onClick={this.handleClick}>
+                        <button className={`${departmentBtnStyle} compartments`} name='department' onClick={this.handleClick}>
                             Departments
                         </button>
 
-                        <button className={courseBtnStyle} name='course' onClick={this.handleClick}>
+                        <button className={`${courseBtnStyle} compartments`} name='course' onClick={this.handleClick}>
                             Courses
                         </button>
                        
-                        <button className={userBtnStyle} name='user' onClick={this.handleClick}>
+                        <button className={`${userBtnStyle} compartments`} name='user' onClick={this.handleClick}>
                             Users
                         </button>
                     </div>
