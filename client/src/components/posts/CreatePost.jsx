@@ -29,7 +29,12 @@ class CreatePost extends Component{
             return;
         }
 
-        if(!uid){
+        else if(this.state.reason.trim() === ''){
+            alert.error("Your reason must not be blank!");
+            return;
+        }
+
+        else if(!uid){
 
             //open auth modal after 0.3 seconds and notify user they must sign in
             setTimeout(() => {
@@ -40,7 +45,9 @@ class CreatePost extends Component{
                 alert.error(msg);
             }, 300);
 
-        } else {
+        } 
+        
+        else {
 
             const data = { 
                 userId: uid, 
@@ -125,8 +132,8 @@ class CreatePost extends Component{
                                         className="form-control"
                                         id='reason'
                                         value={reason}
+                                        rows = '4'
                                         onChange={this.handleChange}
-                                        required
                                     />
                                 </div>
                         

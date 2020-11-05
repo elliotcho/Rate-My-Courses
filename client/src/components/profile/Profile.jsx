@@ -107,7 +107,11 @@ class Profile extends Component {
                     </p>
 
                     <p className="user-info">
-                        Date joined: {user? moment(new Date(user.dateCreated)).calendar(): 'Loading...'}
+                        Date joined: 
+
+                        <span className='ml-2' style={{letterSpacing: '1.6px'}}>
+                            {user? moment(new Date(user.dateCreated)).calendar(): 'Loading...'}
+                        </span>
                     </p>
                 </section>
                 

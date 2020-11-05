@@ -39,3 +39,9 @@
 .post-modal input {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+
+.post-modal textarea{
+    resize: none;
+    overflow: none;
+    max-height: 200px;
+}

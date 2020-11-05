@@ -29,6 +29,11 @@ class UsernameForm extends Component{
             alert.error("Current username must match!");
         } else{
             alert.success("Username changed successfully");
+
+            this.setState({
+                currUsername: '',
+                newName: ''
+            });
         }
     }
 
