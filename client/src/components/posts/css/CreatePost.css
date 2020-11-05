@@ -3,8 +3,18 @@
     color: black;
 }
 
+.modal-content {
+    border-radius: 300px;
+}
+
+.post-modal .modal-header{
+    background-color: #ec9b3b;
+    font-family: 'Syne Mono', monospace;
+    font-size: 30px;
+}
+
 .post-modal .modal-body{
-    background-color: #9370db;
+    background-color: #ece8d9;
 }
 
 .post-modal .btn{
@@ -19,4 +29,13 @@
 .post-modal p{
     background: white;
     padding: 10px;
+}
+
+.post-modal label {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 17px;
+}
+
+.post-modal input {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }

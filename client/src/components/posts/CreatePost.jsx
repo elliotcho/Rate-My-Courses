@@ -121,8 +121,7 @@ class CreatePost extends Component{
                                 <div className="form-group">
                                     <label htmlFor='reason'>Reason For Rating</label>
 
-                                    <input 
-                                        type='text'
+                                    <textarea
                                         className="form-control"
                                         id='reason'
                                         value={reason}
