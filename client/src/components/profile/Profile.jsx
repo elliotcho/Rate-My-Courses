@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {getUserById, getUserLikesRatio} from '../../store/actions/profileActions';
-import {getUserPosts, getNumPostsByUser} from '../../store/actions/postActions';
+import * as profileActions from '../../store/actions/profileActions';
 import Post from '../posts/Post';
+import moment from 'moment';
 import "./css/Profile.css";
 
 class Profile extends Component {
@@ -14,21 +14,24 @@ class Profile extends Component {
             numPosts: 0,
             userPosts: [], 
             likesRatio: 'Loading...',
+            avgRating: 'Loading...',
             user: null
         }
 
         this.updateLikesRatio = this.updateLikesRatio.bind(this);
+        this.updateAvgRating = this.updateAvgRating.bind(this);
         this.removePostFromList = this.removePostFromList.bind(this);
     }
 
     async componentDidMount(){
         const {uid} = this.props;
 
-        const numPosts = await getNumPostsByUser(uid);
-        const userPosts = await getUserPosts(uid);
-        const user = await getUserById(uid);
+        const numPosts = await profileActions.getNumPostsByUser(uid);
+        const userPosts = await profileActions.getUserPosts(uid);
+        const user = await profileActions.getUserById(uid);
 
         await this.updateLikesRatio();
+        await this.updateAvgRating();
         
         this.setState({
             numPosts,
@@ -38,11 +41,13 @@ class Profile extends Component {
     }
 
     async updateLikesRatio(){
-        const {uid} = this.props;
-
-        const likesRatio = await getUserLikesRatio(uid);
-
+        const likesRatio = await profileActions.getUserLikesRatio(this.props.uid);
         this.setState({likesRatio});
+    }
+
+    async updateAvgRating(){
+        const avgRating = await profileActions.getAvgRatingByUser(this.props.uid);
+        this.setState({avgRating});
     }
 
     async removePostFromList(id){
@@ -57,6 +62,7 @@ class Profile extends Component {
         }
 
        await this.updateLikesRatio();
+       await this.updateAvgRating();
 
         this.setState({
             numPosts,
@@ -65,7 +71,7 @@ class Profile extends Component {
     }
 
     render() {
-        const {numPosts, userPosts, likesRatio, user} = this.state;
+        const {numPosts, userPosts, likesRatio, avgRating, user} = this.state;
         const {uid} = this.props;
 
         if(!uid){
@@ -76,12 +82,33 @@ class Profile extends Component {
             <div className="profile-pg container-fluid">
                 <section className="user-profile">
                     <i className="icon fas fa-user-graduate fa-3x m-2"></i>
-                    <h4 className="icon name mb-5">{user? user.username: 'Loading...'}</h4>
-                    <p className="user-info"># of posts created: {numPosts}</p>
-                    <p className="user-info">% of likes from others: {likesRatio}</p>
-                    <p className="user-info">Average rating given by user: 6.9/10</p>
-                    <p className="user-info">Year of study: 4th</p>
-                    <p className="user-info">Program type: Undergraduate</p>
+                    
+                    {/* Username */}
+                    <h4 className="icon name mb-5">
+                        {user? user.username: 'Loading...'}
+                    </h4>
+
+                    {/* Number of posts user has created */}
+                    <p className="user-info">
+                        # of posts created: {numPosts}
+                    </p>
+
+                    
+                    <p className="user-info">
+                        % of likes from others: {likesRatio}
+                    </p>
+
+                    <p className="user-info">
+                        Average rating given by user: {avgRating}
+                    </p>
+
+                    <p className="user-info">
+                        Email: {user? user.email: 'Loading...'}
+                    </p>
+
+                    <p className="user-info">
+                        Date joined: {user? moment(new Date(user.dateCreated)).calendar(): 'Loading...'}
+                    </p>
                 </section>
                 
                 {userPosts.length !== 0 ? (<h1>Previous Posts</h1>) : null}

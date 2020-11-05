@@ -26,11 +26,10 @@ public class User{
 
     @NotEmpty
     private String password;
+
+    @NotEmpty
+    private String dateCreated;
     
     private boolean admin = false;
     private boolean banned = false;
-
-    private String undergraduateProgram = "N/A";
-
-    private String yearofStudy = "N/A";
 }

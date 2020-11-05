@@ -8,10 +8,28 @@ export const getUserById = async (userId) => {
     return user;
 }
 
+export const getUserPosts = async (userId) => {
+    const response = await axios.get(`http://localhost:8080/api/post/user/${userId}`);
+    const posts = response.data;
+    return posts.reverse();
+}
+
+export const getNumPostsByUser = async (userId) => {
+    const response = await axios.get(`http://localhost:8080/api/post/num_posts/${userId}`);
+    const numPosts = response.data;
+    return numPosts;
+}
+
 export const getUserLikesRatio = async (uid) => {
     const response = await axios.get(`http://localhost:8080/api/post/user/likes_ratio/${uid}`);
     const percentage = response.data;
     return percentage;
+}
+
+export const getAvgRatingByUser = async (uid) => {
+    const response = await axios.get(`http://localhost:8080/api/post/user/avg_rating/${uid}`);
+    const avgRating = response.data;
+    return avgRating;
 }
 
 export const changeUsername = async (uid, newUsername) => {

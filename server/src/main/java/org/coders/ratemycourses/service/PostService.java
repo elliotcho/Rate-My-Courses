@@ -113,8 +113,8 @@ public class PostService{
         return new boolean[]{inLikes, inDislikes};
     }
 
-    public String getUserLikesRatio(String id){
-        List<Post> posts = repo.findByUserId(id);
+    public String getUserLikesRatio(String uid){
+        List<Post> posts = repo.findByUserId(uid);
 
         int numLikes = 0;
         int numDislikes = 0;
@@ -136,5 +136,19 @@ public class PostService{
         ratio *= 100; 
 
         return (String) new DecimalFormat("0.0").format(ratio) + "%";
+    }
+
+    public String getUserAvgRating(String uid){
+        List<Post> posts = repo.findByUserId(uid);
+
+        int sum = 0;
+
+        for(Post post: posts){
+            sum += post.getStars();
+        }
+
+        double avgRating = (double) sum/posts.size();
+   
+        return (String) new DecimalFormat("0.0").format(avgRating);
     }
 }

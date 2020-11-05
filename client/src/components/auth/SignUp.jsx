@@ -37,7 +37,8 @@ class Signup extends Component{
         const data = {
             email,
             username, 
-            password
+            password,
+            dateCreated: new Date().toString()
         }
 
         dispatch(signup(data, alert));
