@@ -32,8 +32,12 @@ export const getAvgRatingByUser = async (uid) => {
     return avgRating;
 }
 
-export const changeUsername = async (uid, newUsername) => {
-    const data = {userId: uid, newUsername};
+export const changeUsername = async (uid, newUsername, currUsername) => {
+    const data = {
+        userId: uid, 
+        newUsername,
+        currUsername
+    };
     const response = await axios.post('http://localhost:8080/api/user/change_username', JSON.stringify(data), config);
     const msg = response.data;
     return msg;

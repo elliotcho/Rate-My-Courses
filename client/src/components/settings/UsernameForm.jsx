@@ -6,6 +6,7 @@ class UsernameForm extends Component{
         super();
 
         this.state = {
+            currUsername: '',
             newName: ''
         }
 
@@ -17,13 +18,15 @@ class UsernameForm extends Component{
     async handleSubmit(e){
         e.preventDefault();
 
-        const{newName} = this.state;
+        const{newName, currUsername} = this.state;
         const {uid, alert} = this.props;
 
-        const msg = await changeUsername(uid, newName);
+        const msg = await changeUsername(uid, newName, currUsername);
 
         if(msg === 'Failed'){
             alert.error("Username already exists");
+        } else if(msg === 'Mismatch'){
+            alert.error("Current username must match!");
         } else{
             alert.success("Username changed successfully");
         }
@@ -34,16 +37,19 @@ class UsernameForm extends Component{
     }
 
     render(){
-        const {newName} = this.state;
+        const {newName, currUsername} = this.state;
    
         return(
             <form className="change-username" onSubmit={this.handleSubmit}>
                 <h3>Change My Username</h3>
 
-                <label htmlFor="currentName">Current Username<span>*</span></label>
+                <label htmlFor="currUsername">Current Username<span>*</span></label>
                 <input 
-                    id='currentName'
+                    id='currUsername'
                     type='text'
+                    onChange={this.handleChange}
+                    value={currUsername}
+                    required
                 />
 
                 <label htmlFor="newName">New Username<span>*</span></label>
@@ -52,6 +58,7 @@ class UsernameForm extends Component{
                     type="text"
                     onChange={this.handleChange}
                     value={newName}
+                    required
                 />
                   
                 <button className='btn btn-block btn-outline-secondary btn-lg'>

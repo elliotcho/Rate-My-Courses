@@ -56,8 +56,9 @@ public class UserController{
 
         String userId = (String) temp.get("userId");
         String newName = (String) temp.get("newUsername");
+        String currUsername = (String) temp.get("currUsername");
         
-        return userService.changeName(userId, newName);
+        return userService.changeName(userId, newName, currUsername);
     }
   
     @PostMapping("/change_password")
