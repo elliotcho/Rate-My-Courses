@@ -80,7 +80,7 @@ class Post extends Component{
 
     async handleLike(){
         const {likes, dislikes} = this.state;
-        const {uid, post} = this.props;
+        const {uid, post, updateLikesRatio} = this.props;
 
         const postId = post.id;
 
@@ -111,19 +111,24 @@ class Post extends Component{
             userDisliked = false;
         }
 
+        //update likes ratio on profile
+        if(updateLikesRatio){
+            await updateLikesRatio();
+        }
+
         this.setState({userLiked, userDisliked, likes, dislikes});
     }
 
     async handleDislike(){
         const {likes, dislikes} = this.state;
-        const{uid, post} = this.props;
+        const{uid, post, updateLikesRatio} = this.props;
 
         const postId = post.id;
 
         if(!uid){
             this.props.alert.error('User must be signed in to dislike a post');
             return;
-        }
+        } 
 
         const flags  = await dislikePost(uid, postId);
 
@@ -141,9 +146,15 @@ class Post extends Component{
             userDisliked = true;
         }
 
+        //cancelling like
         if(flags[0]){
             likes.splice(likes.indexOf(uid), 1);
             userLiked = false;
+        }
+
+        //update likes ratio on profile
+        if(updateLikesRatio){
+            await updateLikesRatio();
         }
 
         this.setState({userLiked, userDisliked, likes, dislikes});

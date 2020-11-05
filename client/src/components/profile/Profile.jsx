@@ -17,6 +17,7 @@ class Profile extends Component {
             user: null
         }
 
+        this.updateLikesRatio = this.updateLikesRatio.bind(this);
         this.removePostFromList = this.removePostFromList.bind(this);
     }
 
@@ -25,18 +26,26 @@ class Profile extends Component {
 
         const numPosts = await getNumPostsByUser(uid);
         const userPosts = await getUserPosts(uid);
-        const likesRatio = await getUserLikesRatio(uid);
         const user = await getUserById(uid);
+
+        await this.updateLikesRatio();
         
         this.setState({
             numPosts,
             userPosts,
-            likesRatio,
             user
         });
     }
 
-    removePostFromList(id){
+    async updateLikesRatio(){
+        const {uid} = this.props;
+
+        const likesRatio = await getUserLikesRatio(uid);
+
+        this.setState({likesRatio});
+    }
+
+    async removePostFromList(id){
         let {userPosts, numPosts} = this.state;
 
         for(let i=0;i<userPosts.length;i++){
@@ -46,6 +55,8 @@ class Profile extends Component {
                 break;
             }
         }
+
+       await this.updateLikesRatio();
 
         this.setState({
             numPosts,
@@ -83,6 +94,7 @@ class Profile extends Component {
                             post={post}
                             creatorId={post.userId}
                             removePostFromList={this.removePostFromList}
+                            updateLikesRatio = {this.updateLikesRatio}
                         />    
                     )}
                 </section>     
