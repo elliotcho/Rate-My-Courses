@@ -65,8 +65,9 @@ public class UserController{
         JSONObject obj = new JSONObject(data);
 
         String userId = (String) obj.get("userId");
+        String currPassword = (String) obj.get("currPassword");
         String newPassword = (String) obj.get("newPassword");
 
-        return userService.changeUserPassword(newPassword, userId);
+        return userService.changeUserPassword(userId, currPassword, newPassword);
     }
 }

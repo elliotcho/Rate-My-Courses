@@ -100,12 +100,15 @@ public class UserService{
         return newUsername;
     }
       
-    public boolean changeUserPassword(String newPassword, String userId){
+    public boolean changeUserPassword(String userId, String currPassword, String newPassword){
         User user = repo.findById(userId).orElse(null);
 
-        user.setPassword(passwordEncoder.encode(newPassword));
-        repo.save(user);
+        if(passwordEncoder.matches(currPassword, user.getPassword())){
+            user.setPassword(passwordEncoder.encode(newPassword));
+            repo.save(user);
+            return true;
+        }
 
-        return true;
+        return false;
     }
 }

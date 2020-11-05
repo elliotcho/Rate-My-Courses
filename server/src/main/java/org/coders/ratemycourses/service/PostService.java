@@ -141,6 +141,10 @@ public class PostService{
     public String getUserAvgRating(String uid){
         List<Post> posts = repo.findByUserId(uid);
 
+        if(posts.size() == 0){
+            return "No posts created";
+        }
+
         int sum = 0;
 
         for(Post post: posts){

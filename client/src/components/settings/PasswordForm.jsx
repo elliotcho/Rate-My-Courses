@@ -5,7 +5,9 @@ class PasswordForm extends Component{
     constructor(){
         super();
         this.state = {
-            newPassword: ''
+            currPassword: '',
+            newPassword: '',
+            confirmPassword: ''
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -13,15 +15,27 @@ class PasswordForm extends Component{
 
     async handleSubmit(e){
         e.preventDefault(e);
-        const{newPassword} = this.state;
+
+        const{currPassword, newPassword, confirmPassword} = this.state;
         const{uid, alert} = this.props;
 
-        const msg = await changePassword(uid, newPassword);
+        if(newPassword !== confirmPassword){
+            alert.error("New password does not match confirm password");
+            return;
+        }
 
-        if(!msg){
-            alert.error("Unable to change password!");
+        const isSuccessful = await changePassword(uid, currPassword, newPassword);
+
+        if(!isSuccessful){
+            alert.error("Current password must be correct");
         } else{
             alert.success("Password successfully changed");
+
+            this.setState({
+                currPassword: '',
+                newPassword: '',
+                confirmPassword: ''
+            })
         }
     }
 
@@ -30,15 +44,19 @@ class PasswordForm extends Component{
     }
 
     render(){
-        const {newPassword} = this.state;
+        const {currPassword, newPassword, confirmPassword} = this.state;
+        
         return(
-        <form className='change-password' onSubmit={this.handleSubmit}>
+            <form className='change-password' onSubmit={this.handleSubmit}>
                     <h3>Change My Password</h3>
 
                     <label htmlFor='current-password'>Current Password<span>*</span></label>
                     <input 
-                        id='current-password'
+                        id='currPassword'
                         type='password'
+                        onChange={this.handleChange}
+                        value={currPassword}
+                        required
                     />
 
                     <label htmlFor='newPassword'>New Password<span>*</span></label>
@@ -47,12 +65,16 @@ class PasswordForm extends Component{
                         type="password"
                         onChange = {this.handleChange}
                         value = {newPassword}
+                        required
                     />
 
                     <label htmlFor="confirm-password">Confirm New Password<span>*</span></label>
                     <input 
-                        id='confirm-password'
+                        id='confirmPassword'
                         type="password"
+                        onChange={this.handleChange}
+                        value={confirmPassword}
+                        required
                     />
 
                     <button className='btn btn-block btn-outline-dark btn-lg'>
