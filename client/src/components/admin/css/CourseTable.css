@@ -1,18 +1,25 @@
 .course-table{
-    max-width: 1000px;
-    margin: 50px auto;
-    font-family: 'Segoe UI';
+    max-width: 900px;
+    margin: 30px auto 100px;
 }
 
 .course-table table{
     box-shadow: 0 0 5px black;
 }
 
-.course-table h1{
-    text-align: center;
+.course-table thead th{
+    padding: 16px;
+    background: #74b49b;
+    font-family: 'Arvo', serif;
+    font-size: 16px;
+    text-align: left;
 }
 
-.course-table thead th{
-    padding: 15px;
-    background: lightgreen;
+.course-table tbody tr td {
+    font-family: 'Balsamiq Sans', cursive;
+    text-align: left;
+}
+
+.course-table #number {
+    width: 74%;
 }

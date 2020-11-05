@@ -1,14 +1,18 @@
 .user-table{
-    max-width: 600px;
-    margin: 50px auto;
-    font-family: 'Segoe UI';
+    max-width: 700px;
+    margin: 30px auto 100px;
 }
 
-.user-table h1{
-    text-align: center;
-}
 
 .user-table thead th{
-    padding: 15px;
-    background: red;
+    padding: 16px;
+    background: #ecab69;
+    font-family: 'Arvo', serif;
+    font-size: 16px;
+    text-align: left;
+}
+
+.user-table tbody tr td {
+    font-family: 'Balsamiq Sans', cursive;
+    text-align: left;
 }
