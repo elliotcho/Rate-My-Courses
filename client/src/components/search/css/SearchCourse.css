@@ -2,19 +2,49 @@
     position: fixed;
     width: 100%;
     height: 100%;
-    background: #383838;
+    background: #add2c9;
     overflow: auto;
 }
 
-.search-course{
-    margin: 50px auto;
-    max-width: 600px;
+/* Title / Brand */
+.search-course-container .brand {
+    text-align: center;
+    margin: 34px auto 77px;
+    font-family: 'Lobster', cursive;
+    font-size: 70px;
+   color: #210D26;
 }
 
+/* Search Department */
+.search-course{
+    margin: 50px auto;
+    max-width: 50%;
+    border: 6px solid #3b2e5a;
+    border-radius: 10px;
+    padding: 2%;
+    text-align: center;
+}
+.search-course .select-course {
+    font-family: 'Raleway', sans-serif;
+    font-size: 3rem;
+    color: #393e46;
+}
 .search-course select{
-    margin: auto;
-    width: 100%;
+    margin: 30px;
+    width: 70%;
     height: 2rem;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    color: #393e46;
+}
+
+/* Available Courses */
+.search-course .courses {
+    font-family: 'Lato', sans-serif;
+    font-size: 20px;
+    font-weight: bolder;
+    color: #686d76;
 }
 
 .search-course div{
@@ -23,5 +53,5 @@
 }
 
 .search-course div:hover{
-    background: gray;
+    background: #eeeeee;
 }
