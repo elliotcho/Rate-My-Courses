@@ -12,6 +12,20 @@ import java.util.Random;
 @Service
 public class UserService{
     private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    private String[] backgroundColors = {"#03adfc",
+                                     "#0356fc",
+                                     "#5a03fc",
+                                     "#9803fc",
+                                    "#fc0303",
+                                    "#fc6f03",
+                                    "#db6400",
+                                    "#f4abc4",
+                                    "#ffa36c",
+                                    "#7d0633",
+                                    "#3b6978",
+                                    "#a0ffe6",
+                                    "#03fc90"
+                                };
 
     @Autowired
     private UserRepo repo;
@@ -27,20 +41,6 @@ public class UserService{
     }
 
     public String createUser(User newUser){
-        String[] backgroundColors = {"#03adfc",
-                                     "#0356fc",
-                                     "#5a03fc",
-                                     "#9803fc",
-                                    "#fc0303",
-                                    "#fc6f03",
-                                    "#db6400",
-                                    "#f4abc4",
-                                    "#ffa36c",
-                                    "#7d0633",
-                                    "#3b6978",
-                                    "#a0ffe6",
-                                    "##03fc90"
-                                };
         Random rand = new Random();
         int upperbound = backgroundColors.length;
         int randomIndex = rand.nextInt(upperbound);
@@ -133,4 +133,15 @@ public class UserService{
 
         return false;
     }
+
+    public boolean changeColor(String userId, String colorId){
+        User user = repo.findById(userId).orElse(null);
+        if(user != null){
+            user.setDisplayPictureColor(colorId);
+            repo.save(user);
+            return true;
+        }
+        return false;
+    }
+
 }
