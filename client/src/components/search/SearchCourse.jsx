@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {getAllDepartments} from '../../store/actions/departmentActions';
 import {getCoursesInDepartment} from '../../store/actions/courseActions';
 import './css/SearchCourse.css';
-import logo from '../../images/logo.png';
 
 class SearchCourse extends Component{
     constructor(){
@@ -23,7 +22,14 @@ class SearchCourse extends Component{
     }
 
     async handleChange(e){
-        const courses = await getCoursesInDepartment(e.target.value);
+        const {value} = e.target;
+
+        if(value === ''){
+            this.setState({courses: []});
+            return;
+        }
+
+        const courses = await getCoursesInDepartment(value);
         this.setState({courses});
     }
 
@@ -36,7 +42,14 @@ class SearchCourse extends Component{
 
         return(
             <div className='search-course-container'>
-                <h1 className='brand'>📚 Rate My Courses</h1>
+                <h1 className='brand'>
+                    <span role='img' aria-label='books-icon'>
+                        📚
+                    </span> 
+                    
+                    Rate My Courses
+                </h1>
+                
                 <div className='search-course text-white'>
                     <h1 className='select-course'>Select a Department</h1>
                 

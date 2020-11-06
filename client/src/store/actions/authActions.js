@@ -14,12 +14,14 @@ export const login = (data, alert) => {
 
         else{
             response = await axios.get(`http://localhost:8080/api/user/is_admin/${msg}`);
-            const admin = response.data;
+            const isAdmin = response.data;
+
+            const status = (isAdmin) ? 'admin': '';
 
             dispatch({
                 type: USER_AUTHENTICATED, 
                 uid: msg,
-                admin
+                status
             });
         }
     }
@@ -36,12 +38,14 @@ export const signup = (data, alert) => {
         
         else{
             response = await axios.get(`http://localhost:8080/api/user/is_admin/${msg}`);
-            const admin = response.data;
+            const isAdmin = response.data;
+
+            const status = (isAdmin) ? 'admin': '';
 
             dispatch({
                 type: USER_AUTHENTICATED, 
                 uid: msg,
-                admin
+                status
             });
         }
     }

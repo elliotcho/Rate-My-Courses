@@ -17,11 +17,11 @@ class AdminHome extends Component{
     }
 
     render(){
-        if(this.props.uid === null){
+        if(!this.props.uid){
             return <Redirect to ='/'/>
         }
 
-        if(this.props.admin){
+        if(!this.props.status){
             return <Redirect to ='/'/>
         }
 
@@ -70,7 +70,7 @@ class AdminHome extends Component{
 const mapStateToProps = (state) => {
     return{
         uid: state.auth.uid,
-        admin: state.auth.admin
+        status: state.auth.status
     }
 }
 
