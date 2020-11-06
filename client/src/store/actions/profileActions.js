@@ -53,4 +53,11 @@ export const changePassword = async (uid, newPassword, currPassword) => {
     const response = await axios.post('http://localhost:8080/api/user/change_password', JSON.stringify(data), config);
     const isSuccessful = response.data;
     return isSuccessful;
+} 
+
+export const changeUserColor = async (uid, newColorId) => {
+    const data = {userId: uid, newColorId};
+    const reponse = await axios.post('http://localhost:8080/api/user/color', JSON.stringify(data), config);
+    const isChanged = reponse.data;
+    return isChanged;
 }

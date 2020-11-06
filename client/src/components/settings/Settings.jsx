@@ -5,6 +5,7 @@ import UsernameForm from './UsernameForm';
 import PasswordForm from './PasswordForm';
 import {withAlert} from 'react-alert';
 import './css/Settings.css';
+import ChangeColor from './ChangeColor';
 
 class Settings extends Component {
     render() {
@@ -19,6 +20,7 @@ class Settings extends Component {
                 <h1>Settings</h1>
                 <PasswordForm uid = {uid} alert={alert}/>
                 <UsernameForm uid={uid} alert={alert}/>
+                <ChangeColor uid={uid} alert={alert}/>
             </div>
         )
     } 

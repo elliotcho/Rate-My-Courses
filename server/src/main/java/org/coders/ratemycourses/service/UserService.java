@@ -17,11 +17,8 @@ public class UserService{
                                      "#5a03fc",
                                      "#9803fc",
                                     "#fc0303",
-                                    "#fc6f03",
                                     "#db6400",
-                                    "#f4abc4",
                                     "#ffa36c",
-                                    "#7d0633",
                                     "#3b6978",
                                     "#a0ffe6",
                                     "#03fc90"
