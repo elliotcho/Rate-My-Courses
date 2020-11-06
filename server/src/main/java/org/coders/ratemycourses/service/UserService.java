@@ -11,10 +11,11 @@ import java.util.Random;
 
 @Service
 public class UserService{
-    private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
     @Autowired
     private UserRepo repo;
+    private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+    String[] backgroundColors = {"#03adfc","#5a03fc","#9803fc","#fc0303","#fc6f03","#db6400","#f4abc4","#ffa36c","#7d0633","#3b6978","#a0ffe6","#03fc90"};
 
     public List<User> getAllUsers(){
         List<User> result = repo.findAll();
@@ -27,23 +28,6 @@ public class UserService{
     }
 
     public String createUser(User newUser){
-        String[] backgroundColors = {"#03adfc",
-                                     "#0356fc",
-                                     "#5a03fc",
-                                     "#9803fc",
-                                    "#fc0303",
-                                    "#fc6f03",
-                                    "#db6400",
-                                    "#f4abc4",
-                                    "#ffa36c",
-                                    "#7d0633",
-                                    "#3b6978",
-                                    "#a0ffe6",
-                                    "##03fc90"
-                                };
-        Random rand = new Random();
-        int upperbound = backgroundColors.length;
-        int randomIndex = rand.nextInt(upperbound);
         if(!repo.findByEmail(newUser.getEmail()).isEmpty()){
             return "Email is already registered";
         }
@@ -52,8 +36,14 @@ public class UserService{
             return "Username is already registered";
         }
 
+        Random rand = new Random();
+        int upperbound = backgroundColors.length;
+        int randomIndex = rand.nextInt(upperbound);
+
+        //set hashed password/display picture color
         newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
         newUser.setDisplayPictureColor(backgroundColors[randomIndex]);
+
         return repo.save(newUser).getId();
     }
 
