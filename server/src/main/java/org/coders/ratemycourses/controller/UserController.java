@@ -71,4 +71,12 @@ public class UserController{
 
         return userService.changeUserPassword(userId, currPassword, newPassword);
     }
+
+    @PostMapping("/color")
+    public boolean changeUserColor(@RequestBody String data){
+        JSONObject obj = new JSONObject(data);
+        String userId = (String) obj.get("userId");
+        String colorId = (String) obj.get("colorId");
+        return userService.changeColor(userId, colorId);
+    }
 }

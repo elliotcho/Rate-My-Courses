@@ -123,4 +123,15 @@ public class UserService{
 
         return false;
     }
+
+    public boolean changeColor(String userId, String colorId){
+        User user = repo.findById(userId).orElse(null);
+        if(user != null){
+            user.setDisplayPictureColor(colorId);
+            repo.save(user);
+            return true;
+        }
+        return false;
+    }
+
 }
