@@ -12,12 +12,23 @@ import java.util.Random;
 
 @Service
 public class UserService{
+
+    private String[] backgroundColors = {"#03adfc",
+                                     "#0356fc",
+                                     "#5a03fc",
+                                     "#9803fc",
+                                    "#fc0303",
+                                    "#db6400",
+                                    "#ffa36c",
+                                    "#3b6978",
+                                    "#a0ffe6",
+                                    "#03fc90"
+                                };
+
     @Autowired
     private UserRepo repo;
     private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
-    String[] backgroundColors = {"#03adfc","#5a03fc","#9803fc","#fc0303","#fc6f03","#db6400","#f4abc4","#ffa36c","#7d0633","#3b6978","#a0ffe6","#03fc90"};
-
+  
     public List<User> getAllUsers(){
         List<User> result = repo.findAll();
 
