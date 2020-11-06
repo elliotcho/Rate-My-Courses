@@ -32,4 +32,6 @@ public class User{
     
     private boolean admin = false;
     private boolean banned = false;
+
+    private String displayPictureColor;
 }

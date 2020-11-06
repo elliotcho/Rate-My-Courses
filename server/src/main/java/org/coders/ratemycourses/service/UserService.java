@@ -7,6 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class UserService{
@@ -26,6 +27,23 @@ public class UserService{
     }
 
     public String createUser(User newUser){
+        String[] backgroundColors = {"#03adfc",
+                                     "#0356fc",
+                                     "#5a03fc",
+                                     "#9803fc",
+                                    "#fc0303",
+                                    "#fc6f03",
+                                    "#db6400",
+                                    "#f4abc4",
+                                    "#ffa36c",
+                                    "#7d0633",
+                                    "#3b6978",
+                                    "#a0ffe6",
+                                    "##03fc90"
+                                };
+        Random rand = new Random();
+        int upperbound = backgroundColors.length;
+        int randomIndex = rand.nextInt(upperbound);
         if(!repo.findByEmail(newUser.getEmail()).isEmpty()){
             return "Email is already registered";
         }
@@ -35,6 +53,7 @@ public class UserService{
         }
 
         newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
+        newUser.setDisplayPictureColor(backgroundColors[randomIndex]);
         return repo.save(newUser).getId();
     }
 
