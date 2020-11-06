@@ -12,11 +12,19 @@ class Signup extends Component{
             username: '',
             email: '',
             password: '',
-            confirmPassword: ''
+            confirmPassword: '',
+            adminCode: '',
+            showAdmin: false
         };
 
+        this.toggleAdmin = this.toggleAdmin.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    toggleAdmin(){
+        const {showAdmin} = this.state;
+        this.setState({showAdmin: !showAdmin});
     }
 
     handleChange(e){
@@ -45,7 +53,7 @@ class Signup extends Component{
     }
 
     render(){
-        const {username, email, password, confirmPassword} = this.state;
+        const {username, email, password, confirmPassword, adminCode, showAdmin} = this.state;
 
         return(
             <div className='sign-up'>
@@ -91,10 +99,26 @@ class Signup extends Component{
                         onChange={this.handleChange}
                         required
                     />
+
+                   {showAdmin? 
+                       (<div className='d-inline-block' style={{width: '100%'}}>
+                            <label htmlFor='adminCode'>Admin Code</label>
+                            <input 
+                                id='adminCode'
+                                type='text'
+                                value={adminCode}
+                                onChange={this.handleChange}
+                            />
+                       </div>) : null
+                   }
                         
                     <button className="btn btn-outline-success btn-block">
                         Sign Up
                     </button>
+
+                    <p className='mt-3 text-center admin-link' onClick={this.toggleAdmin}>
+                        {showAdmin? 'Sign up as user?' : 'Sign up as admin?'}
+                    </p>
                 </form>
             </div>
         )

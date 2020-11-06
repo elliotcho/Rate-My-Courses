@@ -38,3 +38,11 @@
     outline: none;
     box-shadow: none;
 }
+
+.sign-up .admin-link{
+    cursor: pointer;
+}
+
+.sign-up .admin-link:hover{
+    text-decoration: underline;
+}

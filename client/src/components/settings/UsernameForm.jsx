@@ -26,7 +26,7 @@ class UsernameForm extends Component{
         if(msg === 'Failed'){
             alert.error("Username already exists");
         } else if(msg === 'Mismatch'){
-            alert.error("Current username must match!");
+            alert.error("Current username is incorrect!");
         } else{
             alert.success("Username changed successfully");
 
