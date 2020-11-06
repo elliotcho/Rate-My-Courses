@@ -47,7 +47,7 @@ public class UserService{
 
         User newUser = new User();
 
-        newUser.setPassword(username);
+        newUser.setUsername(username);
         newUser.setEmail(email);
         newUser.setDateCreated((String) obj.getString("dateCreated"));
         newUser.setPassword(passwordEncoder.encode((String) obj.get("password")));

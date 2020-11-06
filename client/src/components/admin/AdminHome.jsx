@@ -21,6 +21,10 @@ class AdminHome extends Component{
             return <Redirect to ='/'/>
         }
 
+        if(this.props.admin){
+            return <Redirect to ='/'/>
+        }
+
         const {type} = this.props.match.params;
    
         const defaultStyle = 'btn btn-lg btn-secondary'; 
