@@ -78,9 +78,11 @@ class Profile extends Component {
             return <Redirect to='/'/>
         }
 
+        const proflieBg = user? {background: user.displayPictureColor} : {background: 'white'};
+
         return (
             <div className="profile-pg container-fluid">
-                <section className="user-profile">
+                <section className="user-profile" style={proflieBg}>
                     <i className="icon fas fa-user-graduate fa-3x m-2"></i>
                     
                     {/* Username */}
