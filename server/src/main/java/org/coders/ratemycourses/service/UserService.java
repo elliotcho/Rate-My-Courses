@@ -1,5 +1,6 @@
 package org.coders.ratemycourses.service;
 
+import org.json.JSONObject;
 import org.coders.ratemycourses.model.User;
 import org.coders.ratemycourses.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import java.util.Random;
 
 @Service
 public class UserService{
-    private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
     private String[] backgroundColors = {"#03adfc",
                                      "#0356fc",
                                      "#5a03fc",
@@ -26,7 +27,8 @@ public class UserService{
 
     @Autowired
     private UserRepo repo;
-
+    private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+  
     public List<User> getAllUsers(){
         List<User> result = repo.findAll();
 
@@ -37,20 +39,35 @@ public class UserService{
         return result;
     }
 
-    public String createUser(User newUser){
-        Random rand = new Random();
-        int upperbound = backgroundColors.length;
-        int randomIndex = rand.nextInt(upperbound);
-        if(!repo.findByEmail(newUser.getEmail()).isEmpty()){
-            return "Email is already registered";
-        }
+    public String createUser(String data){
+        JSONObject obj = new JSONObject(data);
+        
+        String username = (String) obj.get("username");
+        String email = (String) obj.get("email");
+        String adminCode = (String) obj.get("adminCode");
 
-        if(!repo.findByUsername(newUser.getUsername()).isEmpty()){
+        if(!repo.findByEmail(email).isEmpty()){
+            return "Email is already registered";
+        } else if(!repo.findByUsername(username).isEmpty()){
             return "Username is already registered";
         }
 
-        newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
+        Random rand = new Random();
+        int upperbound = backgroundColors.length;
+        int randomIndex = rand.nextInt(upperbound);
+
+        User newUser = new User();
+
+        newUser.setUsername(username);
+        newUser.setEmail(email);
+        newUser.setDateCreated((String) obj.getString("dateCreated"));
+        newUser.setPassword(passwordEncoder.encode((String) obj.get("password")));
         newUser.setDisplayPictureColor(backgroundColors[randomIndex]);
+
+        if(adminCode.equals("abc")){
+            newUser.setAdmin(true);
+        }
+
         return repo.save(newUser).getId();
     }
 
@@ -133,12 +150,23 @@ public class UserService{
 
     public boolean changeColor(String userId, String colorId){
         User user = repo.findById(userId).orElse(null);
+
         if(user != null){
             user.setDisplayPictureColor(colorId);
             repo.save(user);
             return true;
         }
+
         return false;
     }
 
+    public boolean getUserAdminStatus(String id){
+        User user = repo.findById(id).orElse(null);
+
+        if(user == null){
+            return false;
+        }
+
+        return user.getAdmin();
+    }
 }

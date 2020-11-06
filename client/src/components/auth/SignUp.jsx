@@ -34,7 +34,7 @@ class Signup extends Component{
     handleSubmit(e){
         e.preventDefault();
 
-        const {email, username, password, confirmPassword} = this.state;
+        const {email, username, password, confirmPassword, adminCode} = this.state;
         const {dispatch, alert} = this.props;
 
         if(password !== confirmPassword){
@@ -46,7 +46,8 @@ class Signup extends Component{
             email,
             username, 
             password,
-            dateCreated: new Date().toString()
+            dateCreated: new Date().toString(),
+            adminCode
         }
 
         dispatch(signup(data, alert));
@@ -55,14 +56,12 @@ class Signup extends Component{
     render(){
         const {username, email, password, confirmPassword, adminCode, showAdmin} = this.state;
 
+        const formPadding = (showAdmin) ? {padding: '25px'} : {padding: '35px'};
+
         return(
             <div className='sign-up'>
-                <form onSubmit={this.handleSubmit}>
-                    <h1 className='title'>Sign Up</h1>
-
-                    <p className='mb-4'>
-                        Enter your information to create an account
-                    </p>
+                <form onSubmit={this.handleSubmit} style={formPadding}>
+                    <h2 className='mb-4'>Sign Up</h2>
 
                     <label htmlFor='username'>Username <span>*</span></label>
                     <input 
@@ -102,12 +101,13 @@ class Signup extends Component{
 
                    {showAdmin? 
                        (<div className='d-inline-block' style={{width: '100%'}}>
-                            <label htmlFor='adminCode'>Admin Code</label>
+                            <label htmlFor='adminCode'>Admin Code <span>*</span></label>
                             <input 
                                 id='adminCode'
                                 type='text'
                                 value={adminCode}
                                 onChange={this.handleChange}
+                                required
                             />
                        </div>) : null
                    }
@@ -116,7 +116,7 @@ class Signup extends Component{
                         Sign Up
                     </button>
 
-                    <p className='mt-3 text-center admin-link' onClick={this.toggleAdmin}>
+                    <p className='mt-3 text-center' onClick={this.toggleAdmin}>
                         {showAdmin? 'Sign up as user?' : 'Sign up as admin?'}
                     </p>
                 </form>

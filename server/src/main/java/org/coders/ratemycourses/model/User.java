@@ -1,6 +1,7 @@
 package org.coders.ratemycourses.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -9,6 +10,7 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 @Document(collection = "users")
 public class User{
@@ -34,4 +36,12 @@ public class User{
     private boolean banned = false;
 
     private String displayPictureColor;
+
+    public boolean getAdmin(){
+        return this.admin;
+    }
+
+    public void setAdmin(boolean status){
+        this.admin = status;
+    }
 }

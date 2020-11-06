@@ -42,7 +42,7 @@ class Login extends Component{
         return(
             <div className='login'>
                 <form onSubmit={this.handleSubmit}>
-                    <h1 className='title'>Sign In</h1>
+                    <h2>Sign In</h2>
                         
                     <p className='mb-4'>
                         Help students with your honest ratings!

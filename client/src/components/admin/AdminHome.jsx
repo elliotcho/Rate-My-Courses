@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {Redirect} from 'react-router-dom';
+import {connect} from 'react-redux';
 import  CourseTable from './CourseTable'
 import UserTable from './UserTable';
 import DepartmentTable from './DepartmentTable';
@@ -15,6 +17,14 @@ class AdminHome extends Component{
     }
 
     render(){
+        if(this.props.uid === null){
+            return <Redirect to ='/'/>
+        }
+
+        if(this.props.admin){
+            return <Redirect to ='/'/>
+        }
+
         const {type} = this.props.match.params;
    
         const defaultStyle = 'btn btn-lg btn-secondary'; 
@@ -57,4 +67,11 @@ class AdminHome extends Component{
     }
 }
 
-export default AdminHome;
+const mapStateToProps = (state) => {
+    return{
+        uid: state.auth.uid,
+        admin: state.auth.admin
+    }
+}
+
+export default connect(mapStateToProps)(AdminHome);
