@@ -46,7 +46,8 @@ class Signup extends Component{
             email,
             username, 
             password,
-            dateCreated: new Date().toString()
+            dateCreated: new Date().toString(),
+            adminCode
         }
 
         dispatch(signup(data, alert));
@@ -100,7 +101,7 @@ class Signup extends Component{
 
                    {showAdmin? 
                        (<div className='d-inline-block' style={{width: '100%'}}>
-                            <label htmlFor='adminCode'>Admin Code</label>
+                            <label htmlFor='adminCode'>Admin Code <span>*</span></label>
                             <input 
                                 id='adminCode'
                                 type='text'

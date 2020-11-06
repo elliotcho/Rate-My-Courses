@@ -26,8 +26,8 @@ public class UserController{
     }
 
     @PostMapping
-    public String createUser(@RequestBody User newUser){
-        return userService.createUser(newUser);
+    public String createUser(@RequestBody String data){
+        return userService.createUser(data);
     }
 
     @PostMapping("/login")
@@ -52,11 +52,11 @@ public class UserController{
 
     @PostMapping("/change_username")
     public String changeUsername(@RequestBody String data){
-        JSONObject temp = new JSONObject(data);
+        JSONObject obj = new JSONObject(data);
 
-        String userId = (String) temp.get("userId");
-        String newName = (String) temp.get("newUsername");
-        String currUsername = (String) temp.get("currUsername");
+        String userId = (String) obj.get("userId");
+        String newName = (String) obj.get("newUsername");
+        String currUsername = (String) obj.get("currUsername");
         
         return userService.changeName(userId, newName, currUsername);
     }
@@ -78,5 +78,10 @@ public class UserController{
         String userId = (String) obj.get("userId");
         String colorId = (String) obj.get("colorId");
         return userService.changeColor(userId, colorId);
+    }
+
+    @GetMapping("/is_admin/{id}")
+    public boolean getUserAdminStatus(@PathVariable String id){
+        return userService.getUserAdminStatus(id);
     }
 }
