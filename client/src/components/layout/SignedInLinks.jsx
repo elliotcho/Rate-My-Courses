@@ -11,24 +11,38 @@ class SignedInLinks extends Component{
     }
 
     render(){
+        const {status} = this.props;
+
         return(
             <div className = 'ml-auto signed-in-links'>
                 <Nav>
-                    <Nav.Item>
-                        <Link to='/profile'>
-                            <i className="fa fa-user mr-3" title="Profile"></i>
+                    <Nav.Item className='nav-item'>
+                        <Link to='/profile' className='link'>
+                            <i className="fa fa-user" title="Profile"></i>
+                            <span className>Profile</span>
                         </Link>
                     </Nav.Item> 
+
+                    {status?
+                        (<Nav.Item className='nav-item'>
+                            <Link to='/admin' className='link'>
+                                <i className="fas fa-shield-alt" title="Admin"></i>
+                                <span className>Admin</span>
+                            </Link>
+                        </Nav.Item> ) : null
+                    }
                     
-                    <Nav.Item>
-                        <Link to='/settings'>
-                            <i className="fa fa-cog mr-3" title="Settings"></i>
+                    <Nav.Item className='nav-item'>
+                        <Link to='/settings' className='link'>
+                            <i className="fa fa-cog" title="Settings"></i>
+                            <span className>Settings</span>
                         </Link>
                     </Nav.Item>
                     
-                    <Nav.Item>
-                        <Link to='/' onClick={this.signOut}>
+                    <Nav.Item className='nav-item'>
+                        <Link to='/' onClick={this.signOut} className='link'>
                             <i className="fas fa-sign-out-alt" title="Sign Out"></i>
+                            <span>Logout</span>
                         </Link>
                     </Nav.Item>
                 </Nav>

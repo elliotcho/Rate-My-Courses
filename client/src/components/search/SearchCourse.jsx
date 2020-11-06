@@ -8,6 +8,7 @@ class SearchCourse extends Component{
         super();
 
         this.state = {
+            departmentId: '',
             departments: [],
             courses: []
         }
@@ -24,13 +25,18 @@ class SearchCourse extends Component{
     async handleChange(e){
         const {value} = e.target;
 
+        let courses;
+
         if(value === ''){
-            this.setState({courses: []});
-            return;
+            courses = [];
+        } else {
+            courses = await getCoursesInDepartment(value);
         }
 
-        const courses = await getCoursesInDepartment(value);
-        this.setState({courses});
+        this.setState({
+            departmentId: value,
+            courses
+        });
     }
 
     toCourse(courseId){
@@ -38,7 +44,7 @@ class SearchCourse extends Component{
     }
 
     render(){
-        const {departments, courses} = this.state;
+        const {departmentId, departments, courses} = this.state;
 
         return(
             <div className='search-course-container'>
@@ -53,7 +59,7 @@ class SearchCourse extends Component{
                 <div className='search-course text-white'>
                     <h1 className='select-course'>Select a Department</h1>
                 
-                    <select onChange={this.handleChange}>
+                    <select onChange={this.handleChange} value={departmentId}>
                         <option value=''></option>
 
                         {departments.map(department =>
@@ -63,11 +69,18 @@ class SearchCourse extends Component{
                         )}
                     </select>
                     
-                    {courses.map(course => 
-                        <div className='courses'key={course.id} onClick={() => this.toCourse(course.id)}>
-                            {course.departmentCode} {course.number}: {course.name}
-                        </div>
-                    )}
+                    {courses.length > 0? 
+                        courses.map(course => 
+                            <div className='course' key={course.id} onClick={() => this.toCourse(course.id)}>
+                                {course.departmentCode} {course.number}: {course.name}
+                            </div>
+                        
+                        ) : departmentId? 
+
+                        (<p className = 'course'>
+                            No courses available for this department :(
+                        </p>) : null
+                    }
                 </div>
             </div>
         )

@@ -8,10 +8,10 @@
 
 /* Title / Brand */
 .search-course-container .brand {
-    text-align: center;
-    margin: 34px auto 77px;
-    font-family: 'Lobster', cursive;
-    font-size: 70px;
+   text-align: center;
+   margin: 34px auto 77px;
+   font-family: 'Lobster', cursive;
+   font-size: 70px;
    color: #210D26;
 }
 
@@ -29,6 +29,7 @@
     font-size: 3rem;
     color: #393e46;
 }
+
 .search-course select{
     margin: 30px;
     width: 70%;
@@ -40,7 +41,7 @@
 }
 
 /* Available Courses */
-.search-course .courses {
+.search-course .course {
     font-family: 'Lato', sans-serif;
     font-size: 20px;
     font-weight: bolder;

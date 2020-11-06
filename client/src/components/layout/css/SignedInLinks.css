@@ -1,4 +1,40 @@
+.signed-in-links .nav-item{
+    margin-top: 15px;
+    padding: 10px 5px;
+    cursor: pointer;
+}
+
+.signed-in-links .nav-item:hover{
+   
+}
+
 .signed-in-links i{
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: white;
+}
+
+.signed-in-links span{
+    font-size: 1.5rem;
+    margin: auto 20px;
+    color: white;
+}
+
+@media screen and (min-width: 992px){
+    .signed-in-links span{
+        display: none;
+    }
+
+    .signed-in-links i{
+        font-size: 2rem;
+        margin-right: 15px;
+    }
+
+    .signed-in-links .fa-sign-out-alt{
+        margin-right: 0;
+    }
+
+    .signed-in-links .nav-item:hover{
+        background: revert;
+        cursor: revert;
+    }
 }

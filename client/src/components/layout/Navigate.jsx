@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import { Navbar, Form} from 'react-bootstrap';
+import { Navbar} from 'react-bootstrap';
 import logo from "../../images/logo.png";
 import SignedInLinks from './SignedInLinks';
 import SignedOutLinks from './SignedOutLinks';
@@ -8,11 +8,11 @@ import './css/Navigate.css';
 
 class Navigate extends Component{    
     render(){
-        const {uid} = this.props;
+        const {uid, status} = this.props;
 
         return(
             <div>
-                <Navbar expand="lg" className="nav-bar">
+                <Navbar expand="lg" className="navbar">
                     <Navbar.Brand href="/">
                         <img
                             src= {logo}
@@ -23,14 +23,12 @@ class Navigate extends Component{
                         />
                     </Navbar.Brand>
 
-                    <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+                    <Navbar.Toggle className='toggle' aria-controls="basic-navbar-nav"/>
                     
-                    <Form className="form-center"/>
-
                     <Navbar.Collapse id="basic-navbar-nav">
 
                         <div className="ml-auto">
-                            {uid? <SignedInLinks/> : <SignedOutLinks/>}
+                            {uid? <SignedInLinks status={status}/> : <SignedOutLinks/>}
                         </div>
                         
                     </Navbar.Collapse>
@@ -40,6 +38,11 @@ class Navigate extends Component{
     }
 }
 
-const mapStateToProps = (state) => ({uid: state.auth.uid});
+const mapStateToProps = (state) => {
+    return{
+        uid: state.auth.uid,
+        status: state.auth.status
+    }
+};
 
 export default connect(mapStateToProps)(Navigate);

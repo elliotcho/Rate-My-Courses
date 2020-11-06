@@ -1,4 +1,25 @@
-.signIn:hover{
+.signed-out-links .nav-item{
+    padding: 20px 5px;
+    margin-top: 14px;
     cursor: pointer;
-    color: white !important;
+}
+
+.signed-out-links .nav-item:hover{
+    color: white;
+}
+
+.signed-out-links .link{
+    font-size: 1.2rem;
+}
+
+@media screen and (min-width: 992px){
+    .signed-out-links .nav-item{
+        padding: 10px 5px;
+        margin: revert;
+        border: revert;
+    }
+
+    .signed-out-links .link:hover{
+        color: white;
+    }
 }
