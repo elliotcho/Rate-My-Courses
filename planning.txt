@@ -1,12 +1,11 @@
 Post
     -Delete button into 3 dots
-    -Check responsiveness
     -Edit button
     -See more if input is too long
 
 Admin 
     -Ban users in intervals
-    
+
 Misc.
     -Check scroll for all pages (if needed fix)
     -Delete charang9

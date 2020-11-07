@@ -1,0 +1,56 @@
+.post-settings{
+    position: relative;
+    text-align: right;
+    right: 20px;
+    top: 10px;
+    font-family: 'Indie Flower', cursive;
+}
+
+.post-settings .fa-ellipsis-h{
+    color: black;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.post-settings .dropdown-content{
+    display: none;
+    position: absolute;
+    right: -7px;
+    text-align: center;
+    background: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0 0 5px black;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.post-settings .option{
+    position: relative;
+    padding: 10px 20px;
+    font-size: 1.3rem;
+}
+
+.post-settings .option span{
+    position: relative;
+    left: 10px;
+}
+
+.post-settings .option .fa-trash-alt,
+.post-settings .option .fa-edit{
+    position: absolute; 
+    left: 10px
+}
+
+.post-settings .option:hover{
+    background: darkblue;
+    color: white;
+}
+
+.post-settings:hover .dropdown-content{
+    display: block;
+}
+
+.post-settings:hover .fa-ellipsis-h{
+    color: #990a0a;
+}

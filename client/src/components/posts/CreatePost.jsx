@@ -59,6 +59,8 @@ class CreatePost extends Component{
             const post = await createPost(data);
             addPost(post);
             
+
+            this.setState({year: '', prof: '', reason: '', stars: ''});
         }
 
         //close create post modal

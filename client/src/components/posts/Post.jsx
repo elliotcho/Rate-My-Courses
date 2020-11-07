@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {getUserById} from '../../store/actions/profileActions';
 import {getCourseById} from '../../store/actions/courseActions';
 import {deletePostById, dislikePost, likePost, getLikeStatus} from '../../store/actions/postActions';
+import PostSettings from './PostSettings';
 import moment from 'moment';
 import { confirmAlert } from 'react-confirm-alert';
 import { withAlert } from 'react-alert';
@@ -187,11 +188,11 @@ class Post extends Component{
                 
                     <div className="col-9">
                         {uid === creatorId? 
-                            (<div className='text-right pt-3 pr-5'>
-                               <button className='btn btn-danger' onClick={this.deletePost}>
-                                   Delete
-                               </button>
-                           </div>) :
+                            (<PostSettings
+                                uid = {uid}
+                                postId = {post? post.id : null}
+                                deletePost = {this.deletePost}
+                            />) :
                            (<div style={{height: '2rem'}}/>)
                         }
 
