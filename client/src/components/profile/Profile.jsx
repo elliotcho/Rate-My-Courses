@@ -78,7 +78,9 @@ class Profile extends Component {
             return <Redirect to='/'/>
         }
 
-        const proflieBg = user? {background: user.displayPictureColor} : {background: 'white'};
+        const proflieBg = user && user.displayPictureColor? 
+                        ({background: user.displayPictureColor}) : 
+                        ({background: 'white'});
 
         return (
             <div className="profile-pg container-fluid">

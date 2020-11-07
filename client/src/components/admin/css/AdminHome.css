@@ -50,14 +50,22 @@
     margin: 0 auto;
 }
 
-.admin tr td{
-    text-align: center;
-    padding: 15px;
-    font-family: 'Tahoma';
-    background: #f4f9f4;
+.admin .btn-group .btn{
+    border: none;
+}
+
+.admin .selected-btn{
+    background: #666;
 }
 
 .admin button:focus{
     outline: none;
     box-shadow: none;
+}
+
+.admin tr td{
+    text-align: center;
+    padding: 15px;
+    font-family: 'Tahoma';
+    background: #f4f9f4;
 }

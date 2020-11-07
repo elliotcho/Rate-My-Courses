@@ -28,7 +28,7 @@ class AdminHome extends Component{
         const {type} = this.props.match.params;
    
         const defaultStyle = 'btn btn-lg btn-secondary'; 
-        const activeStyle = `${defaultStyle} active`;
+        const activeStyle = `${defaultStyle} selected-btn`;
 
         const departmentBtnStyle = (type === 'department') ? activeStyle: defaultStyle;
         const courseBtnStyle = (type === 'course') ? activeStyle: defaultStyle;

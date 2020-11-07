@@ -84,15 +84,17 @@ class PostList extends Component{
                     addPost = {this.addPost}
                 />
 
-                {posts.map(post => 
-                    <Post
-                        key={post.id}
-                        uid={uid}
-                        post={post}
-                        creatorId={post.userId}
-                        removePostFromList = {this.removePostFromList}
-                    />    
-                )}
+                {posts.length > 0?
+                    posts.map(post => 
+                        <Post
+                            key={post.id}
+                            uid={uid}
+                            post={post}
+                            creatorId={post.userId}
+                            removePostFromList = {this.removePostFromList}
+                        />    
+                    ) : <h2>No reviews available for this course</h2>
+                }
             </div>
         )
     }
