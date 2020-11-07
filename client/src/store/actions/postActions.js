@@ -65,11 +65,8 @@ export const deleteUserPosts = async (uid) => {
     return isSuccessful;
 }
 
-export const editPost = async (postId, newPost) => {
-    const data = {
-        postId,
-        reason: newPost
-    }
+export const updatePost = async (postId, newReason) => {
+    const data = {postId, reason: newReason};
     const response = await axios.post("http://localhost:8080/api/post/edit_post", JSON.stringify(data), config);
     const isSuccessful = response.data;
     return isSuccessful;

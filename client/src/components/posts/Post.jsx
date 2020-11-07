@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
 import {getUserById} from '../../store/actions/profileActions';
 import {getCourseById} from '../../store/actions/courseActions';
-import {deletePostById, dislikePost, likePost, getLikeStatus} from '../../store/actions/postActions';
+import {deletePostById, dislikePost, likePost, getLikeStatus, updatePost} from '../../store/actions/postActions';
 import PostSettings from './PostSettings';
 import EditModal from './EditModal';
 import moment from 'moment';
@@ -28,6 +28,7 @@ class Post extends Component{
         this.handleLike = this.handleLike.bind(this);
         this.handleDislike = this.handleDislike.bind(this);
         this.toPostDetails = this.toPostDetails.bind(this);
+        this.editPost = this.editPost.bind(this);
     }
 
     async componentDidMount(){
@@ -169,9 +170,14 @@ class Post extends Component{
         this.props.history.push(`/post/${post.id}`);
     }
 
-    toEditPost(newReason){
-        const{postId} = this.props;
-        const{newReason} = newReason;
+    async editPost(newReason){
+        const{post} = this.props;
+
+        const updated = await updatePost(post.id, newReason);
+
+        if(updated){
+            window.location.reload();
+        }
     }
 
     render(){
@@ -272,8 +278,8 @@ class Post extends Component{
                 />
 
                 <EditModal 
-                    
-                    reason={this.toEditPost(newReason)}
+                    reason={post.reason}
+                    editPost = {this.editPost}
                 />
             </section>
         )

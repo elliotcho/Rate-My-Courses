@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import './css/EditModal.css';
-import {editPost} from '../../../src/store/actions/postActions';
 
 class EditModal extends Component{
     constructor(){
@@ -14,8 +13,7 @@ class EditModal extends Component{
 
         this.handleChange = this.handleChange.bind(this);
         this.closeModal = this.closeModal.bind(this);
-        this.handleClick = this.handleClick.bind(this);
-        this.props.reason = this.props.reason.bind(this);
+        this.saveChanges = this.saveChanges.bind(this);
     }
 
     componentDidMount(){
@@ -50,20 +48,14 @@ class EditModal extends Component{
         }
     }
 
-    async handleClick(e){
-        e.preventDefault(e);
-
+    async saveChanges(){
         const{newReason} = this.state;
-        const{postid} = this.props.reason.postId;
-        const confirmSave = async () => {
-            const success = await editPost(postId, newReason);
-            if(success){
-                alert.success("Successfully updated post!");
-            } else{
-                alert.error("Error updating post!");
-            }
+        const {editPost} = this.props;
 
+        const confirmSave = async () => {
+            await editPost(newReason);
         }
+
         confirmAlert({
             title: 'Rate My Courses',
             message: 'Are you sure you want to save your changes? Previous post will be overwritten!',
@@ -107,7 +99,7 @@ class EditModal extends Component{
                                 Close
                             </button>
                           
-                            <button className='btn btn-success' onClick={this.handleClick}>
+                            <button className='btn btn-success' onClick={this.saveChanges}>
                                 Save
                             </button>
                         </div>
