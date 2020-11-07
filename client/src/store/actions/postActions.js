@@ -99,3 +99,12 @@ export const getPostById = (postId) => {
         })
     }
 }
+
+export const reloadPosts = (posts) => {
+    return (dispatch) => {
+        dispatch({
+            types: LOAD_POSTS,
+            posts
+        });
+    }
+}

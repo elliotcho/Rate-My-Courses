@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import * as profileActions from '../../store/actions/profileActions';
-import {getUserPosts} from '../../store/actions/postActions';
+import {getUserPosts, reloadPosts} from '../../store/actions/postActions';
 import Post from '../posts/Post';
 import moment from 'moment';
 import "./css/Profile.css";
@@ -52,7 +52,8 @@ class Profile extends Component {
     }
 
     async removePostFromList(id){
-        let {posts, numPosts} = this.state;
+        let {numPosts} = this.state;
+        const {dispatch, posts} = this.props;
 
         for(let i=0;i<posts.length;i++){
             if(posts[i].id === id){
@@ -65,9 +66,9 @@ class Profile extends Component {
        await this.updateLikesRatio();
        await this.updateAvgRating();
 
-        this.setState({
-            numPosts
-        });
+       dispatch(reloadPosts(posts));
+
+       this.setState({numPosts});
     }
 
     render() {

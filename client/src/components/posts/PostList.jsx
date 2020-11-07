@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {getPostsByCourseId} from '../../store/actions/postActions';
+import {getPostsByCourseId, reloadPosts} from '../../store/actions/postActions';
 import {getCourseById} from '../../store/actions/courseActions';
 import Post from './Post.jsx';
 import CreatePost from './CreatePost.jsx';
@@ -20,9 +20,10 @@ class PostList extends Component{
 
     async componentDidMount(){
         const {courseId} = this.props.match.params;
+        const {dispatch} = this.props;
 
         //load posts into global state
-        this.props.dispatch(getPostsByCourseId(courseId));
+        dispatch(getPostsByCourseId(courseId));
 
         const course = await getCourseById(courseId);
         this.setState({course});
@@ -37,7 +38,7 @@ class PostList extends Component{
     }
 
     removePostFromList(id){
-        const {posts} = this.state;
+        const {dispatch, posts} = this.props;
 
         for(let i=0;i<posts.length;i++){
             if(posts[i].id === id){
@@ -46,7 +47,7 @@ class PostList extends Component{
             }
         }
 
-        this.setState({posts});
+        dispatch(reloadPosts(posts));
     }
 
     render(){

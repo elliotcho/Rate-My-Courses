@@ -16,4 +16,4 @@ const postReducer = (state = initState, action) => {
     }
 }
 
-export default authReducer;
+export default postReducer;

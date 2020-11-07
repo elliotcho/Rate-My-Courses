@@ -7,20 +7,14 @@ import './css/PostDetails.css';
 class PostDetails extends Component{
     constructor(){
         super();
-
-        this.state = {
-            post: null
-        }
-
         this.toPostList = this.toPostList.bind(this);
     }
 
     async componentDidMount(){
         const {postId} = this.props.match.params;
-
-        const post = await getPostById(postId);
-
-        this.setState({post});
+        const {dispatch} = this.props;
+        
+        dispatch(getPostById(postId));
     }
 
     toPostList(){
@@ -30,24 +24,25 @@ class PostDetails extends Component{
 
     render(){
         const {uid} = this.props;
-        const {post} = this.state;
+        const {posts} = this.props;;
 
         return(
             <div className ='post-details'>
-               {post? 
+               {posts.map(post => 
                      (<Post
                          uid={uid}
                          post={post}
                          creatorId={post.userId}
                          removePostFromList = {this.toPostList}
                          seeMore = {true}
-                    />) : null
-                }
+                    />) 
+               )}
             </div>
         )
     }
 }
 
 const mapStateToProps = (state) => ({uid: state.auth.uid});
+const mapDispatchToProps = (dispatch) => ({dispatch});
 
-export default connect(mapStateToProps)(PostDetails);
+export default connect(mapStateToProps, mapDispatchToProps)(PostDetails);
