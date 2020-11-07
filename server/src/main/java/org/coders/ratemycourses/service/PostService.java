@@ -27,6 +27,10 @@ public class PostService{
         return repo.save(newPost);
     }
 
+    public Post getPostByID(String id){
+        return repo.findById(id).orElse(null);
+    }
+
     public void deletePost(String id){
         try {
             repo.deleteById(id);
@@ -185,5 +189,5 @@ public class PostService{
         }
         return false;
     }
-    
+
 }
