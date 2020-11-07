@@ -17,6 +17,7 @@
 }
 
 .post-list header button{
+    font-family: 'Syne Mono', monospace;
     width: 3rem;
     height: 3rem;
     font-size: 2rem;
@@ -31,7 +32,7 @@
 }
 
 .post-list header button:hover{
-   box-shadow: 0 0 20px black;
+    background: orangered;
 }
 
 .post-list button:focus{

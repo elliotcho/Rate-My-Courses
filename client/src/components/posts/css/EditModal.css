@@ -3,9 +3,37 @@
     background: rgba(0,0,0,0.5);
 }
 
+.edit-modal .modal-content {
+    border-top-left-radius: 300px;
+    border-top-right-radius: 300px;
+}
+
+.edit-modal .modal-header{
+    background-color: #ec9b3b;
+    font-family: 'Syne Mono', monospace;
+    font-size: 30px;
+}
+
+.edit-modal .close{
+    position: relative;
+    font-family: 'Syne Mono', monospace;
+    top: 3px;
+    right: 5px;
+}
+
+.edit-modal .modal-body, .edit-modal .modal-footer{
+    background-color: #ece8d9;
+}, 
+
+.edit-modal .modal-footer button{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
 .edit-modal textarea{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     resize: none;
     overflow: none;
+    padding: 5px;
     max-height: 400px;
     width: 100%;
 }

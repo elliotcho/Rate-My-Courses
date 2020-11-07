@@ -34,14 +34,20 @@ class EditModal extends Component{
             document.getElementById('close-edit').click();
         }
 
-        confirmAlert({
-            title: 'Rate My Courses',
-            message: 'Are you sure you want to exit? Any changes you have made will not be saved?',
-            buttons: [
-                {label: 'Yes', onClick: confirmDelete},
-                {label: 'No', onClick: () => {return;}}
-            ]
-        }); 
+        if(this.props.reason === this.state.newReason){
+            confirmDelete();
+        }
+
+        else{    
+            confirmAlert({
+                title: 'Rate My Courses',
+                message: 'Are you sure you want to exit? Any changes you have made will not be saved!',
+                buttons: [
+                    {label: 'Yes', onClick: confirmDelete},
+                    {label: 'No', onClick: () => {return;}}
+                ]
+            }); 
+        }
     }
 
     async handleClick(e){
@@ -76,7 +82,7 @@ class EditModal extends Component{
                 <div className ='modal-dialog modal-dialog-centered'>
                     <div className ='modal-content'>
                         <div className ='modal-header'>
-                            <h5>Edit your review</h5>
+                            <h3>Edit your review</h3>
                        
                             <button className='close' onClick={this.closeModal}>
                                 <span>&times;</span>
@@ -97,12 +103,13 @@ class EditModal extends Component{
                         </div>
 
                         <div className='modal-footer'>
-                            <button className='' onClick={this.closeModal}>
+                            <button className='btn btn-secondary' onClick={this.closeModal}>
                                 Close
                             </button>
-
-                            <button onClick={this.handleClick}>
-                                Save</button>
+                          
+                            <button className='btn btn-success' onClick={this.handleClick}>
+                                Save
+                            </button>
                         </div>
                     </div>
                 </div>

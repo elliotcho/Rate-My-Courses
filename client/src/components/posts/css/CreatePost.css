@@ -41,6 +41,7 @@
 }
 
 .post-modal textarea{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     resize: none;
     overflow: none;
     max-height: 200px;
