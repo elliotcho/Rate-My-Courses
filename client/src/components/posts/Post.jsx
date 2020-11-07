@@ -27,6 +27,13 @@ class Post extends Component{
         this.handleDislike = this.handleDislike.bind(this);
     }
 
+    async handleClick(){
+        const{username, course, userLiked, userDisliked, likes, dislikes} = this.state;
+        
+    }
+
+    
+
     async componentDidMount(){
         const {uid, creatorId, post} = this.props;
 
@@ -197,7 +204,12 @@ class Post extends Component{
                         }
 
                         <p className="review">
-                            {post.reason} 
+                            {post.reason}
+                            {(post.reason.length < 300)? post.reason: <div>
+                                <span onClick={this.handleClick}>see more...</span>
+                            </div>
+                            }
+                            
                         </p>
                         <p className="username">Reviewed By: {username}</p>
                         <p className="date-posted">{moment(new Date(post.dateCreated)).calendar()}</p>
