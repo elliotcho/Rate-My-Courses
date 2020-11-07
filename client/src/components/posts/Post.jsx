@@ -201,9 +201,9 @@ class Post extends Component{
                         }
 
                         <p className="review">
-                            {post.reason.length > 420 && !seeMore? 
+                            {post.reason.length > 425 && !seeMore? 
                                 (<div>
-                                    {post.reason.substring(0, 417) + '... '}
+                                    {post.reason.substring(0, 422) + '... '}
 
                                     <span className='see-more' onClick={this.toPostDetails}>
                                         See More
@@ -266,7 +266,9 @@ class Post extends Component{
                     style = {{visibility: 'hidden'}}
                 />
 
-                <EditModal reason={post.reason}/>
+                <EditModal 
+                    reason={post.reason}
+                />
             </section>
         )
     }

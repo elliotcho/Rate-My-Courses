@@ -7,7 +7,7 @@
 }
 
 .post-settings .fa-ellipsis-h{
-    color: black;
+    color: gray;
     font-size: 1.5rem;
     font-weight: bold;
     cursor: pointer;
@@ -52,5 +52,5 @@
 }
 
 .post-settings:hover .fa-ellipsis-h{
-    color: #990a0a;
+    color: black;
 }

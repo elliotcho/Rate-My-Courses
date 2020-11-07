@@ -1,5 +1,11 @@
+.edit-modal{
+    z-index: 1;
+    background: rgba(0,0,0,0.5);
+}
+
 .edit-modal textarea{
     resize: none;
     overflow: none;
-    max-height: 200px;
+    max-height: 400px;
+    width: 100%;
 }

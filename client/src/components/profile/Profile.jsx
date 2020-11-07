@@ -130,6 +130,7 @@ class Profile extends Component {
                             creatorId={post.userId}
                             removePostFromList={this.removePostFromList}
                             updateLikesRatio = {this.updateLikesRatio}
+                            seeMore = {false}
                         />    
                     )}
                 </section>     

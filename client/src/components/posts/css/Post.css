@@ -46,6 +46,7 @@
     line-height: 1.5;
     color: #000000;
     text-align: justify;
+    overflow-wrap: break-word;
 }
 
 .post .date-posted, .post .username {
@@ -105,7 +106,7 @@
 
 .post .see-more{
     font-family: 'Nunito Sans';
-    color: #0808af;
+    color: #0808d1;
     cursor: pointer;
 }
 
