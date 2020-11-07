@@ -61,3 +61,9 @@ export const changeUserColor = async (uid, color) => {
     const isChanged = reponse.data;
     return isChanged;
 }
+
+export const deleteUser = async (uid) => {
+    const response = await axios.delete(`http://localhost:8080/api/user/delete_user/${uid}`);
+    const isSuccessful = response.data;
+    return isSuccessful;
+}

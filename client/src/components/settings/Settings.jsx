@@ -3,6 +3,7 @@ import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import UsernameForm from './UsernameForm';
 import PasswordForm from './PasswordForm';
+import DeleteUser from './DeleteUser';
 import {withAlert} from 'react-alert';
 import './css/Settings.css';
 import ChangeColor from './ChangeColor';
@@ -21,6 +22,7 @@ class Settings extends Component {
                 <PasswordForm uid = {uid} alert={alert}/>
                 <UsernameForm uid={uid} alert={alert}/>
                 <ChangeColor uid={uid} alert={alert}/>
+                <DeleteUser uid={uid} alert={alert}/>
             </div>
         )
     } 
