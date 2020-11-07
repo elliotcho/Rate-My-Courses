@@ -94,7 +94,7 @@ export const getPostById = (postId) => {
         const post = response.data;
         
         dispatch({
-            types: LOAD_POSTS,
+            type: LOAD_POSTS,
             posts: [post]
         })
     }
@@ -103,7 +103,7 @@ export const getPostById = (postId) => {
 export const reloadPosts = (posts) => {
     return (dispatch) => {
         dispatch({
-            types: LOAD_POSTS,
+            type: LOAD_POSTS,
             posts
         });
     }

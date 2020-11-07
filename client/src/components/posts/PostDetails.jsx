@@ -18,8 +18,11 @@ class PostDetails extends Component{
     }
 
     toPostList(){
-        const {post} = this.state;
-        this.props.history.push(`/posts/${post.courseId}`);
+        const {posts} = this.props;
+
+        if(posts.length > 0){
+            this.props.history.push(`/posts/${posts[0].courseId}`);
+        }
     }
 
     render(){
@@ -28,15 +31,17 @@ class PostDetails extends Component{
 
         return(
             <div className ='post-details'>
-               {posts.map(post => 
-                     (<Post
-                         uid={uid}
-                         post={post}
-                         creatorId={post.userId}
-                         removePostFromList = {this.toPostList}
-                         seeMore = {true}
-                    />) 
-               )}
+               {posts.length > 0?
+                    posts.map(post => 
+                            (<Post
+                                uid={uid}
+                                post={post}
+                                creatorId={post.userId}
+                                removePostFromList = {this.toPostList}
+                                seeMore = {true}
+                            />) 
+                    ): null
+               }
             </div>
         )
     }
