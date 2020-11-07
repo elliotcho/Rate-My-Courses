@@ -171,12 +171,12 @@ class Post extends Component{
     }
 
     async editPost(newReason){
-        const{post} = this.props;
+        const{post, editPostInReducer} = this.props;
 
         const updated = await updatePost(post.id, newReason);
 
         if(updated){
-            window.location.reload();
+            editPostInReducer(post.id, newReason);
         }
     }
 

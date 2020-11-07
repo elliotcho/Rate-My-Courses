@@ -50,10 +50,13 @@ class EditModal extends Component{
 
     async saveChanges(){
         const{newReason} = this.state;
-        const {editPost} = this.props;
-
+     
         const confirmSave = async () => {
+            const {editPost} = this.props;
+
             await editPost(newReason);
+
+            document.getElementById('close-edit').click();
         }
 
         confirmAlert({

@@ -16,6 +16,7 @@ class PostList extends Component{
 
         this.addPost = this.addPost.bind(this);
         this.removePostFromList = this.removePostFromList.bind(this);
+        this.editPostInReducer = this.editPostInReducer.bind(this);
     }
 
     async componentDidMount(){
@@ -43,6 +44,19 @@ class PostList extends Component{
         for(let i=0;i<posts.length;i++){
             if(posts[i].id === id){
                 posts.splice(i, 1);
+                break;
+            }
+        }
+
+        dispatch(reloadPosts(posts));
+    }
+
+    editPostInReducer(postId, newReason){
+        const {dispatch, posts} = this.props;
+
+        for(let i=0;i<posts.length;i++){
+            if(posts[i].id === postId){
+                posts[i].reason = newReason;
                 break;
             }
         }
@@ -90,6 +104,7 @@ class PostList extends Component{
                             post={post}
                             creatorId={post.userId}
                             removePostFromList = {this.removePostFromList}
+                            editPostInReducer = {this.editPostInReducer}
                             seeMore = {false}
                         />    
                     ) : <h2>No reviews available for this course</h2>

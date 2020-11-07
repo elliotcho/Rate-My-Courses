@@ -53,11 +53,14 @@ public class PostService{
 
     public boolean[] likeStatus(String userId, String postId){
         Post post = repo.findById(postId).orElse(null);
-
+        
         boolean[] result = new boolean[2];
-        result[0] = post.getLikes().contains(userId);
-        result[1] = post.getDislikes().contains(userId);
 
+        if(post != null){
+            result[0] = post.getLikes().contains(userId);
+            result[1] = post.getDislikes().contains(userId);
+        }
+        
         return result;
     }
 

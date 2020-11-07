@@ -7,11 +7,8 @@ Admin
 Misc.
     -Check scroll for all pages (if needed fix)
     -input lengths for all pages
-
-    
     -refactor code
 
-    -component to functional (DeleteUser, Settings, SignedInLinks, SignedOutLinks, Navigate)
 
 Final
     -Screenshots of app
