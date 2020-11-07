@@ -64,3 +64,13 @@ export const deleteUserPosts = async (uid) => {
     const isSuccessful = response.data;
     return isSuccessful;
 }
+
+export const editPost = async (postId, newPost) => {
+    const data = {
+        postId,
+        reason: newPost
+    }
+    const response = await axios.post("http://localhost:8080/api/post/edit_post", JSON.stringify(data), config);
+    const isSuccessful = response.data;
+    return isSuccessful;
+}
