@@ -97,4 +97,12 @@ public class PostController{
     public boolean deleteUserPosts(@PathVariable String userId){
         return postService.deleteUserActions(userId);
     }
+
+    @PostMapping("/edit_post")
+    public boolean editPost(@RequestBody String data){
+        JSONObject obj = new JSONObject(data);
+        String newContent = (String) obj.get("reason");
+        String postId = (String) obj.get("postId");
+        return postService.updatePost(postId, newContent);
+    }
 }
