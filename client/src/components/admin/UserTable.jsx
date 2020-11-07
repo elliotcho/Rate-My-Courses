@@ -57,13 +57,13 @@ class UserTable extends Component{
                                 </td>
 
                                 <td>
-                                    {user.banned?    
+                                    {!user.admin && user.banned?    
                                         (<button className='btn btn-success' onClick={() => unbanUser(user.id)}>
                                             Undo
-                                        </button>) :
+                                        </button>) : !user.admin?
                                         (<button className='btn btn-danger' onClick={() => banUser(user.id)}>
                                             Ban
-                                        </button>)
+                                        </button>) : null
                                     }
                                 </td>
                             </tr>

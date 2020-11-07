@@ -7,3 +7,9 @@
     border: 6px solid black;
     padding: 3%;
 }
+
+@media screen and (max-width: 600px){
+    .deleteUser button{
+        font-size: 0.9rem;
+    }
+}
