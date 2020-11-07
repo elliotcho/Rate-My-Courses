@@ -4,17 +4,12 @@ Post
     -Edit button
     -See more if input is too long
 
-Auth
-    -Change font in header
-
 Admin 
-    -Decrypt admin code
-    -Change input type for admin code
     -Ban users in intervals
 
 Settings
     -Change color option (frontend)
-    -Delete user option (frontend/backend)
+    -Delete user option (frontend)
 
 Misc.
     -Check scroll for all pages (if needed fix)
