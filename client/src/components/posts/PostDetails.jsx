@@ -42,7 +42,13 @@ class PostDetails extends Component{
     }
 }
 
-const mapStateToProps = (state) => ({uid: state.auth.uid});
+const mapStateToProps = (state) => {
+    return{
+        uid: state.auth.uid,
+        posts: state.post.posts
+    }
+}
+
 const mapDispatchToProps = (dispatch) => ({dispatch});
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostDetails);

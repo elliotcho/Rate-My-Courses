@@ -30,11 +30,11 @@ class PostList extends Component{
     }
 
     addPost(newPost){
-        const {posts} = this.state;
+        const {dispatch, posts} = this.props;
 
         posts.unshift(newPost);
 
-        this.setState({posts});
+        dispatch(reloadPosts(posts));
     }
 
     removePostFromList(id){
@@ -99,7 +99,13 @@ class PostList extends Component{
     }
 }
 
-const mapStateToProps = (state) => ({uid: state.auth.uid});
+const mapStateToProps = (state) => {
+    return{
+        uid: state.auth.uid,
+        posts: state.post.posts
+    }
+}
+
 const mapDispatchToProps = (dispatch) => ({dispatch});
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostList);
