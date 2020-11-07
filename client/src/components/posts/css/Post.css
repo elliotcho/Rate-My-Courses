@@ -102,3 +102,13 @@
     font-weight: bolder;
     margin-bottom: 5%;
 }
+
+.post .see-more{
+    font-family: 'Nunito Sans';
+    color: #0808af;
+    cursor: pointer;
+}
+
+.post .see-more:hover{
+    text-decoration: underline;
+}

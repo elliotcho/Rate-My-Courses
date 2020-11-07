@@ -201,11 +201,11 @@ class Post extends Component{
                         }
 
                         <p className="review">
-                            {post.reason.length > 300 && !seeMore? 
+                            {post.reason.length > 420 && !seeMore? 
                                 (<div>
-                                    {post.reason.substring(0, 297) + '... '}
+                                    {post.reason.substring(0, 417) + '... '}
 
-                                    <span onClick={this.toPostDetails}>
+                                    <span className='see-more' onClick={this.toPostDetails}>
                                         See More
                                     </span>
                                 </div>) : post.reason
