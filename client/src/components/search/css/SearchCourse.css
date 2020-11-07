@@ -24,11 +24,11 @@
     padding: 2%;
     text-align: center;
 }
+
 .search-course .select-course {
     font-family: 'Raleway', sans-serif;
     font-size: 3rem;
     color: #393e46;
-    /*overflow-wrap: break-word;*/
 }
 
 .search-course select{
@@ -56,4 +56,10 @@
 
 .search-course div:hover{
     background: #eeeeee;
+}
+
+@media screen and (max-width: 600px){
+    .search-course .select-course {
+        font-size: 2rem;
+    }
 }

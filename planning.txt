@@ -1,48 +1,26 @@
-Post {
-    id: String
-    content: String,
-    likes: [String],
-    dislikes: [String],
-    stars: Number
-    datePosted: Date,
-    userId: String,
-    courseId: String
-}
+Post
+    -Delete button into 3 dots
+    -Check responsiveness
+    -Edit button
+    -See more if input is too long
 
-User{
-    id: String
-    email : String,
-    password: String (hashed),
-    username: String,
-    admin: Boolean
-}
+Auth
+    -Change font in header
 
-Course{
-    id: String
-    name: String
-    number: Integer,
-    rating: Number
-    departmentId: String
-}
+Admin 
+    -Decrypt admin code
+    -Change input type for admin code
+    -Ban users in intervals
 
-Department{
-    id: String,
-    name: String
-    code: String
-}
+Settings
+    -Change color option (frontend)
+    -Delete user option (frontend/backend)
 
---admin
-- add departments, courses to existing department
-- logout button
-- deleting user accounts
-- delete/update departments and delete/update/ courses
+Misc.
+    -Check scroll for all pages (if needed fix)
+    -Delete charang9, armoon, giggsy (no date created)
 
-model - repository (data access object) - service - controller(route)
-
-Department Page
-________________________________________________________
-Department Id |   Department Name | Department Code
-
-<table>
-    <tr></tr>
-</table>
+Final
+    -Screenshots of app
+    -Edit Readme.MD
+    -Publish repository
