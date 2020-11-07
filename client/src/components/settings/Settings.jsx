@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import UsernameForm from './UsernameForm';
@@ -8,24 +8,23 @@ import ChangeColor from './ChangeColor';
 import {withAlert} from 'react-alert';
 import './css/Settings.css';
 
-class Settings extends Component {
-    render() {
-        const {uid, alert} = this.props;
+function Settings(props){
+    const {uid, alert} = props;
 
-        if(!uid){
-            return <Redirect to='/'/>
-        }
+    if(!uid){
+        return <Redirect to='/'/>
+    }
 
-        return (
-            <div className='settings'>
-                <h1>Settings</h1>
-                <PasswordForm uid = {uid} alert={alert}/>
-                <UsernameForm uid={uid} alert={alert}/>
-                <ChangeColor uid={uid} alert={alert}/>
-                <DeleteUser uid={uid} alert={alert}/>
-            </div>
-        )
-    } 
+    return (
+        <div className='settings'>
+            <h1>Settings</h1>
+            <PasswordForm uid = {uid} alert={alert}/>
+            <UsernameForm uid={uid} alert={alert}/>
+            <ChangeColor uid={uid} alert={alert}/>
+            <DeleteUser uid={uid} alert={alert}/>
+        </div>
+    )
+
 }
 
 const mapStateToProps = (state) => ({uid: state.auth.uid});
