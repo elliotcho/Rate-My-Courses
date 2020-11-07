@@ -6,10 +6,7 @@ Post
 
 Admin 
     -Ban users in intervals
-
-Settings
-    -Delete user option (frontend)
-
+    
 Misc.
     -Check scroll for all pages (if needed fix)
     -Delete charang9

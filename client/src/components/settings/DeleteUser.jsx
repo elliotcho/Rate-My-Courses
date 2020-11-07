@@ -11,17 +11,20 @@ class DeleteUser extends Component{
         this.handleClick = this.handleClick.bind(this);
     }
     
-    async handleClick(e){
+    async handleClick(){
         const{uid, alert} = this.props;
+
         const confirmDelete = async () => {
             const msgPost = await deleteUserPosts(uid);
             const msg = await deleteUser(uid);
+
             if(msg && msgPost){
                 alert.success("Successfully deleted user");
             } else{
                 alert.error("Unable to delete account");
             }
         }
+
         confirmAlert({
             title: 'Rate My Courses',
             message: 'Are you sure you want to delete this account',
@@ -36,8 +39,10 @@ class DeleteUser extends Component{
         return(
             <div className="deleteUser">
                 <h3>Delete Account</h3>
-                <button onClick= {this.handleClick} className="btn btn-block btn-outline-danger">
-                    Delete Account</button>
+
+                <button onClick= {this.handleClick} className="btn btn-block btn-outline-danger btn-lg">
+                    Delete Account
+                </button>
             </div>
         )
     }
