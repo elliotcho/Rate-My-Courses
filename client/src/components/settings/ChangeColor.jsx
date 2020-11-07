@@ -30,6 +30,7 @@ class ChangeColor extends Component{
             colorId: ''
         });
     }
+  
     handleChange(e){
         this.setState({[e.target.id]: e.target.value});
     }
@@ -38,7 +39,7 @@ class ChangeColor extends Component{
         const {colorId} = this.state;
 
         return(
-            <form className="changeColor" onSubmit={this.handleSubmit}>
+            <form className="changeColor">
                 <h3>Change Display Picture Color</h3>
                 <label for="colors">Choose a color:</label>
                 <select name={colorId} id="colors" required onChange={this.handleChange}>
@@ -53,6 +54,7 @@ class ChangeColor extends Component{
                     <option value="#a0ffe6">Turquoise </option>
                     <option value="#03fc90">Green</option>
                 </select>
+
                 <button className='btn btn-block btn-outline-info btn-lg'>
                         CHANGE
                 </button>

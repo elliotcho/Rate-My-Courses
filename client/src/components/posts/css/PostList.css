@@ -38,3 +38,9 @@
     outline: none;
     box-shadow: none;
 }
+
+.post-list h2{
+    margin-top: 100px;
+    font-family: 'Permanent Marker', cursive;
+    text-align: center;
+}

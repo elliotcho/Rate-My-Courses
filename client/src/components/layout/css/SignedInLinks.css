@@ -17,6 +17,7 @@
 .signed-in-links span{
     font-size: 1.5rem;
     margin: auto 20px;
+    font-family: 'Josefin Sans', sans-serif;
     color: black;
 }
 

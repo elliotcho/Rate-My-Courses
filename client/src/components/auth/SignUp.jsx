@@ -104,7 +104,7 @@ class Signup extends Component{
                             <label htmlFor='adminCode'>Admin Code <span>*</span></label>
                             <input 
                                 id='adminCode'
-                                type='text'
+                                type='password'
                                 value={adminCode}
                                 onChange={this.handleChange}
                                 required

@@ -71,8 +71,10 @@ class SearchCourse extends Component{
                     
                     {courses.length > 0? 
                         courses.map(course => 
-                            <div className='course' key={course.id} onClick={() => this.toCourse(course.id)}>
-                                {course.departmentCode} {course.number}: {course.name}
+                            <div className='course' key={course.id}>
+                                <span onClick={() => this.toCourse(course.id)}>
+                                    {course.departmentCode} {course.number}: {course.name}
+                                </span>
                             </div>
                         
                         ) : departmentId? 

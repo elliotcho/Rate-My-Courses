@@ -28,7 +28,7 @@ class AdminHome extends Component{
         const {type} = this.props.match.params;
    
         const defaultStyle = 'btn btn-lg btn-secondary'; 
-        const activeStyle = `${defaultStyle} active`;
+        const activeStyle = `${defaultStyle} selected-btn`;
 
         const departmentBtnStyle = (type === 'department') ? activeStyle: defaultStyle;
         const courseBtnStyle = (type === 'course') ? activeStyle: defaultStyle;
@@ -41,7 +41,7 @@ class AdminHome extends Component{
                 <hr/>
 
                 <div className='btn-group-wrap'> 
-                    <div className='btn-group' role="group" aria-label="Basic example">
+                    <div className='btn-group'>
                         <button className={`${departmentBtnStyle} compartments`} name='department' onClick={this.handleClick}>
                             Departments
                         </button>

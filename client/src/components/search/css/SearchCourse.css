@@ -56,11 +56,14 @@
 
 .search-course div{
     padding: 15px;
+}
+
+.search-course span{
     cursor: pointer;
 }
 
-.search-course div:hover{
-    background: #eeeeee;
+.search-course span:hover{
+    text-decoration: underline;
 }
 
 @media screen and (max-width: 600px){
