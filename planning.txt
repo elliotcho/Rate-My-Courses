@@ -5,14 +5,11 @@ Post
     -See more if input is too long
 
 Admin 
-    -Change input type for admin code
     -Ban users in intervals
 
 Settings
     -Change color option (frontend)
-    -Delete user option (frontend/backend)
-        delete the user's posts too and likes or dislikes they have in any post
-        
+    -Delete user option (frontend)
 
 Misc.
     -Check scroll for all pages (if needed fix)

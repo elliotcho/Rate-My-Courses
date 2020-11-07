@@ -41,7 +41,7 @@ class AdminHome extends Component{
                 <hr/>
 
                 <div className='btn-group-wrap'> 
-                    <div className='btn-group' role="group" aria-label="Basic example">
+                    <div className='btn-group'>
                         <button className={`${departmentBtnStyle} compartments`} name='department' onClick={this.handleClick}>
                             Departments
                         </button>
