@@ -155,4 +155,24 @@ public class PostService{
    
         return (String) new DecimalFormat("0.0").format(avgRating);
     }
+
+    public boolean deleteUserActions(String userId){
+        List<Post> userPosts = repo.findByUserId(userId);
+        
+        if(!userPosts.isEmpty()){
+            repo.deleteAll(userPosts);
+        }
+
+        for(Post p: repo.findAll()){
+            if(p.getLikes().contains(userId)){
+                p.getLikes().remove(userId);
+            }
+
+            if(p.getDislikes().contains(userId)){
+                p.getDislikes().remove(userId);
+            }
+            repo.save(p);
+        }
+        return true;
+    }
 }

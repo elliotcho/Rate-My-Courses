@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+
 import java.util.List;
 
 @RestController
@@ -83,5 +85,10 @@ public class UserController{
     @GetMapping("/is_admin/{id}")
     public boolean getUserAdminStatus(@PathVariable String id){
         return userService.getUserAdminStatus(id);
+    }
+
+    @DeleteMapping("/delete_user/{userId}")
+    public boolean deleteUser(@PathVariable String userId){
+        return userService.delete(userId);
     }
 }

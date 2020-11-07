@@ -92,4 +92,9 @@ public class PostController{
     public String getUserAvgRating(@PathVariable String uid){
         return postService.getUserAvgRating(uid);
     }
+
+    @DeleteMapping("/user_posts/{userId}")
+    public boolean deleteUserPosts(@PathVariable String userId){
+        return postService.deleteUserActions(userId);
+    }
 }
