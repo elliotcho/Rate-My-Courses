@@ -175,4 +175,15 @@ public class PostService{
         }
         return true;
     }
+
+    public boolean updatePost(String postId, String newContent){
+        Post post = repo.findById(postId).orElse(null);
+        if(post != null){
+        post.setReason(newContent);
+        repo.save(post);
+        return true;
+        }
+        return false;
+    }
+    
 }
