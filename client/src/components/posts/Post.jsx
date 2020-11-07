@@ -169,6 +169,11 @@ class Post extends Component{
         this.props.history.push(`/post/${post.id}`);
     }
 
+    toEditPost(newReason){
+        const{postId} = this.props;
+        const{newReason} = newReason;
+    }
+
     render(){
         const {username, course, userLiked, userDisliked, likes, dislikes} = this.state;
         const {uid, creatorId, post, seeMore} = this.props;
@@ -267,7 +272,8 @@ class Post extends Component{
                 />
 
                 <EditModal 
-                    reason={post.reason}
+                    
+                    reason={this.toEditPost(newReason)}
                 />
             </section>
         )

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import './css/EditModal.css';
+import {editPost} from '../../../src/store/actions/postActions';
 
 class EditModal extends Component{
     constructor(){
@@ -13,6 +14,8 @@ class EditModal extends Component{
 
         this.handleChange = this.handleChange.bind(this);
         this.closeModal = this.closeModal.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+        this.props.reason = this.props.reason.bind(this);
     }
 
     componentDidMount(){
@@ -47,6 +50,30 @@ class EditModal extends Component{
         }
     }
 
+    async handleClick(e){
+        e.preventDefault(e);
+
+        const{newReason} = this.state;
+        const{postid} = this.props.reason.postId;
+        const confirmSave = async () => {
+            const success = await editPost(postId, newReason);
+            if(success){
+                alert.success("Successfully updated post!");
+            } else{
+                alert.error("Error updating post!");
+            }
+
+        }
+        confirmAlert({
+            title: 'Rate My Courses',
+            message: 'Are you sure you want to save your changes? Previous post will be overwritten!',
+            buttons: [
+                {label: 'Yes', onClick: confirmSave},
+                {label: 'No', onClick: () => {return;}}
+            ]
+        });
+    }
+
     render(){
         const {newReason} = this.state;
 
@@ -79,8 +106,8 @@ class EditModal extends Component{
                             <button className='btn btn-secondary' onClick={this.closeModal}>
                                 Close
                             </button>
-
-                            <button className='btn btn-success'>
+                          
+                            <button className='btn btn-success' onClick={this.handleClick}>
                                 Save
                             </button>
                         </div>
