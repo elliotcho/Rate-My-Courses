@@ -1,0 +1,5 @@
+.edit-modal textarea{
+    resize: none;
+    overflow: none;
+    max-height: 200px;
+}

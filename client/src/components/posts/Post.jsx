@@ -28,13 +28,6 @@ class Post extends Component{
         this.handleDislike = this.handleDislike.bind(this);
     }
 
-    async handleClick(){
-        const{username, course, userLiked, userDisliked, likes, dislikes} = this.state;
-        
-    }
-
-    
-
     async componentDidMount(){
         const {uid, creatorId, post} = this.props;
 
@@ -201,10 +194,14 @@ class Post extends Component{
                         }
 
                         <p className="review">
-                            {post.reason}
-                            {(post.reason.length < 300)? post.reason: <div>
-                                <span onClick={this.handleClick}>see more...</span>
-                            </div>
+                            {(post.reason.length > 300)? 
+                                (<div>
+                                    {post.reason.substring(0, 297) + '... '}
+
+                                    <span>
+                                        See More
+                                    </span>
+                                </div>) : post.reason
                             }
                        </p>
 

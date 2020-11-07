@@ -43,7 +43,7 @@ public class PostController{
         return postService.getUsersPosts(userId);
     }
       
-    @GetMapping("/{courseId}")
+    @GetMapping("/course/{courseId}")
     public List<Post> getPostByCourseId(@PathVariable String courseId){
         return postService.getPostByCourseId(courseId);
     }
@@ -101,8 +101,10 @@ public class PostController{
     @PostMapping("/edit_post")
     public boolean editPost(@RequestBody String data){
         JSONObject obj = new JSONObject(data);
+
         String newContent = (String) obj.get("reason");
         String postId = (String) obj.get("postId");
+
         return postService.updatePost(postId, newContent);
     }
 }

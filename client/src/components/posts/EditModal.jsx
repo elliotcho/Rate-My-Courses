@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import './css/EditModal.css';
 
 class EditModal extends Component{
     constructor(){
@@ -18,7 +19,11 @@ class EditModal extends Component{
                     </div>
 
                         <div className ='modal-body'>
-                            <textarea/>
+                            <div className="form-group">
+                                <textarea
+                                    rows = '4'
+                                />
+                             </div>
                         </div>
                     </div>
                 </div>
