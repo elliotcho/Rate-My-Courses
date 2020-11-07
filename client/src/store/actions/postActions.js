@@ -52,3 +52,9 @@ export const getLikeStatus = async (uid, postId) => {
     const status = response.data;
     return status;
 }
+
+export const deleteUserPosts = async (uid) => {
+    const response = await axios.delete(`http://localhost:8080/api/post/user_posts/${uid}`);
+    const isSuccessful = response.data;
+    return isSuccessful;
+}

@@ -1,0 +1,11 @@
+.deleteUser{
+    width: 47%;
+    display: inline-block;
+    border-radius: 30px 10px;
+    border: 6px solid #f00084;
+    padding: 3%;
+}
+
+.deleteUser button{
+    margin: 0 auto;
+}
