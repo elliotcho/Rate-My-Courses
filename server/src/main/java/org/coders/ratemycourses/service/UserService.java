@@ -4,31 +4,25 @@ import org.json.JSONObject;
 import org.coders.ratemycourses.model.User;
 import org.coders.ratemycourses.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.core.env.Environment;
 import java.util.List;
 import java.util.Random;
 
 @Service
 public class UserService{
 
-    private String[] backgroundColors = {"#03adfc",
-                                     "#0356fc",
-                                     "#5a03fc",
-                                     "#9803fc",
-                                    "#fc0303",
-                                    "#db6400",
-                                    "#ffa36c",
-                                    "#3b6978",
-                                    "#a0ffe6",
-                                    "#03fc90"
-                                };
-
     @Autowired
     private UserRepo repo;
     private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    private String[] backgroundColors = {"#03adfc", "#0356fc","#5a03fc","#9803fc","#fc0303","#db6400","#ffa36c","#3b6978","#a0ffe6","#03fc90"};
   
+    @Autowired
+    private Environment env;
+
     public List<User> getAllUsers(){
         List<User> result = repo.findAll();
 
@@ -46,11 +40,13 @@ public class UserService{
         String email = (String) obj.get("email");
         String adminCode = (String) obj.get("adminCode");
 
+        //check if email/username already exists
+
         if(!repo.findByEmail(email).isEmpty()){
             return "Email is already registered";
         } else if(!repo.findByUsername(username).isEmpty()){
             return "Username is already registered";
-        }
+        } 
 
         Random rand = new Random();
         int upperbound = backgroundColors.length;
@@ -58,15 +54,19 @@ public class UserService{
 
         User newUser = new User();
 
+        //check if admin code is valid
+
+        if(passwordEncoder.matches(adminCode, env.getProperty("ADMIN_CODE"))){
+            newUser.setAdmin(true);
+        } else if(!adminCode.isEmpty()){
+            return "Invalid admin code";
+        }
+
         newUser.setUsername(username);
         newUser.setEmail(email);
         newUser.setDateCreated((String) obj.getString("dateCreated"));
         newUser.setPassword(passwordEncoder.encode((String) obj.get("password")));
         newUser.setDisplayPictureColor(backgroundColors[randomIndex]);
-
-        if(adminCode.equals("abc")){
-            newUser.setAdmin(true);
-        }
 
         return repo.save(newUser).getId();
     }

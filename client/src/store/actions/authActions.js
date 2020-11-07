@@ -32,7 +32,7 @@ export const signup = (data, alert) => {
         let response = await axios.post('http://localhost:8080/api/user', JSON.stringify(data), config);
         const msg = response.data;    
     
-        if(msg === "Email is already registered" || msg === "Username is already registered"){
+        if(msg === "Email is already registered" || msg === "Username is already registered" || msg === "Invalid admin code"){
             alert.error(msg);
         } 
         

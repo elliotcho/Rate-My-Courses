@@ -19,6 +19,9 @@ Settings
 Misc.
     -Check scroll for all pages (if needed fix)
     -Delete charang9, armoon, giggsy (no date created)
+    -input lengths for all pages
+    -refactor code
+    -component to functional
 
 Final
     -Screenshots of app
