@@ -24,6 +24,7 @@ function App() {
           <Route exact path='/courses' component={SearchCourse}/>
           <Route exact path='/profile' component={Profile}/>
           <Route exact path= '/settings' component={Settings}/>
+          <Route exact path= '/post/:id' component={PostDetails}/>
           <Route path = '/' component={DeadPage}/>
           
 
