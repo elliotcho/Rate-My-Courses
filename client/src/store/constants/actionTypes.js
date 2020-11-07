@@ -1,1 +1,2 @@
 export const USER_AUTHENTICATED = 'USER_AUTHENTICATED';
+export const LOAD_POSTS = 'LOAD_POSTS';

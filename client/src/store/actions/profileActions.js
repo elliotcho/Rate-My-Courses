@@ -8,12 +8,6 @@ export const getUserById = async (userId) => {
     return user;
 }
 
-export const getUserPosts = async (userId) => {
-    const response = await axios.get(`http://localhost:8080/api/post/user/${userId}`);
-    const posts = response.data;
-    return posts.reverse();
-}
-
 export const getNumPostsByUser = async (userId) => {
     const response = await axios.get(`http://localhost:8080/api/post/num_posts/${userId}`);
     const numPosts = response.data;

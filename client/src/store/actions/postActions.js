@@ -1,22 +1,12 @@
+import {LOAD_POSTS} from '../constants/actionTypes';
 import axios from 'axios';
-const config = {headers: {'content-type': 'application/json'}};
 
-export const getPostById = async (postId) => {
-    const response = await axios.get(`http://localhost:8080/api/post/${postId}`);
-    const post = response.data;
-    return post;
-}
+const config = {headers: {'content-type': 'application/json'}};
 
 export const createPost = async (data) =>{
     const response = await axios.post("http://localhost:8080/api/post", data, config);
     const post = response.data;
     return post;
-}
-
-export const getPostsByCourseId = async (courseId) => {
-    const response = await axios.get(`http://localhost:8080/api/post/course/${courseId}`);
-    const posts = response.data;
-    return posts.reverse();
 }
 
 export const deletePostById = async (postId) => {
@@ -70,4 +60,42 @@ export const updatePost = async (postId, newReason) => {
     const response = await axios.post("http://localhost:8080/api/post/edit_post", JSON.stringify(data), config);
     const isSuccessful = response.data;
     return isSuccessful;
+}
+
+export const getPostsByCourseId = (courseId) => {
+    return async (dispatch) => {
+        const response = await axios.get(`http://localhost:8080/api/post/course/${courseId}`);
+        const posts = response.data;
+        posts.reverse();
+
+        dispatch({
+            type: LOAD_POSTS,
+            posts
+        });
+    }
+}
+
+export const getUserPosts = (userId) => {
+    return async (dispatch) => {
+        const response = await axios.get(`http://localhost:8080/api/post/user/${userId}`);
+        const posts = response.data;
+        posts.reverse();
+
+        dispatch({
+            type: LOAD_POSTS,
+            posts
+        });
+    }
+}
+
+export const getPostById = (postId) => {
+    return async (dispatch) => {
+        const response = await axios.get(`http://localhost:8080/api/post/${postId}`);
+        const post = response.data;
+        
+        dispatch({
+            types: LOAD_POSTS,
+            posts: [post]
+        })
+    }
 }

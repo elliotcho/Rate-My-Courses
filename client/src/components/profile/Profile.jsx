@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import * as profileActions from '../../store/actions/profileActions';
+import {getUserPosts} from '../../store/actions/postActions';
 import Post from '../posts/Post';
 import moment from 'moment';
 import "./css/Profile.css";
@@ -11,8 +12,7 @@ class Profile extends Component {
         super();
 
         this.state = {
-            numPosts: 0,
-            userPosts: [], 
+            numPosts: 0, 
             likesRatio: 'Loading...',
             avgRating: 'Loading...',
             user: null
@@ -24,18 +24,19 @@ class Profile extends Component {
     }
 
     async componentDidMount(){
-        const {uid} = this.props;
+        const {uid, dispatch} = this.props;
 
-        const numPosts = await profileActions.getNumPostsByUser(uid);
-        const userPosts = await profileActions.getUserPosts(uid);
+        //load user posts into global state
+        dispatch(getUserPosts(uid));
+
         const user = await profileActions.getUserById(uid);
+        const numPosts = await profileActions.getNumPostsByUser(uid);
 
         await this.updateLikesRatio();
         await this.updateAvgRating();
         
         this.setState({
             numPosts,
-            userPosts,
             user
         });
     }
@@ -51,11 +52,11 @@ class Profile extends Component {
     }
 
     async removePostFromList(id){
-        let {userPosts, numPosts} = this.state;
+        let {posts, numPosts} = this.state;
 
-        for(let i=0;i<userPosts.length;i++){
-            if(userPosts[i].id === id){
-                userPosts.splice(i, 1);
+        for(let i=0;i<posts.length;i++){
+            if(posts[i].id === id){
+                posts.splice(i, 1);
                 numPosts--;
                 break;
             }
@@ -65,14 +66,13 @@ class Profile extends Component {
        await this.updateAvgRating();
 
         this.setState({
-            numPosts,
-            userPosts
+            numPosts
         });
     }
 
     render() {
-        const {numPosts, userPosts, likesRatio, avgRating, user} = this.state;
-        const {uid} = this.props;
+        const {numPosts, likesRatio, avgRating, user} = this.state;
+        const {uid, posts} = this.props;
 
         if(!uid){
             return <Redirect to='/'/>
@@ -119,10 +119,10 @@ class Profile extends Component {
                     </p>
                 </section>
                 
-                {userPosts.length !== 0 ? (<h1>Previous Posts</h1>) : null}
+                {posts.length !== 0 ? (<h1>Previous Posts</h1>) : null}
 
                 <section className="prev-posts">
-                    {userPosts.map(post => 
+                    {posts.map(post => 
                         <Post
                             key={post.id}
                             uid={uid}
@@ -140,5 +140,6 @@ class Profile extends Component {
 }
 
 const mapStateToProps = (state) => ({uid: state.auth.uid});
+const mapDispatchToProps = (dispatch) => ({dispatch});
 
-export default connect(mapStateToProps)(Profile);
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

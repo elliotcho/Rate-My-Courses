@@ -11,8 +11,7 @@ class PostList extends Component{
         super();
 
         this.state = {
-            course: null,
-            posts: []
+            course: null
         }
 
         this.addPost = this.addPost.bind(this);
@@ -21,14 +20,12 @@ class PostList extends Component{
 
     async componentDidMount(){
         const {courseId} = this.props.match.params;
-      
-        const posts = await getPostsByCourseId(courseId);
-        const course = await getCourseById(courseId);
 
-        this.setState({
-            posts, 
-            course
-        });
+        //load posts into global state
+        this.props.dispatch(getPostsByCourseId(courseId));
+
+        const course = await getCourseById(courseId);
+        this.setState({course});
     }
 
     addPost(newPost){
@@ -53,8 +50,8 @@ class PostList extends Component{
     }
 
     render(){
-        const {course, posts} = this.state;
-        const {uid} = this.props;
+        const {course} = this.state;
+        const {uid, posts} = this.props;
 
         let title;
 
@@ -102,5 +99,6 @@ class PostList extends Component{
 }
 
 const mapStateToProps = (state) => ({uid: state.auth.uid});
+const mapDispatchToProps = (dispatch) => ({dispatch});
 
-export default connect(mapStateToProps)(PostList);
+export default connect(mapStateToProps, mapDispatchToProps)(PostList);
