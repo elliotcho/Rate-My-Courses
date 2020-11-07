@@ -55,8 +55,8 @@ export const changePassword = async (uid, newPassword, currPassword) => {
     return isSuccessful;
 } 
 
-export const changeUserColor = async (uid, newColorId) => {
-    const data = {userId: uid, newColorId};
+export const changeUserColor = async (uid, color) => {
+    const data = {userId: uid, color};
     const reponse = await axios.post('http://localhost:8080/api/user/color', JSON.stringify(data), config);
     const isChanged = reponse.data;
     return isChanged;

@@ -8,12 +8,11 @@ Admin
     -Ban users in intervals
 
 Settings
-    -Change color option (frontend)
     -Delete user option (frontend)
 
 Misc.
     -Check scroll for all pages (if needed fix)
-    -Delete charang9, armoon, giggsy (no date created)
+    -Delete charang9
     -input lengths for all pages
     -refactor code
     -component to functional

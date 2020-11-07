@@ -2,10 +2,8 @@ package org.coders.ratemycourses.service;
 
 import org.json.JSONObject;
 import org.coders.ratemycourses.model.User;
-import org.coders.ratemycourses.repository.PostRepo;
 import org.coders.ratemycourses.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -19,7 +17,7 @@ public class UserService{
     @Autowired
     private UserRepo repo;
     private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-    private String[] backgroundColors = {"#03adfc", "#0356fc","#5a03fc","#9803fc","#fc0303","#db6400","#ffa36c","#3b6978","#a0ffe6","#03fc90"};
+    private String[] backgroundColors = {"#03adfc","#fc0303","#db6400","#ffa36c","#a0ffe6","#03fc90"};
   
     @Autowired
     private Environment env;
@@ -149,11 +147,11 @@ public class UserService{
         return false;
     }
 
-    public boolean changeColor(String userId, String colorId){
+    public boolean changeColor(String userId, String color){
         User user = repo.findById(userId).orElse(null);
 
         if(user != null){
-            user.setDisplayPictureColor(colorId);
+            user.setDisplayPictureColor(color);
             repo.save(user);
             return true;
         }
