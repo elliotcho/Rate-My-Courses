@@ -1,5 +1,4 @@
 Post
-    -Delete button into 3 dots
     -Edit button
     -See more if input is too long
 
