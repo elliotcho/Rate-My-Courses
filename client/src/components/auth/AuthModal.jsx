@@ -11,7 +11,7 @@ function AuthModal(){
                     <div className ='modal-header'>
                         <div className='nav nav-tabs'>                                 
                             <a className='active' data-toggle='tab' href='#login'>
-                                Login
+                                Sign In
                             </a>
                                     
                             <a data-toggle='tab' href='#signup'>

@@ -1,10 +1,13 @@
 .login form {
     font-family: 'Nunito Sans';
+    font-size: 17px;
     background-color: #0c2233;
     padding: 50px;
+    border-radius: 0 0 9px 9px;
 }
 
 .login h2 {
+    font-size: 30px;
     color: #f4f9f4;
 }
 .login span {

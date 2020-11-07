@@ -15,6 +15,11 @@
    color: #210D26;
 }
 
+.search-course-container .brand span {
+    font-size: 5.5rem;
+    margin: 12px;
+}
+
 /* Search Department */
 .search-course{
     margin: 50px auto;

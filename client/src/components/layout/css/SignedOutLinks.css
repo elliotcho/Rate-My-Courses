@@ -6,7 +6,7 @@
 
 .signed-out-links .nav-item:hover i,
 .signed-out-links .nav-item:hover span{
-    color: white;
+    color: #deddfa;
 }
 
 .signed-out-links i{
@@ -16,7 +16,8 @@
 
 .signed-out-links span{
     font-size: 1.5rem;
-    margin: auto 20px;
+    font-family: 'Josefin Sans', sans-serif;
+    margin: auto 7px;
     color: black;
 }
 

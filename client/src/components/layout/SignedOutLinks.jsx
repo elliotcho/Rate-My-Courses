@@ -19,7 +19,7 @@ class SignedOutLinks extends Component{
                 <Nav className='signed-out-links'>
                     <Nav.Item className='nav-item' data-toggle='modal' data-target='#auth' id='open-auth'>
                         <i class="fas fa-address-card" title='Sign In'></i>
-                        <span>Sign In</span>
+                        <span>Login</span>
                     </Nav.Item> 
                 </Nav>
 
