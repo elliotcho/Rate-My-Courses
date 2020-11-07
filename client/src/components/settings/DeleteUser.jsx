@@ -1,18 +1,13 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {deleteUser} from '../../../src/store/actions/profileActions';
 import {deleteUserPosts} from '../../../src/store/actions/postActions';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import './css/DeleteUser.css';
 
-class DeleteUser extends Component{
-    constructor(){
-        super();
-        this.handleClick = this.handleClick.bind(this);
-    }
-    
-    async handleClick(){
-        const{uid, alert} = this.props;
+function DeleteUser(props){
+    const handleClick = async () =>{
+        const{uid, alert} = props;
 
         const confirmDelete = async () => {
             const msgPost = await deleteUserPosts(uid);
@@ -34,17 +29,17 @@ class DeleteUser extends Component{
             ]
         });      
     }
-    
-    render(){
-        return(
-            <div className="deleteUser">
-                <h3>Delete Account</h3>
 
-                <button onClick= {this.handleClick} className="btn btn-block btn-outline-danger btn-lg">
-                    Delete Account
-                </button>
-            </div>
-        )
-    }
+    return(
+        <div className="deleteUser">
+            <h3>Delete Account</h3>
+
+            <button onClick= {handleClick} className="btn btn-block btn-outline-danger btn-lg">
+                Delete Account
+            </button>
+        </div>
+    )
+    
+    
 }
 export default DeleteUser;
