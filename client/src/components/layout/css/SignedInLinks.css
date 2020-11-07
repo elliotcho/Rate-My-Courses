@@ -4,19 +4,20 @@
     cursor: pointer;
 }
 
-.signed-in-links .nav-item:hover{
-   
+.signed-in-links .nav-item:hover i,
+.signed-in-links .nav-item:hover span{
+    color: white;
 }
 
 .signed-in-links i{
     font-size: 1.5rem;
-    color: white;
+    color: black;
 }
 
 .signed-in-links span{
     font-size: 1.5rem;
     margin: auto 20px;
-    color: white;
+    color: black;
 }
 
 @media screen and (min-width: 992px){
@@ -33,8 +34,8 @@
         margin-right: 0;
     }
 
-    .signed-in-links .nav-item:hover{
-        background: revert;
-        cursor: revert;
+    .signed-in-links .nav-item{
+        padding: revert;
+        margin: revert;
     }
 }

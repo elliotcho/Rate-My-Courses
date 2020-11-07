@@ -1,25 +1,36 @@
 .signed-out-links .nav-item{
-    padding: 20px 5px;
-    margin-top: 14px;
+    margin-top: 15px;
+    padding: 10px 5px;
     cursor: pointer;
 }
 
-.signed-out-links .nav-item:hover{
+.signed-out-links .nav-item:hover i,
+.signed-out-links .nav-item:hover span{
     color: white;
 }
 
-.signed-out-links .link{
+.signed-out-links i{
     font-size: 1.2rem;
+    color: black;
+}
+
+.signed-out-links span{
+    font-size: 1.5rem;
+    margin: auto 20px;
+    color: black;
 }
 
 @media screen and (min-width: 992px){
-    .signed-out-links .nav-item{
-        padding: 10px 5px;
-        margin: revert;
-        border: revert;
+    .signed-out-links i{
+        display: none;
     }
 
-    .signed-out-links .link:hover{
-        color: white;
+    .signed-out-links span{
+        margin-right: 0;
+    }
+
+    .signed-out-links .nav-item{
+        padding: revert;
+        margin: revert;
     }
 }

@@ -13,11 +13,13 @@ class SignedInLinks extends Component{
     render(){
         const {status} = this.props;
 
+        const linkStyle = {textDecoration: 'none'};
+
         return(
             <div className = 'ml-auto signed-in-links'>
                 <Nav>
                     <Nav.Item className='nav-item'>
-                        <Link to='/profile' className='link'>
+                        <Link to='/profile' className='link' style={linkStyle}>
                             <i className="fa fa-user" title="Profile"></i>
                             <span className>Profile</span>
                         </Link>
@@ -25,7 +27,7 @@ class SignedInLinks extends Component{
 
                     {status?
                         (<Nav.Item className='nav-item'>
-                            <Link to='/admin' className='link'>
+                            <Link to='/admin' className='link' style={linkStyle}>
                                 <i className="fas fa-shield-alt" title="Admin"></i>
                                 <span className>Admin</span>
                             </Link>
@@ -33,14 +35,14 @@ class SignedInLinks extends Component{
                     }
                     
                     <Nav.Item className='nav-item'>
-                        <Link to='/settings' className='link'>
+                        <Link to='/settings' className='link' style={linkStyle}>
                             <i className="fa fa-cog" title="Settings"></i>
                             <span className>Settings</span>
                         </Link>
                     </Nav.Item>
                     
                     <Nav.Item className='nav-item'>
-                        <Link to='/' onClick={this.signOut} className='link'>
+                        <Link to='/' onClick={this.signOut} className='link' style={linkStyle}>
                             <i className="fas fa-sign-out-alt" title="Sign Out"></i>
                             <span>Logout</span>
                         </Link>
