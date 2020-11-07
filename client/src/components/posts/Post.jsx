@@ -3,6 +3,7 @@ import {getUserById} from '../../store/actions/profileActions';
 import {getCourseById} from '../../store/actions/courseActions';
 import {deletePostById, dislikePost, likePost, getLikeStatus} from '../../store/actions/postActions';
 import PostSettings from './PostSettings';
+import EditModal from './EditModal';
 import moment from 'moment';
 import { confirmAlert } from 'react-confirm-alert';
 import { withAlert } from 'react-alert';
@@ -195,12 +196,8 @@ class Post extends Component{
                 
                     <div className="col-9">
                         {uid === creatorId? 
-                            (<PostSettings
-                                uid = {uid}
-                                postId = {post? post.id : null}
-                                deletePost = {this.deletePost}
-                            />) :
-                           (<div style={{height: '2rem'}}/>)
+                            (<PostSettings deletePost={this.deletePost}/>) :
+                            (<div style={{height: '2rem'}}/>)
                         }
 
                         <p className="review">
@@ -209,10 +206,15 @@ class Post extends Component{
                                 <span onClick={this.handleClick}>see more...</span>
                             </div>
                             }
-                            
+                       </p>
+
+                        <p className="username">
+                            Reviewed By: {username}
                         </p>
-                        <p className="username">Reviewed By: {username}</p>
-                        <p className="date-posted">{moment(new Date(post.dateCreated)).calendar()}</p>
+
+                        <p className="date-posted">
+                            {moment(new Date(post.dateCreated)).calendar()}
+                        </p>
                     </div>
                 </div>
                 <hr/>
@@ -252,6 +254,15 @@ class Post extends Component{
                         <p className="ratings-score">{`${post.stars}/5`}</p>
                     </div>
                 </div>
+
+                <button 
+                    id='open-edit'
+                    data-toggle='modal' 
+                    data-target='#edit' 
+                    style = {{visibility: 'hidden'}}
+                />
+
+                <EditModal reason={post.reason}/>
             </section>
         )
     }
