@@ -1,6 +1,7 @@
 import React from 'react';
 import { Component } from 'react';
 import {changeUserColor} from '../../../src/store/actions/profileActions';
+import './css/ChangeColor.css';
 
 class ChangeColor extends Component{
     constructor(){
@@ -52,6 +53,9 @@ class ChangeColor extends Component{
                     <option value="#a0ffe6">Turquoise </option>
                     <option value="#03fc90">Green</option>
                 </select>
+                <button className='btn btn-block btn-outline-info btn-lg'>
+                        CHANGE
+                </button>
             </form>
         )
     }
