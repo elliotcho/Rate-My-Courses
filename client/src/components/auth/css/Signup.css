@@ -1,10 +1,13 @@
 .sign-up form{
     font-family: 'Nunito Sans';
+    font-size: 17px;
     background-color: #0c2233;
+    border-radius: 0 0 9px 9px;
 }
 
 .sign-up h2{
     color: #f4f9f4;
+    font-size: 30px;
 }
 
 .sign-up p, .sign-up label {
