@@ -10,7 +10,8 @@ Misc.
 
     
     -refactor code
-    -component to functional
+
+    -component to functional (DeleteUser, Settings, SignedInLinks, SignedOutLinks, Navigate)
 
 Final
     -Screenshots of app

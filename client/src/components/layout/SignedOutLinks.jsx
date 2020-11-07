@@ -4,15 +4,6 @@ import { Nav} from 'react-bootstrap';
 import './css/SignedOutLinks.css';
 
 class SignedOutLinks extends Component{
-    
-    constructor(){
-        super();
-
-        this.state={
-          
-        };
-    }
-
     render(){
         return(
             <div className= "ml-auto">

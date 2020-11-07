@@ -4,9 +4,9 @@ import {connect} from 'react-redux';
 import UsernameForm from './UsernameForm';
 import PasswordForm from './PasswordForm';
 import DeleteUser from './DeleteUser';
+import ChangeColor from './ChangeColor';
 import {withAlert} from 'react-alert';
 import './css/Settings.css';
-import ChangeColor from './ChangeColor';
 
 class Settings extends Component {
     render() {
