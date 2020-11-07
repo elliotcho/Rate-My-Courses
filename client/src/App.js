@@ -21,10 +21,10 @@ function App() {
           <Route exact path='/' component={SearchCourse}/>
           <Route exact path='/admin' component={AdminHome}/>
           <Route exact path='/admin/:type' component={AdminHome}/>
-          <Route exact path='/posts/:id' component={PostList}/>
+          <Route exact path='/posts/:courseId' component={PostList}/>
           <Route exact path='/profile' component={Profile}/>
           <Route exact path= '/settings' component={Settings}/>
-          <Route exact path= '/post/:id' component={PostDetails}/>
+          <Route exact path= '/post/:postId' component={PostDetails}/>
           <Route path = '/' component={DeadPage}/>
           
 

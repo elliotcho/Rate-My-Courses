@@ -1,0 +1,7 @@
+.post-details {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: #f8efd4;
+    overflow: auto;
+}

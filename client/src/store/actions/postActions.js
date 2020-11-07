@@ -1,6 +1,12 @@
 import axios from 'axios';
 const config = {headers: {'content-type': 'application/json'}};
 
+export const getPostById = async (postId) => {
+    const response = await axios.get(`http://localhost:8080/api/post/${postId}`);
+    const post = response.data;
+    return post;
+}
+
 export const createPost = async (data) =>{
     const response = await axios.post("http://localhost:8080/api/post", data, config);
     const post = response.data;

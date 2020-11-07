@@ -20,8 +20,8 @@ class PostList extends Component{
     }
 
     async componentDidMount(){
-        const courseId = this.props.match.params.id;
-        
+        const {courseId} = this.props.match.params;
+      
         const posts = await getPostsByCourseId(courseId);
         const course = await getCourseById(courseId);
 
@@ -92,6 +92,7 @@ class PostList extends Component{
                             post={post}
                             creatorId={post.userId}
                             removePostFromList = {this.removePostFromList}
+                            seeMore = {false}
                         />    
                     ) : <h2>No reviews available for this course</h2>
                 }

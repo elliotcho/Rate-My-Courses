@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {withRouter} from 'react-router-dom';
 import {getUserById} from '../../store/actions/profileActions';
 import {getCourseById} from '../../store/actions/courseActions';
 import {deletePostById, dislikePost, likePost, getLikeStatus} from '../../store/actions/postActions';
@@ -26,6 +27,7 @@ class Post extends Component{
         this.deletePost = this.deletePost.bind(this);
         this.handleLike = this.handleLike.bind(this);
         this.handleDislike = this.handleDislike.bind(this);
+        this.toPostDetails = this.toPostDetails.bind(this);
     }
 
     async componentDidMount(){
@@ -162,9 +164,14 @@ class Post extends Component{
         this.setState({userLiked, userDisliked, likes, dislikes});
     }
 
+    toPostDetails(){
+        const {post} = this.props;
+        this.props.history.push(`/post/${post.id}`);
+    }
+
     render(){
         const {username, course, userLiked, userDisliked, likes, dislikes} = this.state;
-        const {uid, creatorId, post} = this.props;
+        const {uid, creatorId, post, seeMore} = this.props;
 
         const greenClass = (userLiked) ? 'btn-success' : 'btn-outline-success';
         const redClass = (userDisliked) ? 'btn-danger' : 'btn-outline-danger';
@@ -194,11 +201,11 @@ class Post extends Component{
                         }
 
                         <p className="review">
-                            {(post.reason.length > 300)? 
+                            {post.reason.length > 300 && !seeMore? 
                                 (<div>
                                     {post.reason.substring(0, 297) + '... '}
 
-                                    <span>
+                                    <span onClick={this.toPostDetails}>
                                         See More
                                     </span>
                                 </div>) : post.reason
@@ -265,4 +272,4 @@ class Post extends Component{
     }
 }
 
-export default withAlert()(Post);
+export default withRouter(withAlert()(Post));
