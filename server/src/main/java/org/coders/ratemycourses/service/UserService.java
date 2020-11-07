@@ -2,6 +2,7 @@ package org.coders.ratemycourses.service;
 
 import org.json.JSONObject;
 import org.coders.ratemycourses.model.User;
+import org.coders.ratemycourses.repository.PostRepo;
 import org.coders.ratemycourses.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -169,4 +170,15 @@ public class UserService{
 
         return user.getAdmin();
     }
+
+    public boolean delete(String id){
+        User user = repo.findById(id).orElse(null);
+        if(user != null){
+            repo.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+
+
 }
