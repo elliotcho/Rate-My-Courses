@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {changeUsername} from '../../../src/store/actions/profileActions';
+import './css/UsernameForm.css';
 
 class UsernameForm extends Component{
     constructor(){
@@ -25,9 +26,13 @@ class UsernameForm extends Component{
 
         if(msg === 'Failed'){
             alert.error("Username already exists");
-        } else if(msg === 'Mismatch'){
+        } 
+        
+        else if(msg === 'Mismatch'){
             alert.error("Current username is incorrect!");
-        } else{
+        } 
+        
+        else{
             alert.success("Username changed successfully");
 
             this.setState({
@@ -52,8 +57,8 @@ class UsernameForm extends Component{
                 <input 
                     id='currUsername'
                     type='text'
-                    minLength='2'
-                    maxLength='10'
+                    minLength='4'
+                    maxLength='30'
                     onChange={this.handleChange}
                     value={currUsername}
                     required
@@ -63,8 +68,8 @@ class UsernameForm extends Component{
                 <input 
                     id='newName'
                     type="text"
-                    minLength='2'
-                    maxLength='10'
+                    minLength='4'
+                    maxLength='30'
                     onChange={this.handleChange}
                     value={newName}
                     required

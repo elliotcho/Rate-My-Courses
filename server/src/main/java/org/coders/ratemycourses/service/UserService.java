@@ -8,6 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.core.env.Environment;
+
 import java.util.List;
 import java.util.Random;
 
@@ -40,7 +41,6 @@ public class UserService{
         String adminCode = (String) obj.get("adminCode");
 
         //check if email/username already exists
-
         if(!repo.findByEmail(email).isEmpty()){
             return "Email is already registered";
         } else if(!repo.findByUsername(username).isEmpty()){
@@ -52,20 +52,18 @@ public class UserService{
         int randomIndex = rand.nextInt(upperbound);
 
         User newUser = new User();
-
-        //check if admin code is valid
-
-        if(passwordEncoder.matches(adminCode, env.getProperty("ADMIN_CODE"))){
-            newUser.setAdmin(true);
-        } else if(!adminCode.isEmpty()){
-            return "Invalid admin code";
-        }
-
         newUser.setUsername(username);
         newUser.setEmail(email);
         newUser.setDateCreated((String) obj.getString("dateCreated"));
         newUser.setPassword(passwordEncoder.encode((String) obj.get("password")));
         newUser.setDisplayPictureColor(backgroundColors[randomIndex]);
+
+        //check if admin code is valid
+        if(passwordEncoder.matches(adminCode, env.getProperty("ADMIN_CODE"))){
+            newUser.setAdmin(true);
+        } else if(!adminCode.isEmpty()){
+            return "Invalid admin code";
+        }
 
         return repo.save(newUser).getId();
     }
@@ -118,6 +116,7 @@ public class UserService{
 
     public String changeName(String userId, String newUsername, String currUsername){
         User user = repo.findById(userId).orElse(null);
+
         if(!user.getUsername().equals(currUsername)){
             return "Mismatch";
         }
@@ -169,14 +168,14 @@ public class UserService{
         return user.getAdmin();
     }
 
-    public boolean delete(String id){
+    public boolean deleteUser(String id){
         User user = repo.findById(id).orElse(null);
+
         if(user != null){
             repo.deleteById(id);
             return true;
         }
+
         return false;
     }
-
-
 }

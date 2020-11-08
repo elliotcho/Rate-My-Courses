@@ -53,8 +53,6 @@ class Login extends Component{
                         id='usrname'
                         type='text'
                         value={usrname}
-                        minLength='2'
-                        maxLength='10'
                         onChange={this.handleChange}
                         required
                     />
@@ -64,8 +62,6 @@ class Login extends Component{
                         id='pwd'
                         type='password'
                         value={pwd}
-                        minLength='7'
-                        maxLength='20'
                         onChange={this.handleChange}
                         required
                     />

@@ -1,9 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { Navbar} from 'react-bootstrap';
-import logo from "../../images/logo.png";
 import SignedInLinks from './SignedInLinks';
 import SignedOutLinks from './SignedOutLinks';
+import { Navbar} from 'react-bootstrap';
+import logo from "../../images/logo.png";
 import './css/Navigate.css';
 
 function Navigate(props){
@@ -24,11 +24,9 @@ function Navigate(props){
                 <Navbar.Toggle className='toggle' aria-controls="basic-navbar-nav"/>
                 
                 <Navbar.Collapse id="basic-navbar-nav">
-
                     <div className="ml-auto">
                         {uid? <SignedInLinks status={status}/> : <SignedOutLinks/>}
-                    </div>
-                    
+                    </div>       
                 </Navbar.Collapse>
             </Navbar>
         </div>

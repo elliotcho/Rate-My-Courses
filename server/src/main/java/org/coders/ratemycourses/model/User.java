@@ -31,11 +31,10 @@ public class User{
 
     @NotEmpty
     private String dateCreated;
+    private String displayPictureColor;
     
     private boolean admin = false;
     private boolean banned = false;
-
-    private String displayPictureColor;
 
     public boolean getAdmin(){
         return this.admin;

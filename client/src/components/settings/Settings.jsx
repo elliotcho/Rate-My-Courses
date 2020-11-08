@@ -17,7 +17,10 @@ function Settings(props){
 
     return (
         <div className='settings'>
-            <h1>Settings</h1>
+            <h1>
+                Settings
+            </h1>
+
             <PasswordForm uid = {uid} alert={alert}/>
             <UsernameForm uid={uid} alert={alert}/>
             <ChangeColor uid={uid} alert={alert}/>
