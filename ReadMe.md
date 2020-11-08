@@ -48,8 +48,7 @@ Users cannot change their username to one that already exists in the database.
 Users must validate their current username/password in order for this change to be successful.
 
 <br>
-<img src = './screenshots/settingsUser.png' style='width: 50%'></img>
-<img src='./screenshots/colorMenu.png' style='width: 50%'></img>
+<img src='./screenshots/colorMenu.png'></img>
 <br>
 
 Admin page can only be accessed by admins.
