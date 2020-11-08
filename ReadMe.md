@@ -58,4 +58,5 @@ The application is modeled using a client server model. The Server is modularize
 *****Make sure you have all the neccessary dependencies & packages installed first**********
 <br></br>
 1. Run the server first by compiling & executing RateMyCoursesApplication.java
+<br></br>
 2. Run the client by running "npm start" in the path Rate-My-Courses\client\
