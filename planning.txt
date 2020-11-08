@@ -1,17 +1,11 @@
-Post
-    -Edit button
-
 Admin 
     -Ban users in intervals
 
 Misc.
     -Check scroll for all pages (if needed fix)
     -input lengths for all pages
-
-    
     -refactor code
 
-    -component to functional (DeleteUser, Settings, SignedInLinks, SignedOutLinks, Navigate)
 
 Final
     -Screenshots of app
