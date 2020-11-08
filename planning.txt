@@ -1,12 +1,5 @@
-Misc.
-    -Reponsive Check
-    
-    -Format content
-    
-    -refactor code
-
-
 Final
     -Screenshots of app
     -Edit Readme.MD
+
     -Publish repository

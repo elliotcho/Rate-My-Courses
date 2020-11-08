@@ -14,7 +14,6 @@ class UsernameForm extends Component{
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-
     
     async handleSubmit(e){
         e.preventDefault();

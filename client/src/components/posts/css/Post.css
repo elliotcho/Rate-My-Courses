@@ -1,5 +1,3 @@
-
-
 /* First Section ~ Course ID, User ID, Review, Date Posted */
 .post  {
     text-align: center;
@@ -80,8 +78,7 @@
   }
   
 
-/* Second Section ~ total number of likes, dislikes and user's rating   */
-
+/*  Second Section ~ total number of likes, dislikes and user's rating   */
 .post .likes, .post .dislikes, .post .users-rating {
     font-family: 'Indie Flower', cursive;
     font-weight: bolder;

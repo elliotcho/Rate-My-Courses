@@ -15,6 +15,9 @@ function DeleteUser(props){
 
             if(userDeleted && postsDeleted){
                 alert.success("Successfully deleted user");
+
+                window.localStorage.clear();
+                window.location.reload();
             } 
             
             else{
@@ -40,9 +43,7 @@ function DeleteUser(props){
                 DELETE
             </button>
         </div>
-    )
-    
-    
+    )  
 }
 
 export default DeleteUser;
