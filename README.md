@@ -5,12 +5,13 @@ Rate My Courses is a responsive full stack application created using React.JS, R
 styled using BootStrap 4.
 
 The frontend uses React.js, Redux, and other npm packages such as axios, react-alert, react-confirm-alert, and moment.js
-The backend uses Spring Boot (Java), which is used to connect to a NoSQL database, MongoDB.
 
+The backend uses Spring Boot (Java), which is used to connect to a NoSQL database, MongoDB.
 This application authenticates users and allows them to execute CRUD operations when rating courses. 
 
 Users are divided into two types: admin and regular users. 
 Admin users have greater privileges that include CRUD operations on courses/departments.
+
 Admins can also ban/unban users in real time. If a user is online when they are banned, the application 
 will force them to logout within a maximum of 30 minutes.
 
