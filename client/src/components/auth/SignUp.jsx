@@ -68,6 +68,8 @@ class Signup extends Component{
                         id='username' 
                         type='text'
                         value={username}
+                        minLength='2'
+                        maxLength='10'
                         onChange={this.handleChange}
                         required
                     />
@@ -76,6 +78,8 @@ class Signup extends Component{
                     <input 
                         id='email' 
                         type='email'
+                        minLength='6'
+                        maxLength='49'
                         value={email}
                         onChange={this.handleChange}
                         required
@@ -85,6 +89,8 @@ class Signup extends Component{
                     <input 
                         id='password'
                         type='password'
+                        minLength='6'
+                        maxLength='49'
                         value={password}
                         onChange={this.handleChange}
                         required
@@ -95,6 +101,8 @@ class Signup extends Component{
                         id='confirmPassword'
                         type='password'
                         value={confirmPassword}
+                        minLength='6'
+                        maxLength='49'
                         onChange={this.handleChange}
                         required
                     />

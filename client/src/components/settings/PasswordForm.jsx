@@ -54,6 +54,8 @@ class PasswordForm extends Component{
                     <input 
                         id='currPassword'
                         type='password'
+                        minLength='6'
+                        maxLength='49'
                         onChange={this.handleChange}
                         value={currPassword}
                         required
@@ -63,6 +65,8 @@ class PasswordForm extends Component{
                     <input 
                         id='newPassword'
                         type="password"
+                        minLength='6'
+                        maxLength='49'
                         onChange = {this.handleChange}
                         value = {newPassword}
                         required
@@ -72,6 +76,8 @@ class PasswordForm extends Component{
                     <input 
                         id='confirmPassword'
                         type="password"
+                        minLength='6'
+                        maxLength='49'
                         onChange={this.handleChange}
                         value={confirmPassword}
                         required

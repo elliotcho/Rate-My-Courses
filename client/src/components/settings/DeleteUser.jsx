@@ -35,7 +35,7 @@ function DeleteUser(props){
             <h3>Delete Account</h3>
 
             <button onClick= {handleClick} className="btn btn-block btn-outline-danger btn-lg">
-                Delete Account
+                DELETE
             </button>
         </div>
     )

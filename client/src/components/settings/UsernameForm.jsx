@@ -52,6 +52,8 @@ class UsernameForm extends Component{
                 <input 
                     id='currUsername'
                     type='text'
+                    minLength='2'
+                    maxLength='10'
                     onChange={this.handleChange}
                     value={currUsername}
                     required
@@ -61,6 +63,8 @@ class UsernameForm extends Component{
                 <input 
                     id='newName'
                     type="text"
+                    minLength='2'
+                    maxLength='10'
                     onChange={this.handleChange}
                     value={newName}
                     required
