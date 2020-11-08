@@ -1,5 +1,0 @@
-Final
-    -Screenshots of app
-    -Edit Readme.MD
-
-    -Publish repository

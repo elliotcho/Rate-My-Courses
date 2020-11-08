@@ -30,7 +30,7 @@ class App extends Component{
               } else{
                  clearInterval(interval);
               }
-          }, 5000);
+          }, 1000 * 60 * 30);
       }
   }
   
