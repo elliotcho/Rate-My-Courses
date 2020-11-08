@@ -1,16 +1,22 @@
 <h1>Rate My Courses</h1>
 
 <hr>
-Rate My Courses is a responsive full stack application created using React.JS, Redux, Spring Boot, MongoDB, npm, and
-styled using BootStrap 4.
+<p>Rate My Courses is a responsive full stack application created using React.JS, Redux, Spring Boot, MongoDB, npm, and
+styled using BootStrap 4. </p>
 
+<p>
 The frontend uses React.js, Redux, and other npm packages such as axios, react-alert, react-confirm-alert, and moment.js
-
 The backend uses Spring Boot (Java), which is used to connect to a NoSQL database, MongoDB.
-This application authenticates users and allows them to execute CRUD operations when rating courses. 
+</p>
 
+<p>
+This application authenticates users and allows them to execute CRUD operations when rating courses. 
+</p>
+
+<p>
 Users are divided into two types: admin and regular users. 
 Admin users have greater privileges that include CRUD operations on courses/departments.
+</p>
 
 Admins can also ban/unban users in real time. If a user is online when they are banned, the application 
 will force them to logout within a maximum of 30 minutes.
@@ -62,10 +68,9 @@ A shield icon will show up on your navbar if you're an admin.
 <hr>
 
 <h3>Architecture</h3>
-The server is modelled using a Model - Repo - Service - Controller architecture. 
-The Models are basically schemas that allow us to access/update fields that belong to them.
-The Repo is a data access object that allows us to recieve/send Models to our database.
-The Service uses Repositories to execute a certain operation specified by the client.
-The Controller are routes that the client calls to request a certain operation. 
-
-The server makes use of REST API.
+<p>The server is modelled using a Model - Repo - Service - Controller architecture.</p>
+<p>The Models are basically schemas that allow us to access/update fields that belong to them.</p>
+<p>The Repo is a data access object that allows us to recieve/send Models to our database.</p>
+<p>The Service uses Repositories to execute a certain operation specified by the client.</p>
+<p>The Controller are routes that the client calls to request a certain operation. </p>
+<p>The server also makes use of REST API.</p>

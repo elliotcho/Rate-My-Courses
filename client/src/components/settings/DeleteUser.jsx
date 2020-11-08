@@ -14,8 +14,6 @@ function DeleteUser(props){
             const userDeleted = await deleteUser(uid);
 
             if(userDeleted && postsDeleted){
-                alert.success("Successfully deleted user");
-
                 window.localStorage.clear();
                 window.location.reload();
             } 
