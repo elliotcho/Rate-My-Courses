@@ -70,7 +70,7 @@ A shield icon will show up on your navbar if you're an admin.
 <h3>Architecture</h3>
 <p>The server is modelled using a Model - Repo - Service - Controller architecture.</p>
 <p>The Models are basically schemas that allow us to access/update fields that belong to them.
-The Repo is a data access object that allows us to recieve/send Models to our database.
+The Repo is a data access object that allows us to recieve/send Models from/to our database.
 The Service uses Repositories to execute a certain operation specified by the client.
 The Controller are routes that the client calls to request a certain operation. </p>
 <p>The server also makes use of REST API.</p>
