@@ -54,7 +54,7 @@ Admins are responsible for creating departments and adding courses to each depar
 <h3>Architecture</h3>
 The application is modeled using a client server model. The Server is modularized into 4 modules which are controller-model-repository-service. Client can send actions to the server's appropriate controller which handles each action for example PostController handles postActions. The controller will then call the required service which uses the repository and model to update the database. 
 
-<h2>Running the Application Locally</h2>
+<h3>Running the Application Locally</h3>
 *****Make sure you have all the neccessary dependencies & packages installed first**********
 1. Run the server first by compiling & executing RateMyCoursesApplication.java
 2. Run the client by running "npm start" in the path Rate-My-Courses\client\
