@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
 import {getUserById} from '../../store/actions/profileActions';
 import {getCourseById} from '../../store/actions/courseActions';
-import {deletePostById, dislikePost, likePost, getLikeStatus, updatePost} from '../../store/actions/postActions';
+import * as postActions from '../../store/actions/postActions';
 import PostSettings from './PostSettings';
 import EditModal from './EditModal';
 import moment from 'moment';
@@ -33,6 +33,7 @@ class Post extends Component{
 
     async componentDidMount(){
         const {uid, creatorId, post} = this.props;
+        const {getLikeStatus} = postActions;
 
         const user = await getUserById(creatorId);
         const course = await getCourseById(post.courseId);
@@ -53,6 +54,7 @@ class Post extends Component{
 
     async componentDidUpdate(prevProps){
         const {uid, post} = this.props;
+        const {getLikeStatus} = postActions;
 
         if((!prevProps.uid && uid) || (prevProps.uid && !uid)){
             const status = await getLikeStatus(uid, post.id);
@@ -69,7 +71,10 @@ class Post extends Component{
         const {removePostFromList} = this.props;
 
         const confirmDelete = async () => {
+            const {deletePostById} = postActions;
+
             await deletePostById(id);
+            
             removePostFromList(id);
         }
 
@@ -94,7 +99,7 @@ class Post extends Component{
             return;
         }
 
-        const flags = await likePost(uid, postId);
+        const flags = await postActions.likePost(uid, postId);
 
         let userLiked, userDisliked;
 
@@ -135,7 +140,7 @@ class Post extends Component{
             return;
         } 
 
-        const flags  = await dislikePost(uid, postId);
+        const flags  = await postActions.dislikePost(uid, postId);
 
         let userLiked, userDisliked;
 
@@ -171,18 +176,19 @@ class Post extends Component{
     }
 
     async editPost(newReason){
-        const{post} = this.props;
+        const{post, editPostInReducer} = this.props;
 
-        const updated = await updatePost(post.id, newReason);
+        const updated = await postActions.updatePost(post.id, newReason);
 
         if(updated){
-            window.location.reload();
+            editPostInReducer(post.id, newReason);
         }
     }
 
     render(){
         const {username, course, userLiked, userDisliked, likes, dislikes} = this.state;
         const {uid, creatorId, post, seeMore} = this.props;
+        const {formatCount} = postActions;
 
         const greenClass = (userLiked) ? 'btn-success' : 'btn-outline-success';
         const redClass = (userDisliked) ? 'btn-danger' : 'btn-outline-danger';
@@ -232,7 +238,9 @@ class Post extends Component{
                         </p>
                     </div>
                 </div>
+
                 <hr/>
+
                 <div className="ratings row">
                     <div className="col-4">
                         <h5 className="likes" >Likes</h5>
@@ -243,7 +251,7 @@ class Post extends Component{
 
                         <p className='likes-count'>
                             {likes.length !== 0 ? 
-                                likes.length:
+                                formatCount(likes.length):
                                 null
                             }
                         </p>
@@ -258,7 +266,7 @@ class Post extends Component{
 
                         <p className='dislikes-count'>
                             {dislikes.length !== 0 ?
-                                dislikes.length:
+                                formatCount(dislikes.length):
                                 null
                             }
                         </p>
@@ -277,10 +285,7 @@ class Post extends Component{
                     style = {{visibility: 'hidden'}}
                 />
 
-                <EditModal 
-                    reason={post.reason}
-                    editPost = {this.editPost}
-                />
+                <EditModal reason={post.reason} editPost={this.editPost}/>
             </section>
         )
     }

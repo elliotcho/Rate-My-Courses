@@ -39,5 +39,4 @@ public class DepartmentController{
     public Department getDepartment(@PathVariable String id){
         return departmentService.getDepartment(id);
     }
-
 }

@@ -1,7 +1,6 @@
 .dead-page {
-    position: fixed;
-    width: 100%;
-    height: 100%;
+    height: 92vh;
+    overflow: auto;
     background-color: #f3eac2;
     text-align: center;
 }

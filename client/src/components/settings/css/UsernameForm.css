@@ -1,0 +1,8 @@
+/* Change My Username form */
+.change-username {
+    width: 47%;
+    display: inline-block;
+    border-radius: 30px 10px;
+    border: 6px solid #686d76;
+    padding: 3%;
+}

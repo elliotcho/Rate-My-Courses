@@ -89,6 +89,8 @@ class DepartmentTable extends Component{
                                     id='name' 
                                     type='text'
                                     onChange={this.handleChange}
+                                    minLength='6'
+                                    maxLength='40'
                                     value={name}
                                     required
                                 />
@@ -98,6 +100,8 @@ class DepartmentTable extends Component{
                                 <input 
                                     id='code' 
                                     type='text' 
+                                    minLength='2'
+                                    maxLength='4'
                                     onChange={this.handleChange}
                                     value={code}
                                     required

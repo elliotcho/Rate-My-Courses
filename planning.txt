@@ -1,13 +1,5 @@
-Admin 
-    -Ban users in intervals
-
-Misc.
-    -Check scroll for all pages (if needed fix)
-    -input lengths for all pages
-    -refactor code
-
-
 Final
     -Screenshots of app
     -Edit Readme.MD
+
     -Publish repository

@@ -4,6 +4,7 @@ import org.coders.ratemycourses.model.Course;
 import org.coders.ratemycourses.repository.CourseRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service

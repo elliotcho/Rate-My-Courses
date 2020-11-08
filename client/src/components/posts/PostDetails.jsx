@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {getPostById} from '../../store/actions/postActions';
+import {getPostById, reloadPosts} from '../../store/actions/postActions';
 import Post from './Post';
 import './css/PostDetails.css';
 
@@ -8,6 +8,7 @@ class PostDetails extends Component{
     constructor(){
         super();
         this.toPostList = this.toPostList.bind(this);
+        this.editPostInReducer = this.editPostInReducer.bind(this);
     }
 
     async componentDidMount(){
@@ -25,6 +26,16 @@ class PostDetails extends Component{
         }
     }
 
+    editPostInReducer(postId, newReason){
+        const {dispatch, posts} = this.props;
+
+        if(posts[0] && posts[0].id === postId){
+            posts[0].reason = newReason;
+        }
+
+        dispatch(reloadPosts(posts));
+    }
+
     render(){
         const {uid} = this.props;
         const {posts} = this.props;;
@@ -38,6 +49,7 @@ class PostDetails extends Component{
                                 post={post}
                                 creatorId={post.userId}
                                 removePostFromList = {this.toPostList}
+                                editPostInReducer = {this.editPostInReducer}
                                 seeMore = {true}
                             />) 
                     ): null

@@ -2,7 +2,6 @@ package org.coders.ratemycourses.service;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.text.DecimalFormat;
 
@@ -53,11 +52,14 @@ public class PostService{
 
     public boolean[] likeStatus(String userId, String postId){
         Post post = repo.findById(postId).orElse(null);
-
+        
         boolean[] result = new boolean[2];
-        result[0] = post.getLikes().contains(userId);
-        result[1] = post.getDislikes().contains(userId);
 
+        if(post != null){
+            result[0] = post.getLikes().contains(userId);
+            result[1] = post.getDislikes().contains(userId);
+        }
+        
         return result;
     }
 
@@ -182,11 +184,13 @@ public class PostService{
 
     public boolean updatePost(String postId, String newContent){
         Post post = repo.findById(postId).orElse(null);
+        
         if(post != null){
-        post.setReason(newContent);
-        repo.save(post);
-        return true;
+            post.setReason(newContent);
+            repo.save(post);
+            return true;
         }
+        
         return false;
     }
 

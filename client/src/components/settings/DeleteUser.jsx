@@ -10,12 +10,17 @@ function DeleteUser(props){
         const{uid, alert} = props;
 
         const confirmDelete = async () => {
-            const msgPost = await deleteUserPosts(uid);
-            const msg = await deleteUser(uid);
+            const postsDeleted = await deleteUserPosts(uid);
+            const userDeleted = await deleteUser(uid);
 
-            if(msg && msgPost){
+            if(userDeleted && postsDeleted){
                 alert.success("Successfully deleted user");
-            } else{
+
+                window.localStorage.clear();
+                window.location.reload();
+            } 
+            
+            else{
                 alert.error("Unable to delete account");
             }
         }
@@ -35,11 +40,10 @@ function DeleteUser(props){
             <h3>Delete Account</h3>
 
             <button onClick= {handleClick} className="btn btn-block btn-outline-danger btn-lg">
-                Delete Account
+                DELETE
             </button>
         </div>
-    )
-    
-    
+    )  
 }
+
 export default DeleteUser;

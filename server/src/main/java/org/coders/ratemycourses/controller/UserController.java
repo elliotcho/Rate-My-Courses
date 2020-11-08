@@ -91,6 +91,6 @@ public class UserController{
 
     @DeleteMapping("/delete_user/{userId}")
     public boolean deleteUser(@PathVariable String userId){
-        return userService.delete(userId);
+        return userService.deleteUser(userId);
     }
 }

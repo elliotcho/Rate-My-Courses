@@ -106,6 +106,8 @@ class CourseTable extends Component{
                                     type='text'
                                     id = 'name'
                                     onChange = {this.handleChange}
+                                    minLength='6'
+                                    maxLength='60'
                                     value = {name}
                                     required
                                 />
@@ -116,6 +118,8 @@ class CourseTable extends Component{
                                     type='text' 
                                     id = 'number'
                                     onChange = {this.handleChange}
+                                    minLength='3'
+                                    maxLength='4'
                                     value = {number}
                                     required
                                 />

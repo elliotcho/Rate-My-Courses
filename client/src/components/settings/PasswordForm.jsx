@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {changePassword} from '../../../src/store/actions/profileActions';
+import './css/PasswordForm.css';
 
 class PasswordForm extends Component{
     constructor(){
@@ -54,6 +55,8 @@ class PasswordForm extends Component{
                     <input 
                         id='currPassword'
                         type='password'
+                        minLength='6'
+                        maxLength='49'
                         onChange={this.handleChange}
                         value={currPassword}
                         required
@@ -63,6 +66,8 @@ class PasswordForm extends Component{
                     <input 
                         id='newPassword'
                         type="password"
+                        minLength='6'
+                        maxLength='49'
                         onChange = {this.handleChange}
                         value = {newPassword}
                         required

@@ -122,6 +122,7 @@ class CreatePost extends Component{
                                         className="form-control"
                                         id='prof' 
                                         value={prof}
+                                        minLength='2'
                                         onChange={this.handleChange}
                                         required
                                     />

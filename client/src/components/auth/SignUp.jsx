@@ -68,6 +68,8 @@ class Signup extends Component{
                         id='username' 
                         type='text'
                         value={username}
+                        minLength='4'
+                        maxLength='30'
                         onChange={this.handleChange}
                         required
                     />
@@ -76,6 +78,8 @@ class Signup extends Component{
                     <input 
                         id='email' 
                         type='email'
+                        minLength='6'
+                        maxLength='49'
                         value={email}
                         onChange={this.handleChange}
                         required
@@ -85,6 +89,8 @@ class Signup extends Component{
                     <input 
                         id='password'
                         type='password'
+                        minLength='6'
+                        maxLength='49'
                         value={password}
                         onChange={this.handleChange}
                         required
@@ -124,7 +130,6 @@ class Signup extends Component{
         )
     }
 }
-
 
 const mapDispatchToProps = (dispatch) => ({dispatch});
 

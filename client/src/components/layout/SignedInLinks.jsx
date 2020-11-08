@@ -9,6 +9,7 @@ function SignedInLinks(props){
         window.localStorage.clear();
         window.location.reload();
     }
+
     const {status} = props;
 
     const linkStyle = {textDecoration: 'none'};
@@ -46,10 +47,8 @@ function SignedInLinks(props){
                     </Link>
                 </Nav.Item>
             </Nav>
-        </div>
-        
+        </div> 
     )
-
 }
 
 export default withRouter(SignedInLinks);

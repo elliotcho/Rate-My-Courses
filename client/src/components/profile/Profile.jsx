@@ -21,6 +21,7 @@ class Profile extends Component {
         this.updateLikesRatio = this.updateLikesRatio.bind(this);
         this.updateAvgRating = this.updateAvgRating.bind(this);
         this.removePostFromList = this.removePostFromList.bind(this);
+        this.editPostInReducer = this.editPostInReducer.bind(this);
     }
 
     async componentDidMount(){
@@ -69,6 +70,19 @@ class Profile extends Component {
        dispatch(reloadPosts(posts));
 
        this.setState({numPosts});
+    }
+
+    editPostInReducer(postId, newReason){
+        const {dispatch, posts} = this.props;
+
+        for(let i=0;i<posts.length;i++){
+            if(posts[i].id === postId){
+                posts[i].reason = newReason;
+                break;
+            }
+        }
+
+        dispatch(reloadPosts(posts));
     }
 
     render() {
@@ -130,6 +144,7 @@ class Profile extends Component {
                             post={post}
                             creatorId={post.userId}
                             removePostFromList={this.removePostFromList}
+                            editPostInReducer = {this.editPostInReducer}
                             updateLikesRatio = {this.updateLikesRatio}
                             seeMore = {false}
                         />    
