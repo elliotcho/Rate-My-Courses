@@ -2,12 +2,14 @@ import axios from 'axios';
 
 const config = {headers: {'Content-Type': 'application/json'}};
 
+//get a list of all users
 export const getAllUsers = async () => {
     const response = await axios.get('http://localhost:8080/api/user');
     const users = response.data;
     return users;
 }
 
+//ban a user
 export const handleBan = async (data, users) => {
     const response = await axios.post('http://localhost:8080/api/user/ban', JSON.stringify(data), config);
     const updatedUser =  response.data;
@@ -21,6 +23,7 @@ export const handleBan = async (data, users) => {
     return users;
 }
 
+//create a department
 export const createDepartment = async (data) => {
     const response = await axios.post('http://localhost:8080/api/department', data, config);
     const newDepartment = response.data;
@@ -40,6 +43,7 @@ export const deleteDepartment = async (departments, id) => {
     return departments;
 }
 
+//create a course
 export const createCourse = async (data) => {
     let response = await axios.post('http://localhost:8080/api/course', data, config);
     const newCourse = response.data;
@@ -56,6 +60,7 @@ export const createCourse = async (data) => {
     return newCourse;
 }
 
+//delete a course
 export const deleteCourse= async (courses, id) => {
     await axios.delete(`http://localhost:8080/api/course/${id}`);
 

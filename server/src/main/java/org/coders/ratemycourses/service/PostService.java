@@ -2,7 +2,6 @@ package org.coders.ratemycourses.service;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.text.DecimalFormat;
 
@@ -185,11 +184,13 @@ public class PostService{
 
     public boolean updatePost(String postId, String newContent){
         Post post = repo.findById(postId).orElse(null);
+        
         if(post != null){
-        post.setReason(newContent);
-        repo.save(post);
-        return true;
+            post.setReason(newContent);
+            repo.save(post);
+            return true;
         }
+        
         return false;
     }
 

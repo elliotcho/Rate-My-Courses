@@ -1,12 +1,8 @@
-Post
-    -Edit button
-
-Admin 
-    -Ban users in intervals
-
 Misc.
-    -Check scroll for all pages (if needed fix)
-    -input lengths for all pages
+    -Reponsive Check
+    
+    -Format content
+    
     -refactor code
 
 

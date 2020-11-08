@@ -10,12 +10,14 @@ function DeleteUser(props){
         const{uid, alert} = props;
 
         const confirmDelete = async () => {
-            const msgPost = await deleteUserPosts(uid);
-            const msg = await deleteUser(uid);
+            const postsDeleted = await deleteUserPosts(uid);
+            const userDeleted = await deleteUser(uid);
 
-            if(msg && msgPost){
+            if(userDeleted && postsDeleted){
                 alert.success("Successfully deleted user");
-            } else{
+            } 
+            
+            else{
                 alert.error("Unable to delete account");
             }
         }
@@ -42,4 +44,5 @@ function DeleteUser(props){
     
     
 }
+
 export default DeleteUser;

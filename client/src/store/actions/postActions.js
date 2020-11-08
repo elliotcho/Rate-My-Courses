@@ -3,16 +3,19 @@ import axios from 'axios';
 
 const config = {headers: {'content-type': 'application/json'}};
 
+//create a post
 export const createPost = async (data) =>{
     const response = await axios.post("http://localhost:8080/api/post", data, config);
     const post = response.data;
     return post;
 }
 
+//delete a post
 export const deletePostById = async (postId) => {
     await axios.delete(`http://localhost:8080/api/post/${postId}`);
 }
 
+//like a post
 export const likePost = async (uid, postId) => {
     if(!uid){
         return;
@@ -25,6 +28,7 @@ export const likePost = async (uid, postId) => {
     return msg;
 }
 
+//dislike a post
 export const dislikePost = async (uid, postId) => {
     if(!uid){
         return;
@@ -37,6 +41,7 @@ export const dislikePost = async (uid, postId) => {
     return flags ;
 }
 
+//check if user liked/disliked a post
 export const getLikeStatus = async (uid, postId) => {
     if(!uid){
         return [false, false];
@@ -49,19 +54,23 @@ export const getLikeStatus = async (uid, postId) => {
     return status;
 }
 
+//delete all of the user's posts
 export const deleteUserPosts = async (uid) => {
     const response = await axios.delete(`http://localhost:8080/api/post/user_posts/${uid}`);
     const isSuccessful = response.data;
     return isSuccessful;
 }
 
+//edit a post
 export const updatePost = async (postId, newReason) => {
     const data = {postId, reason: newReason};
+
     const response = await axios.post("http://localhost:8080/api/post/edit_post", JSON.stringify(data), config);
     const isSuccessful = response.data;
     return isSuccessful;
 }
 
+//get all posts for a course
 export const getPostsByCourseId = (courseId) => {
     return async (dispatch) => {
         const response = await axios.get(`http://localhost:8080/api/post/course/${courseId}`);
@@ -75,6 +84,7 @@ export const getPostsByCourseId = (courseId) => {
     }
 }
 
+//get all posts by a user
 export const getUserPosts = (userId) => {
     return async (dispatch) => {
         const response = await axios.get(`http://localhost:8080/api/post/user/${userId}`);
@@ -88,6 +98,7 @@ export const getUserPosts = (userId) => {
     }
 }
 
+//get one post by its id
 export const getPostById = (postId) => {
     return async (dispatch) => {
         const response = await axios.get(`http://localhost:8080/api/post/${postId}`);
@@ -100,6 +111,7 @@ export const getPostById = (postId) => {
     }
 }
 
+//reload the global state holding all the posts causing a re-render in components
 export const reloadPosts = (posts) => {
     return (dispatch) => {
         dispatch({

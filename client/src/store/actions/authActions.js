@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const config = {headers: {'content-type': 'application/json'}};
 
+//login
 export const login = (data, alert) => {
     return async (dispatch) => {
         let response = await axios.post('http://localhost:8080/api/user/login', data, config);
@@ -27,6 +28,7 @@ export const login = (data, alert) => {
     }
 }
 
+//sign up
 export const signup = (data, alert) => {
     return async (dispatch) => {
         let response = await axios.post('http://localhost:8080/api/user', JSON.stringify(data), config);

@@ -7,7 +7,6 @@
     box-shadow: 0 0 5px black;
 }
 
-
 .department-table thead th{
     padding: 16px;
     background: #3186b2;
@@ -24,4 +23,3 @@
 .department-table #code {
     width: 40%;
 }
-

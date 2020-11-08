@@ -28,7 +28,9 @@ class ChangeColor extends Component{
             this.setState( {
                 choice: ''
             });
-        } else{
+        } 
+        
+        else{
             alert.error("Something went wrong");
         }
     }

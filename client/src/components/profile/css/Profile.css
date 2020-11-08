@@ -1,7 +1,5 @@
 .profile-pg {
-    width: 100%;
-    height: 100%;
-    position: fixed;
+    height: 92vh;
     overflow: auto;
     background-color: #eaffd0;
     padding: 4%;

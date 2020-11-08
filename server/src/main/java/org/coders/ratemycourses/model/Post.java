@@ -34,6 +34,5 @@ public class Post{
 
     @NotEmpty
     private Integer stars;
-
     private Integer year;
 }

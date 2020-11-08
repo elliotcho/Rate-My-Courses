@@ -17,10 +17,6 @@
     }
 }
 
-.post:last-child{
-    margin-bottom: 100px;
-}
-
 .post button{
     font-family: 'Tahoma';
 }

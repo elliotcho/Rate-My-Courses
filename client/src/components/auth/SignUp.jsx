@@ -68,8 +68,8 @@ class Signup extends Component{
                         id='username' 
                         type='text'
                         value={username}
-                        minLength='2'
-                        maxLength='10'
+                        minLength='4'
+                        maxLength='30'
                         onChange={this.handleChange}
                         required
                     />
@@ -101,8 +101,6 @@ class Signup extends Component{
                         id='confirmPassword'
                         type='password'
                         value={confirmPassword}
-                        minLength='6'
-                        maxLength='49'
                         onChange={this.handleChange}
                         required
                     />
@@ -132,7 +130,6 @@ class Signup extends Component{
         )
     }
 }
-
 
 const mapDispatchToProps = (dispatch) => ({dispatch});
 

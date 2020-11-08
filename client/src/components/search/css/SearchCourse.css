@@ -1,7 +1,5 @@
 .search-course-container{
-    position: fixed;
-    width: 100%;
-    height: 100%;
+    height: 92vh;
     background: #add2c9;
     overflow: auto;
 }

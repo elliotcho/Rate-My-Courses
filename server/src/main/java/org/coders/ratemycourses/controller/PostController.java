@@ -70,10 +70,10 @@ public class PostController{
 
     @PutMapping("/dislike")
     public boolean[] dislikePost(@RequestBody String data){
-        JSONObject temp = new JSONObject(data);
+        JSONObject obj = new JSONObject(data);
 
-        String userId = (String) temp.get("userId");
-        String postId = (String) temp.get("postId");
+        String userId = (String) obj.get("userId");
+        String postId = (String) obj.get("postId");
 
         return postService.dislike(userId, postId);
     }
