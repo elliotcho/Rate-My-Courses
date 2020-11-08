@@ -8,6 +8,26 @@
 }
 
 /* First Section ~ User Profile + Stats */
+.profile-pg .user-profile {
+    margin: 0 auto;
+    width: 47%;
+    padding: 4%;
+    text-align: justify;
+    border-radius: 10px 60px;
+    margin-bottom: 5%;
+}
+
+@media screen and (max-width: 799px) {
+    .profile-pg .user-profile {
+        width: 70%;
+    }
+}
+@media screen and (max-width: 499px) {
+    .profile-pg .user-profile {
+        width: 90%;
+    }
+}
+
 .profile-pg .icon {
     display: block;
     text-align: center;
@@ -20,14 +40,6 @@
     font-weight: bold;
     font-size: 20px;
 }
-.profile-pg .user-profile {
-    margin: 0 auto;
-    width: 40%;
-    padding: 4%;
-    text-align: justify;
-    border-radius: 10px 60px;
-    margin-bottom: 5%;
-}
 
 /* Second Section ~ Previous Posts */
 .profile-pg h1 {
@@ -36,3 +48,4 @@
     font-family: 'Permanent Marker', cursive;
     color: #ff847c;
 }
+

@@ -11,6 +11,12 @@
     padding: 10px;  
 }
 
+@media screen and (max-width: 1000px) {
+    .post {
+        max-width: 79%;
+    }
+}
+
 .post:last-child{
     margin-bottom: 100px;
 }
@@ -90,6 +96,12 @@
 .post .likes-btn, .post .dislikes-btn {
     width: 30%;
     margin-bottom: 5%;
+}
+
+@media screen and (max-width: 800px) {
+    .post .likes-btn, .post .dislikes-btn {
+        width: 47%;
+    }
 }
 
 .post .likes-count, .post .dislikes-count{
